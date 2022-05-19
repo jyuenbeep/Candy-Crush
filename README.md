@@ -19,4 +19,7 @@ Our project will be a replica of the ever-so popular Candy Crush game. Though th
 5/18:
 Started the prototype and listed out the needed sections to fulfill. Also trying to do all the READme stuff that is required.
 
+5/19:
+Continued working on the prototype and discussed what our game would look like. 
+
 ### Bernadette Baroi:
