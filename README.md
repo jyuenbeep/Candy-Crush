@@ -25,3 +25,5 @@ Continued working on the prototype and discussed what our game would look like.
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
+
+5/20: Beautified the prototype. 
