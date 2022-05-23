@@ -29,4 +29,5 @@ Classes/methods finalized and prototype basically done except for the UML diagra
 
 5/19: Began working on the prototype and updating our documents. 
 
+5/22: Finished the prototype. Worked on the methods and on UML diagrams. Brainstormed ideas.
 5/20: Beautified the prototype. 
