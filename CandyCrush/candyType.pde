@@ -2,6 +2,7 @@ public class candyCrush {
   public int[][] board;
   public candyCrush() {
     board = new int[10][10];
+    
   }
 }
 
