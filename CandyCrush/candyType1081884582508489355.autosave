@@ -1,4 +1,11 @@
-public class candyType {
+public class candyCrush { 
+  public int[][] board;
+  public candyCrush() {
+    board = new int[10][10];
+  }
+}
+
+public class candyType extends candyCrush{
   public void CandyType() {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
@@ -21,17 +28,11 @@ public class candyType {
             board[i][j] = -1;
             board[i][j-1] = -1;
             board[i][j+1] = -1;
+          } 
         }
       }
-     }
     }
   }
   
-}
 
-public class candyCrush implements candyType{ 
-  private int[][] board;
-  public candyCrush() {
-    board = new int[10][10];
-  }
 }

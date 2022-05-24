@@ -1,8 +1,7 @@
 void setup(){
-    size(1000, 800);
-    candyCrush candy = new candyCrush();
+  size(1000, 800);
 }
 
 void draw() {
-
+  
 }
