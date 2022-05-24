@@ -14,15 +14,20 @@ public class candyType extends candyCrush{
   }
   
   public int regularCandies() {
-    int i = (int)Math.random()*10;
+    int i = (int)Math.random()*5;
     return i; 
   }
   
-  public void clear(){
-    for (int i = 0; i < 10; i++) {
-      for (int j = 0; j < 10; j++) {
-        
-      }
+  public void clear(int x, int y){
+    while (x - 1 >= 0 && x+1 <= board.size()) {
+      if (board[x][y])
+    }
+    
+    while (x + 1 >= 0) {
+    
+    }
+    while (x - 1 >= 0) {
+    
     }
   }
 
