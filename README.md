@@ -25,6 +25,9 @@ Continued working on the prototype and discussed what our game would look like.
 5/21: 
 Classes/methods finalized and prototype basically done except for the UML diagram, which we will do based on the prototype. Also changed up the project description a little. 
 
+5/23:
+Worked on level{} class and added accessor/mutator methods.
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
