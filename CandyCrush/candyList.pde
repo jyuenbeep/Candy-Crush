@@ -25,8 +25,8 @@ public class candyList {
     }
   }
   
-  void set(int index, candy c) {
-    candies.set(index, c);
+  candy set(int index, candy c) {
+    return candies.set(index, c);
   }
   
   candy get(int index) {
