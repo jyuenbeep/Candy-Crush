@@ -14,12 +14,12 @@ public class candyList {
     candies = new ArrayList<candy>();
     for (int i = 0; i<total; i++) {
       candies.add(new candy(xcor, ycor, colorsToChoose[(int)Math.random()*4]));
-      if (xcor<950) {
-        xcor+=50;
+      if (xcor<920) {
+        xcor+=80;
       }
       else {
         xcor=50; 
-        ycor+=50;
+        ycor+=80;
       }
     }
   }
