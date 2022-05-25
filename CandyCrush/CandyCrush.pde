@@ -1,7 +1,7 @@
 final int TILESIZE = 80;
 int ycor; 
 int xcor;
-int candiesNum = 0;
+int candiesNum = runBoard();
 candyList candies;
 
 void setup() {
@@ -16,14 +16,16 @@ void draw() {
   candies.display();
 }
 
-void runBoard() {
+int runBoard() {
   while (ycor < height-80) {
     xcor = 50;
     while (xcor<width-TILESIZE) {
       //stroke(10);
       rect(xcor, ycor, TILESIZE, TILESIZE);
       xcor+=TILESIZE;
+      candiesNum++;
     }
     ycor+=TILESIZE;
   }
+  return candiesNum;
 }
