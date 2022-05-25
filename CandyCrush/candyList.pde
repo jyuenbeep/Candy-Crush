@@ -9,11 +9,12 @@ public class candyList {
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
   
   candyList(int total) {
-    int xcor = 50;
-    int ycor = 50;
+    int xcor = 100;
+    int ycor = 150;
     candies = new ArrayList<candy>();
     for (int i = 0; i<total; i++) {
-      candies.add(new candy(xcor, ycor, colorsToChoose[(int)Math.random()*4]));
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candies.add(new candy(xcor, ycor, rand));
       if (xcor<920) {
         xcor+=80;
       }

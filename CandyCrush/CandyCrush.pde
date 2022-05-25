@@ -12,6 +12,7 @@ void setup() {
 void draw() {
   ycor = 100;
   background(255); 
+  fill(#808080);
   runBoard();
   candies.display();
 }
