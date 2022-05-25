@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class candyCrush { 
   public int[][] board;
   public candyCrush() {
@@ -36,3 +37,6 @@ public class candyType extends candyCrush{
   
 
 }
+=======
+// si, es verdad. 
+>>>>>>> jasmine
