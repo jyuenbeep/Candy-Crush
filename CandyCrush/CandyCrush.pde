@@ -51,7 +51,7 @@ void mouseClicked() {
     if (secondClick!=-1) {
       candies.set(firstClick, candies.get(secondClick));
       candies.set(secondClick, firstTemp); 
-      candies.display();
+      //candies.display();
       mouse = 1;
     }
   }
