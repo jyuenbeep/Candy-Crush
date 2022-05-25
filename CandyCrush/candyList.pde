@@ -1,7 +1,12 @@
 public class candyList {
+  final color RED = #AA4A44;
+  final color BLUE = #89CFF0;
+  final color GREEN = #00FF00;
+  final color YELLOW = #FFFF00;
+  
   ArrayList<candy> candies;
   
-  color[] colorsToChoose = new color[]{#AA4A44, #89CFF0, #00FF00, #FFFF00);
+  color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW);
   
   candyList(int total) {
     int xcor = 50;
