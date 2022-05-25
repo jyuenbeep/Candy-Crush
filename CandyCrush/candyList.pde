@@ -25,6 +25,18 @@ public class candyList {
     }
   }
   
+  void set(int index, candy c) {
+    candies.set(index, c);
+  }
+  
+  candy get(int index) {
+    return candies.get(index);
+  }
+  
+  int size() {
+    return candies.size();
+  }
+  
   void display() {
     for (int i = 0; i<candies.size(); i++) {
       candies.get(i).display();
