@@ -9,22 +9,13 @@ public class candyList {
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
   
   candyList(int total) {
-<<<<<<< HEAD
-    int xcor = 50;
-    int ycor = 100;
-=======
     int xcor = 90;
     int ycor = 140;
->>>>>>> jasmine
     candies = new ArrayList<candy>();
     for (int i = 0; i<total; i++) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candies.add(new candy(xcor, ycor, rand));
-<<<<<<< HEAD
-      if (xcor<920) {
-=======
       if (xcor+80<920) {
->>>>>>> jasmine
         xcor+=80;
       }
       else {
