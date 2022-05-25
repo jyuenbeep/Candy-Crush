@@ -1,19 +1,14 @@
-public class candyCrush { 
-  public int[][] board;
-  public candyCrush() {
-    board = new int[10][10];
-    
-  }
+interface board { 
+  int[][] board = new int[10][10]; 
 }
 
-public class candyType extends candyCrush{
-  public void CandyType() {
+public class candyCrush implements board{  
+  public candyCrush() {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
         board[i][j] = regularCandies();
       }
     }
-    clear();
   }
   
   public int regularCandies() {
@@ -21,17 +16,13 @@ public class candyType extends candyCrush{
     return i; 
   }
   
-  public void clear(){
+  void display() {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
-        while (j - 1 >= 0 && j+1 <= board.length) {
-          if (board[i][j-1] ==  board[i][j] && board[i][j+1] ==  board[i][j]) {
-            board[i][j] = -1;
-            board[i][j-1] = -1;
-            board[i][j+1] = -1;
+        if (board[i][j] == 2) {
+           rect(i*10,j*10,10,10); 
         }
       }
-     }
     }
   }
   
