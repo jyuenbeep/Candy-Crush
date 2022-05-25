@@ -4,6 +4,9 @@ int xcor;
 int candiesNum = runBoard();
 candyList candies;
 int mouse = 1; 
+float xval; 
+float yval;
+float distStore;
 
 void setup() {
   size(1000, 800);
@@ -11,7 +14,7 @@ void setup() {
 }
 
 void draw() {
-  
+
   ycor = 100;
   background(255); 
   fill(#808080);
@@ -19,29 +22,31 @@ void draw() {
   candies.display();
   //cursor???? 
   fill(0);
-  circle(mouseX, mouseY, 30); 
-  
+  //testing
+  text("x: " + xval, 50, 50);
+  text("y: " + yval, 50, 100);
+  text("mouseX: " + mouseX, 100, 50);
+  text("mouseY: " + mouseY, 100, 100);
+  text("distance: " + distStore, 200, 50);
+  //testing
+  circle(mouseX, mouseY, 30);
 }
 
 void mouseClicked() {
-  
+
   int firstClick = getCandy(mouseX, mouseY);
   int secondClick = getCandy(mouseX, mouseY);
   candy firstTemp = candies.get(firstClick);
 
   if (mouse == 1) {
-    //firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
-      //firstTemp = candies.get(firstClick);
       mouse = 2;
     }
   }
   if (mouse == 2) {
-    //secondClick = getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
       candies.set(firstClick, candies.get(secondClick));
       candies.set(secondClick, firstTemp); 
-      candies.display();
       mouse = 1;
     }
   }
@@ -49,7 +54,12 @@ void mouseClicked() {
 
 int getCandy(int x, int y) {
   for (int i = 0; i<candies.size(); i++) {
-    if (dist(x, y, candies.get(i).x, candies.get(i).y)<=50) {
+    //testing
+    xval = candies.get(i).x;
+    yval = candies.get(i).y;
+    //testing
+    distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
+    if (distStore<=50) {
       return i;
     }
   }
