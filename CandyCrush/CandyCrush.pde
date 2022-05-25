@@ -12,14 +12,14 @@ void setup(){
 void draw() {
     background(255); 
     runBoard();
-    candies.display();
+    //candies.display();
 }
 
 void runBoard() {
-  while (ycor > 50) {
+  while (ycor < height-80) {
     xcor = 50;
-    while (xcor<width-50) {
-      stroke(10);
+    while (xcor<width-TILESIZE) {
+      //stroke(10);
       rect(xcor, ycor, TILESIZE, TILESIZE);
       xcor+=TILESIZE;
     }
