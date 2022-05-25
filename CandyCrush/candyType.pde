@@ -12,18 +12,36 @@ public class candyCrush implements board{
   }
   
   public int regularCandies() {
-    int i = (int)Math.random()*5;
+    int i = (int)(Math.random()*5);
     return i; 
   }
   
-  void display() {
-    for (int i = 0; i < 10; i++) {
-      for (int j = 0; j < 10; j++) {
-        if (board[i][j] == 2) {
-           rect(i*10,j*10,10,10); 
-        }
-      }
-    }
+  void numsToSquares() {
+     for (int i = 0; i < 10;i++) {
+       for (int j = 0; j < 10;j++) {
+         if (board[i][j] == 0) {
+           fill(59,40,99);
+           square(j*SQUARESIZE, i*SQUARESIZE, SQUARESIZE);
+           fill(0);
+         } else if (board[i][j] == 1) {
+           fill(27,255,99);
+           square(j*SQUARESIZE, i*SQUARESIZE, SQUARESIZE);
+           fill(0);
+         }  else if (board[i][j] == 2) {
+           fill(59,88,99);
+           square(j*SQUARESIZE, i*SQUARESIZE, SQUARESIZE);
+           fill(0);
+         }  else if (board[i][j] == 3) {
+           fill(0,0,100);
+           square(j*SQUARESIZE, i*SQUARESIZE, SQUARESIZE);
+           fill(0);
+         }  else if (board[i][j] == 4) {
+           fill(199,40,99);
+           square(j*SQUARESIZE, i*SQUARESIZE, SQUARESIZE);
+           fill(0);
+         }
+       }
+     }
   }
   
 
