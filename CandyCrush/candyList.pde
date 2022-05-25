@@ -23,4 +23,10 @@ public class candyList {
       }
     }
   }
+  
+  void display() {
+    for (int i = 0; i<candies.size(); i++) {
+      candies.get(i).display();
+    }
+  }
 }
