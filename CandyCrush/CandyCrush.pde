@@ -36,7 +36,10 @@ void mouseClicked() {
 
   int firstClick = getCandy(mouseX, mouseY);
   int secondClick = getCandy(mouseX, mouseY);
-  candy firstTemp = candies.get(firstClick);
+  candy firstTemp = candies.get(0);
+  if (firstClick!=-1) {
+    firstTemp = candies.get(firstClick);
+  }
 
   if (mouse == 1) {
     if (firstClick!=-1) {
@@ -59,7 +62,7 @@ int getCandy(int x, int y) {
     yval = candies.get(i).y;
     //testing
     distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
-    if (distStore<=50) {
+    if (distStore<25) {
       return i;
     }
   }
