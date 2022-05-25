@@ -3,7 +3,7 @@ candyList candies;
 
 void setup(){
     size(1000, 800);
-    candies = new candyList(); 
+    candies = new candyList(100); 
 }
 
 void draw() {
