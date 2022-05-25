@@ -6,7 +6,7 @@ public class candyList {
   
   ArrayList<candy> candies;
   
-  color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW);
+  color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
   
   candyList(int total) {
     int xcor = 50;
