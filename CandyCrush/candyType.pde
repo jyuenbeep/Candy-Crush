@@ -22,7 +22,7 @@ public class candyCrush {
   }
   
   void display(){
-    for (int i = 100, a = 0; a < 7 && i < width; i += 100, a++) {
+    for (int i = 200, a = 0; a < 7 && i < width; i += 100, a++) {
       for (int j = 100, b= 0; b < 7 && j < height; j += 100, b++) {
         int k = board[a][b];
         int[] temp = colors[k];
@@ -31,6 +31,7 @@ public class candyCrush {
       }
     }
   }
+  
   
 
 
