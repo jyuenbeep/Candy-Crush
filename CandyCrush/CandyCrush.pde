@@ -10,7 +10,8 @@ float xval;
 float yval;
 float distStore;
 int ind;
-
+int firstClick;
+int secondClick;
 
 void setup() {
   size(1000, 800);
@@ -28,7 +29,6 @@ void draw() {
     candy firstTemp = candies.get(firstClick);
     candies.set(firstClick, candies.get(secondClick));
     candies.set(secondClick, firstTemp);
-    swap = false; 
   }
 
   candies.display();
@@ -42,20 +42,19 @@ void draw() {
   text("distance: " + distStore, 200, 50);
   text("index: " + ind, 200, 100);
   text("mouse: " + mouse, 400, 50);
+  text("swap: " + swap, 400, 100); 
   text("firstClick: " + firstClick, 500, 50); 
   text("secondClick: " + secondClick, 500, 100); 
   //testing
   circle(mouseX, mouseY, 30);
 }
 
-int firstClick;
-int secondClick;
-
 void mouseClicked() {
 
   if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
+      swap = false;
       mouse = 2;
     }
   } else if (mouse == 2) {
