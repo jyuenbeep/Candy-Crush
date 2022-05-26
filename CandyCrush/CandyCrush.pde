@@ -1,4 +1,6 @@
+candyCrush demo;
 void setup(){
+<<<<<<< HEAD
   size(1000, 800);
   candies = new candyList(100);
 }
@@ -90,4 +92,12 @@ int runBoard() {
     ycor+=TILESIZE;
   }
   return candiesNum;
+=======
+    size(1000, 800);
+}
+
+void draw() {
+  background(255);
+  demo = new candyCrush();
+>>>>>>> demo
 }
