@@ -4,11 +4,13 @@ int xcor;
 int candiesNum = runBoard();
 candyList candies;
 int mouse = 1; 
+boolean swap = false;
 //for testing
 float xval; 
 float yval;
 float distStore;
 int ind;
+
 
 void setup() {
   size(1000, 800);
@@ -21,6 +23,14 @@ void draw() {
   background(255); 
   fill(#808080);
   runBoard();
+
+  if (swap) {
+    candy firstTemp = candies.get(firstClick);
+    candies.set(firstClick, candies.get(secondClick));
+    candies.set(secondClick, firstTemp);
+    swap = false; 
+  }
+
   candies.display();
   //cursor???? 
   fill(0);
@@ -48,17 +58,13 @@ void mouseClicked() {
     if (firstClick!=-1) {
       mouse = 2;
     }
-  }
-  else if (mouse == 2) {
+  } else if (mouse == 2) {
     secondClick = getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
-      candy firstTemp = candies.get(firstClick);
-      candies.set(firstClick, candies.get(secondClick));
-      candies.set(secondClick, firstTemp); 
+      swap = true;
       mouse = 1;
     }
   }
-  candies.display();
 }
 
 int getCandy(int x, int y) {
