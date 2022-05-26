@@ -37,6 +37,9 @@ Moving the candies still not working so I'm working on that. Also managed to mer
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
+
 5/20: Beautified the prototype. 
+
 5/22: Finished the prototype. Worked on the methods and on UML diagrams. Brainstormed ideas.
+
 5/23: began conding of a class. not sure if my branch commited. 
