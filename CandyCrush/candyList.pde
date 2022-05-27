@@ -42,4 +42,18 @@ public class candyList {
       candies.get(i).display();
     }
   }
+  
+  void clear(int c) {
+    if (c-1 >= 0 && c+1 <= 10) {
+      if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
+        candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
+        candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
+        candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
+      }
+    }
+  }
+  
+  
+  
+  
 }

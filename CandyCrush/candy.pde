@@ -12,4 +12,8 @@ public class candy {
     fill(clr);
     circle (x, y, 50.0);
   }
+  
+  color getColor() {
+    return clr;
+  }
 }

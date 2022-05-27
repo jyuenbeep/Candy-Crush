@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //public class candyType {
 
 //public class candyCrush { 
@@ -36,7 +36,7 @@
 //     }
 //    }
 //  }
-=======
+
 public class candyCrush { 
   private int[][] board;
   private int[][] colors;
@@ -72,19 +72,18 @@ public class candyCrush {
       }
     }
   }
->>>>>>> demo
+
   
 //}
 
-<<<<<<< HEAD
+
 //public class candyCrush implements candyType{ 
 //  private int[][] board;
 //  public candyCrush() {
 //    board = new int[10][10];
 //  }
 //}
-=======
+
 
   
 }
->>>>>>> demo
