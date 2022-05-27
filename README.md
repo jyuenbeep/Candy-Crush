@@ -42,4 +42,6 @@ Moving the candies still not working so I'm working on that. Also managed to mer
 
 5/22: Finished the prototype. Worked on the methods and on UML diagrams. Brainstormed ideas.
 
-5/23: began conding of a class. not sure if my branch commited. 
+5/23: began conding of a class. not sure if my branch commited.
+
+5/25: been trying to get movements to work and tried getting a different setup but its not going as planned. 
