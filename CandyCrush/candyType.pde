@@ -1,4 +1,3 @@
-
 //public class candyType {
 
 //public class candyCrush { 
