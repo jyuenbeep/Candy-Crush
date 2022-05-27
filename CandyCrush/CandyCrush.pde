@@ -32,6 +32,7 @@ void draw() {
     candies.get(firstClick).y = candies.get(secondClick).y;
     candies.get(secondClick).x = tempX;
     candies.get(secondClick).y = tempY;
+    swapBool = false;
     //candy firstTemp = candies.get(firstClick);
     //candies.set(firstClick, candies.get(secondClick));
     //candies.set(secondClick, firstTemp);
@@ -60,7 +61,6 @@ void mouseClicked() {
   if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
-      swapBool = false;
       mouse = 2;
     }
   } else if (mouse == 2) {
