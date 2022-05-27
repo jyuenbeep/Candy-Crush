@@ -28,9 +28,20 @@ Classes/methods finalized and prototype basically done except for the UML diagra
 5/23:
 Worked on level{} class and added accessor/mutator methods.
 
+5/24:
+The board and setup is basically done but I am still trying to figure out movement. 
+
+5/25: 
+Moving the candies still not working so I'm working on that. Also managed to merge my changes onto main branch. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
+
 5/20: Beautified the prototype. 
+
 5/22: Finished the prototype. Worked on the methods and on UML diagrams. Brainstormed ideas.
-5/23: began conding of a class. not sure if my branch commited. 
+
+5/23: began conding of a class. not sure if my branch commited.
+
+5/25: been trying to get movements to work and tried getting a different setup but its not going as planned. 
