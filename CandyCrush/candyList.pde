@@ -18,7 +18,7 @@ public class candyList {
       if (xcor+80<920) {
         xcor+=80;
       }
-      else {
+      else if (ycor+80 < 720) {
         xcor=90; 
         ycor+=80;
       }
@@ -37,24 +37,46 @@ public class candyList {
     return candies.size();
   }
   
-  //void swap (ArrayList ary, int a, int b) {
-  //  swap(ary, a, b);
-  //}
-  
   void display() {
     for (int i = 0; i<candies.size(); i++) {
       candies.get(i).display();
     }
   }
   
-  void clear(int c) {
-    if (c-1 >= 0 && c+1 <= 10) {
-      if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
-        candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
-        candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
-        candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
+  void remove(int a, int b, int c) {
+    candies.remove(a);
+    candies.remove(b);
+    candies.remove(c);
+    if (a - 11 >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candies.add(a-11,new candy(xcor, ycor, rand));
+    }
+    if (b - 11 >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candies.add(b-11,new candy(xcor, ycor, rand));
+    }
+    if (c - 11 >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candies.add(c-11,new candy(xcor, ycor, rand));
+    }
+    display();
+  }
+  
+  void clear() {
+    for (int i = 0; i < candies.size()-3;i++) {
+      if (i % 10 != 0 && i % 9 != 0 && candies.get(i).getColor() == candies.get(i+1).getColor() && candies.get(i+1).getColor() == candies.get(i+2).getColor() ) {
+        remove(i,i+1,i+2);
       }
     }
+  }
+  
+  boolean tripleChecker(){
+    for (int i = 0; i < candies.size()-3; i++) {
+      if (i % 10 != 0 && i % 9 != 0 && candies.get(i).getColor() == candies.get(i+1).getColor() && candies.get(i+1).getColor() == candies.get(i+2).getColor() ) {
+        return true;
+      }
+    }
+    return false;
   }
   
   

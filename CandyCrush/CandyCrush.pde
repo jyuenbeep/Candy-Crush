@@ -6,8 +6,6 @@ candyList candies;
 int mouse = 1; 
 
 boolean swapBool = false;
-
-boolean swap = false;
  
 //for testing
 float xval; 
@@ -36,9 +34,10 @@ void draw() {
     candies.get(secondClick).x = tempX;
     candies.get(secondClick).y = tempY;
     swapBool = false;
-    //candy firstTemp = candies.get(firstClick);
-    //candies.set(firstClick, candies.get(secondClick));
-    //candies.set(secondClick, firstTemp);
+    
+    candy firstTemp = candies.get(firstClick);
+    candies.set(firstClick, candies.get(secondClick));
+    candies.set(secondClick, firstTemp);
   }
 
   candies.display();
@@ -52,20 +51,22 @@ void draw() {
   text("distance: " + distStore, 200, 50);
   text("index: " + ind, 200, 100);
   text("mouse: " + mouse, 400, 50);
-  text("swap: " + swapBool, 400, 100); 
-
-  text("swap: " + swap, 400, 100); 
+  text("swapBool: " + swapBool, 400, 100); 
   text("firstClick: " + firstClick, 500, 50); 
   text("secondClick: " + secondClick, 500, 100); 
   //testing
   circle(mouseX, mouseY, 30);
+  while (candies.tripleChecker()) {
+    candies.clear();
+  }  
+  
 }
 
 void mouseClicked() {
   if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
-      swap = false;
+      swapBool = false;
       mouse = 2;
     }
   } else if (mouse == 2) {
@@ -74,19 +75,7 @@ void mouseClicked() {
       swapBool = true;
       mouse = 1;
     }
-  } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
-    if (secondClick!=-1) {
-      swap = true;
-      mouse = 1;
-    }
-  } 
-  
-  if (swap) {
-    candy firstTemp = candies.get(firstClick);
-    candies.set(firstClick, candies.get(secondClick));
-    candies.set(secondClick, firstTemp);
-  }
+  }  
 
 }
 
