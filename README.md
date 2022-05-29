@@ -34,6 +34,9 @@ The board and setup is basically done but I am still trying to figure out moveme
 5/25: 
 Moving the candies still not working so I'm working on that. Also managed to merge my changes onto main branch. 
 
+5/26: 
+The candies move now! The issue was that I was switching the candies of the candyList, but not switching the positions of the actual candies. I changed it by changing the x and y positions of the two candies instead. Also changed the positions of some booleans after that.
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
