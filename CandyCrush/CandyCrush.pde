@@ -6,8 +6,6 @@ candyList candies;
 int mouse = 1; 
 
 boolean swapBool = false;
-
-boolean swap = false;
  
 //for testing
 float xval; 
@@ -26,22 +24,9 @@ void draw() {
   ycor = 100;
   background(255); 
   fill(#808080);
-  runBoard();
+  
+  testRun();
 
-  if (swapBool) {
-    float tempX = candies.get(firstClick).x;
-    float tempY = candies.get(firstClick).y;
-    candies.get(firstClick).x = candies.get(secondClick).x;
-    candies.get(firstClick).y = candies.get(secondClick).y;
-    candies.get(secondClick).x = tempX;
-    candies.get(secondClick).y = tempY;
-    swapBool = false;
-    //candy firstTemp = candies.get(firstClick);
-    //candies.set(firstClick, candies.get(secondClick));
-    //candies.set(secondClick, firstTemp);
-  }
-
-  candies.display();
   fill(0);
   
   //testing
@@ -52,20 +37,18 @@ void draw() {
   text("distance: " + distStore, 200, 50);
   text("index: " + ind, 200, 100);
   text("mouse: " + mouse, 400, 50);
-  text("swap: " + swapBool, 400, 100); 
-
-  text("swap: " + swap, 400, 100); 
+  text("swapBool: " + swapBool, 400, 100); 
   text("firstClick: " + firstClick, 500, 50); 
   text("secondClick: " + secondClick, 500, 100); 
   //testing
-  circle(mouseX, mouseY, 30);
+  circle(mouseX, mouseY, 30); 
 }
 
 void mouseClicked() {
   if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
-      swap = false;
+      swapBool = false;
       mouse = 2;
     }
   } else if (mouse == 2) {
@@ -74,15 +57,16 @@ void mouseClicked() {
       swapBool = true;
       mouse = 1;
     }
-  } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
-    if (secondClick!=-1) {
-      swap = true;
-      mouse = 1;
-    }
-  } 
-  
-  if (swap) {
+  }
+  if (swapBool) {
+    float tempX = candies.get(firstClick).x;
+    float tempY = candies.get(firstClick).y;
+    candies.get(firstClick).x = candies.get(secondClick).x;
+    candies.get(firstClick).y = candies.get(secondClick).y;
+    candies.get(secondClick).x = tempX;
+    candies.get(secondClick).y = tempY;
+    swapBool = false;
+    
     candy firstTemp = candies.get(firstClick);
     candies.set(firstClick, candies.get(secondClick));
     candies.set(secondClick, firstTemp);
@@ -108,7 +92,7 @@ int getCandy(int x, int y) {
 int runBoard() {
   while (ycor < height-80) {
     xcor = 50;
-    while (xcor<width-TILESIZE) {
+    while (xcor<width-TILESIZE*2) {
       //stroke(10);
       rect(xcor, ycor, TILESIZE, TILESIZE);
       xcor+=TILESIZE;
@@ -117,4 +101,9 @@ int runBoard() {
     ycor+=TILESIZE;
   }
   return candiesNum;
+}
+
+void testRun() {
+  runBoard();
+  candies.display();
 }

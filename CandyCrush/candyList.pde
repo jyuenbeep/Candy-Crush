@@ -15,10 +15,10 @@ public class candyList {
     for (int i = 0; i<total; i++) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candies.add(new candy(xcor, ycor, rand));
-      if (xcor+80<920) {
+      if (xcor+80<840) {
         xcor+=80;
       }
-      else {
+      else if (ycor+80 < 720) {
         xcor=90; 
         ycor+=80;
       }
@@ -37,25 +37,67 @@ public class candyList {
     return candies.size();
   }
   
-  //void swap (ArrayList ary, int a, int b) {
-  //  swap(ary, a, b);
-  //}
-  
   void display() {
-    for (int i = 0; i<candies.size(); i++) {
+    clear();
+    for (int i = 0; i < candies.size(); i++) {
       candies.get(i).display();
     }
   }
   
-  void clear(int c) {
-    if (c-1 >= 0 && c+1 <= 10) {
-      if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
-        candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
-        candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
-        candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
+  void remove(int a, int b, int c) {
+    candies.remove(a);
+    candies.remove(b);
+    candies.remove(c);
+    
+    while (a >= 0) {
+      if (a <= 9 && a >= 0) {
+        color rand = colorsToChoose[(int)(Math.random()*4)];
+        candies.add(a, new candy(xcor, ycor, rand));
+        break;
+      } else {
+        candy temp = candies.get(a-11);
+        candies.set(a, temp);
+        a -= 10;
+      }
+    }
+    while (b >= 0) {
+      if (b <= 9 && b >= 0) {
+        color rand = colorsToChoose[(int)(Math.random()*4)];
+        candies.add(b, new candy(xcor, ycor, rand));
+        break;
+      } else {
+        candy temp = candies.get(b-11);
+        candies.set(b, temp);
+        b -=10;
+      }
+    }
+    while (c >= 0) {
+      if (c <= 9 && c >= 0) {
+        color rand = colorsToChoose[(int)(Math.random()*4)];
+        candies.add(c, new candy(xcor, ycor, rand));
+      } else {
+        candy temp = candies.get(c-11);
+        candies.set(c, temp);
+        c -=10;
       }
     }
   }
+  
+  void clear(){
+    int i = 0;
+    while (i < candies.size()-2 && candies.get(i).getColor() == candies.get(i+1).getColor() && candies.get(i+1).getColor() == candies.get(i+2).getColor()) {
+      if (i-8 % 10 != 0 || i-9% 10 != 0) {
+        remove(i,i+1,i+2);
+      }
+      if (i == candies.size()-3) {
+        i = 0;
+      } else {
+        i++;
+      }
+    }
+  }
+  
+  
   
   
   
