@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-=======
 //public class candyType {
 
 //public class candyCrush { 
@@ -89,4 +87,3 @@ public class candyCrush {
 
   
 }
->>>>>>> 9e6c95fcb243edff9c670a0dc99f0519233b500e
