@@ -3,6 +3,9 @@ public class candyList {
   final color BLUE = #89CFF0;
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
+  final int INCREMENT = 80; 
+  final int XSTART = 90;
+  final int YSTART = 140;
 
   ArrayList<candy> candies;
   int points; 
@@ -10,17 +13,17 @@ public class candyList {
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
   candyList(int total) {
-    int xcor = 90;
-    int ycor = 140;
+    int xcor = XSTART;
+    int ycor = YSTART;
     candies = new ArrayList<candy>();
     for (int i = 0; i<total; i++) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candies.add(new candy(xcor, ycor, rand));
-      if (xcor+80<920) {
-        xcor+=80;
+      if (xcor+INCREMENT<920) {
+        xcor+=INCREMENT;
       } else {
-        xcor=90; 
-        ycor+=80;
+        xcor=XSTART; 
+        ycor+=INCREMENT;
       }
     }
     points = 0; 
