@@ -16,4 +16,18 @@ public class candy {
   color getColor() {
     return clr;
   }
+  
+  float getX() {
+    return x;
+  }
+  
+  float getY() {
+    return y;
+  }
+  
+  void setColor(color c) {
+    clr = c;
+  }
+  
+  
 }
