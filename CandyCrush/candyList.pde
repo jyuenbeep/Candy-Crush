@@ -3,44 +3,39 @@ public class candyList {
   final color BLUE = #89CFF0;
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
-  final int INCREMENT = 80; 
-  final int XSTART = 90;
-  final int YSTART = 140;
+  int points;
 
   ArrayList<candy> candies;
-  int points; 
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
-  int getCandy(float x, float y) {
-    for (int i = 0; i < candies.size(); i++) {
-      float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
-      if (distStore < 25) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
   candyList(int total) {
-    int xcor = XSTART;
-    int ycor = YSTART;
+    int xcor = 90;
+    int ycor = 140;
     candies = new ArrayList<candy>();
     for (int i = 0; i<total; i++) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candies.add(new candy(xcor, ycor, rand));
-      if (xcor+INCREMENT<920) {
-        xcor+=INCREMENT;
-      } else {
-        xcor=XSTART; 
-        ycor+=INCREMENT;
+      if (xcor+80<840) {
+        xcor+=80;
+      } else if (ycor+80 < 720) {
+        xcor=90; 
+        ycor+=80;
       }
     }
     points = 0;
   }
 
-  candy set(int index, candy c) {
-    return candies.set(index, c);
+  void set(int index, candy c) {
+    candies.set(index, c);
+  }
+
+  void set1(int index, candy c) {
+    candies.get(index).setColor(c.getColor());
+  }
+
+  void add(int index, candy c) {
+    candies.get(index).setColor(c.getColor());
   }
 
   candy get(int index) {
@@ -52,42 +47,72 @@ public class candyList {
   }
 
   void display() {
-    for (int i = 0; i<candies.size(); i++) {
+    for (int i = 0; i < candies.size(); i++) {
       candies.get(i).display();
+    }
+    //delay(5000);
+    clearRowForThree();
+  }
+
+  void removeRowForThree(int a, int b, int c) {
+    while (a >= 10) {
+      candy temp = get(a-10);
+      set1(a, temp);
+      a -= 10;
+    }
+    float x = get(a).getX();
+    float y = get(a).getY();
+    if (a <= 9 && a >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      add(a, tem);
+    }
+
+    while (b >= 10) {
+      candy temp = get(b-10);
+      set1(b, temp);
+      b -= 10;
+    }
+    x = get(b).getX();
+    y = get(b).getY();
+    if (b <= 9 && b >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      add(b, tem);
+    }
+
+    while (c >= 10) {
+      candy temp = get(c-10);
+      set1(c, temp);
+      c -= 10;
+    }
+    x = get(c).getX();
+    y = get(c).getY();
+    if (c <= 9 && c >= 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      add(c, tem);
     }
   }
 
-  //void clear(int c) {
-  //  if (c-1 >= 0 && c+1 <= 10) {
-  //    if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
-  //      candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
-  //      candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
-  //      candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
-  //    }
-  //  }
-  //}
-
-  boolean clear(int index, int inc) {
-    //int comboVERT = 0; 
-    int comboHOR = 0;
-    float xcor;
-    float ycor;
-    color comboColor = get(index).clr;
-
-    xcor = get(index).x;
-    ycor = get(index).y;
-    for (int i = 0; i<5; i++) {
-      boolean allSame = true;
-      int candyPlace = getCandy(xcor, ycor);
-      if (candyPlace>=0 && candyPlace<size()) {
-        if (get(candyPlace).clr == comboColor && allSame) {
-          comboHOR++;
-        }
-      } else {
-        allSame = false;
-      }
-      xcor+=inc;
+  void clearRowForThree() {
+    int count = 0;
+    while (clearRowForThreeH()) {
+      count++;
+      clearRowForThreeH();
     }
-    return (comboHOR>=3);
+    if (count>=1) {
+      points+=100;
+    }
+  }
+
+  boolean clearRowForThreeH() {
+    for (int i = 79; i >= 2; i--) { 
+      if (i % 10 != 0 && i - 1 % 10 != 0 && get(i).getColor() == get(i-1).getColor() && get(i).getColor() == get(i-2).getColor() ) {
+        removeRowForThree(i, i-1, i-2);
+        return true;
+      }
+    }
+    return false;
   }
 }
