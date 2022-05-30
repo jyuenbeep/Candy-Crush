@@ -3,6 +3,7 @@ public class candyList {
   final color BLUE = #89CFF0;
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
+  int points;
   
   ArrayList<candy> candies;
   
@@ -23,6 +24,7 @@ public class candyList {
         ycor+=80;
       }
     }
+    points = 0;
   }
   
   void set(int index, candy c) {
