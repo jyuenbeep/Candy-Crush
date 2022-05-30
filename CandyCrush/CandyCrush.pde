@@ -7,6 +7,8 @@ int mouse = 1;
 boolean swapBool = false;
 int firstClick;
 int secondClick;
+//testing
+boolean swapCandies;
 
 void setup() {
   size(1000, 800);
@@ -27,12 +29,15 @@ void draw() {
     candies.get(firstClick).y = candies.get(secondClick).y;
     candies.get(secondClick).x = tempX;
     candies.get(secondClick).y = tempY;
+
+    swapCandies = candies.clear(candies, secondClick);
+    if (!swapCandies) {
+      swapCandies = candies.clear(candies, firstClick);
+    }
+
     swapBool = false;
   }
-  boolean swapCandies = candies.clear(candies, secondClick);
-  if (!swapCandies) {
-    swapCandies = candies.clear(candies, firstClick);
-  }
+
   candies.display();
   fill(0);
   textSize(50);
