@@ -57,7 +57,10 @@ void mouseClicked() {
   } else if (mouse == 2) {
     secondClick = getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
-      swapBool = true;
+      float distBetweenCandy = dist(candies.get(firstClick).x, candies.get(firstClick).y, candies.get(secondClick).x, candies.get(secondClick).y);
+      if (distBetweenCandy<=130) {
+        swapBool = true;
+      }
       mouse = 1;
     }
   }
