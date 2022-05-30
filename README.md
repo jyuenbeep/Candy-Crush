@@ -43,6 +43,9 @@ The candies move now! The issue was that I was switching the candies of the cand
 5/29: 
 My partner worked on trying to do the clear methods. I looked over the code and I might move the clear methods into candyType instead. I added in an extra instance variable to candyList and am thinking of changing up candyList to make it easier to check for edge-cases.
 
+5/30: 
+Worked on trying to clear a whole row instead of only swapping. Once that was up and running, I added in a instance variable for points for the candyList and displayed it in the draw. Also, I made it so that it would add 100 points everytime three candies were cleared. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
