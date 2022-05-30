@@ -12,7 +12,7 @@ public class candyList {
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
   
-  int getCandy(int x, int y) {
+  int getCandy(float x, float y) {
   for (int i = 0; i < candies.size(); i++) {
     float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
     if (distStore < 25) {
