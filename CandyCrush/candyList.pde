@@ -3,11 +3,12 @@ public class candyList {
   final color BLUE = #89CFF0;
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
-  
+  int points;
+
   ArrayList<candy> candies;
-  
+
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-  
+
   candyList(int total) {
     int xcor = 90;
     int ycor = 140;
@@ -17,44 +18,49 @@ public class candyList {
       candies.add(new candy(xcor, ycor, rand));
       if (xcor+80<840) {
         xcor+=80;
-      }
-      else if (ycor+80 < 720) {
+      } else if (ycor+80 < 720) {
         xcor=90; 
         ycor+=80;
       }
     }
+    points = 0;
   }
-  
+
   void set(int index, candy c) {
     candies.set(index, c);
   }
-  
+
   void set1(int index, candy c) {
     candies.get(index).setColor(c.getColor());
   }
-  
+
   void add(int index, candy c) {
     candies.get(index).setColor(c.getColor());
   }
-  
+
   candy get(int index) {
     return candies.get(index);
   }
-  
+
   int size() {
     return candies.size();
   }
-  
+
   void display() {
     for (int i = 0; i < candies.size(); i++) {
       candies.get(i).display();
     }
     clearRowForThree();
+ 
     clearColForThree();
   }
   
   
   
+
+
+
+
   void removeRowForThree(int a, int b, int c) {
     while (a >= 10) {
       candy temp = get(a-10);
@@ -68,7 +74,7 @@ public class candyList {
       candy tem = new candy(x, y, rand);
       add(a, tem);
     }
-    
+
     while (b >= 10) {
       candy temp = get(b-10);
       set1(b, temp);
@@ -81,8 +87,8 @@ public class candyList {
       candy tem = new candy(x, y, rand);
       add(b, tem);
     }
-    
-   while (c >= 10) {
+
+    while (c >= 10) {
       candy temp = get(c-10);
       set1(c, temp);
       c -= 10;
@@ -94,19 +100,23 @@ public class candyList {
       candy tem = new candy(x, y, rand);
       add(c, tem);
     }
-
   }
-  
+
   void clearRowForThree() {
+    int count = 0;
     while (clearRowForThreeH()) {
+      count++;
       clearRowForThreeH();
     }
+    if (count>=1) {
+      points+=100;
+    }
   }
-  
+
   boolean clearRowForThreeH() {
-    for (int i = 79; i >= 2 ; i--) { 
+    for (int i = 79; i >= 2; i--) { 
       if (i % 10 != 0 && i - 1 % 10 != 0 && get(i).getColor() == get(i-1).getColor() && get(i).getColor() == get(i-2).getColor() ) {
-        removeRowForThree(i,i-1,i-2);
+        removeRowForThree(i, i-1, i-2);
         return true;
       }
     }
@@ -148,7 +158,6 @@ public class candyList {
       a -= 10;
     }
   }
-  
   
   
   

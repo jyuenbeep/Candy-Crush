@@ -43,6 +43,9 @@ The candies move now! The issue was that I was switching the candies of the cand
 5/29: 
 My partner worked on trying to do the clear methods. I looked over the code and I might move the clear methods into candyType instead. I added in an extra instance variable to candyList and am thinking of changing up candyList to make it easier to check for edge-cases.
 
+5/30: 
+Worked on trying to clear a whole row instead of only swapping. Once that was up and running, I added in a instance variable for points for the candyList and displayed it in the draw. Also, I made it so that it would add 100 points everytime three candies were cleared. Also made it so that user can only swap adjacent candies. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
@@ -57,4 +60,6 @@ My partner worked on trying to do the clear methods. I looked over the code and 
 
 5/27: helped fix the move function. Even tho we had the code, we just needed to switch the reference. 
 
-5/28-29: worked on the clearing method. It clears somehwat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
+5/28-29: worked on the clearing method. It clears somewhat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
+
+5/30: I finished and did the row clearing and column clearing for 3 matches. Now im working to make matches such as L and T.
