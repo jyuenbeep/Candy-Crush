@@ -57,13 +57,35 @@ public class candyList {
     }
   }
 
-  void clear(int c) {
-    if (c-1 >= 0 && c+1 <= 10) {
-      if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
-        candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
-        candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
-        candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
+  //void clear(int c) {
+  //  if (c-1 >= 0 && c+1 <= 10) {
+  //    if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
+  //      candies.set(c, new candy(candies.get(c).x, candies.get(c).y, 25));
+  //      candies.set(c-1, new candy(candies.get(c-1).x, candies.get(c-1).y, 25));
+  //      candies.set(c+1, new candy(candies.get(c+1).x, candies.get(c+1).y, 25));
+  //    }
+  //  }
+  //}
+  
+  boolean clear(candyList candies, int index) {
+    //int comboVERT = 0; 
+    int comboHOR = 0;
+    float xcor;
+    float ycor;
+    color comboColor = get(index).clr;
+
+    xcor = get(index).x;
+    ycor = get(index).y;
+    for (int i = 0; i<5; i++) {
+      boolean allSame = true;
+      if (get(getCandy(xcor, ycor)).clr == comboColor && allSame) {
+        comboHOR++;
       }
+      else {
+        allSame = false;
+      }
+      xcor+=INCREMENT;
     }
+    return (comboHOR>=3);
   }
 }

@@ -29,6 +29,7 @@ void draw() {
     candies.get(secondClick).y = tempY;
     swapBool = false;
   }
+  candies.clear(candies, secondClick);
   candies.display();
   fill(0);
   textSize(50);
