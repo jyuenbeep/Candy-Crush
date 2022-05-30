@@ -54,3 +54,7 @@ My partner worked on trying to do the clear methods. I looked over the code and 
 5/23: began conding of a class. not sure if my branch commited.
 
 5/25: been trying to get movements to work and tried getting a different setup but its not going as planned. 
+
+5/27: helped fix the move function. Even tho we had the code, we just needed to switch the reference. 
+
+5/28-29: worked on the clearing method. It clears somehwat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
