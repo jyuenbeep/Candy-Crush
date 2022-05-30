@@ -1,25 +1,17 @@
 final int TILESIZE = 80;
 int ycor; 
 int xcor;
-int candiesNum = runBoard();
+int candiesNum = 0;
 candyList candies;
 int mouse = 1; 
-<<<<<<< HEAD
 boolean swapBool = false;
-=======
-boolean swap = false;
->>>>>>> 9e6c95fcb243edff9c670a0dc99f0519233b500e
-//for testing
-float xval; 
-float yval;
-float distStore;
-int ind;
 int firstClick;
 int secondClick;
 
 void setup() {
   size(1000, 800);
-  candies = new candyList(100);
+  runBoard();
+  candies = new candyList(candiesNum);
 }
 
 void draw() {
@@ -36,30 +28,11 @@ void draw() {
     candies.get(secondClick).x = tempX;
     candies.get(secondClick).y = tempY;
     swapBool = false;
-    //candy firstTemp = candies.get(firstClick);
-    //candies.set(firstClick, candies.get(secondClick));
-    //candies.set(secondClick, firstTemp);
   }
-
   candies.display();
   fill(0);
-  
-  //testing
-  text("x: " + xval, 50, 50);
-  text("y: " + yval, 50, 100);
-  text("mouseX: " + mouseX, 100, 50);
-  text("mouseY: " + mouseY, 100, 100);
-  text("distance: " + distStore, 200, 50);
-  text("index: " + ind, 200, 100);
-  text("mouse: " + mouse, 400, 50);
-<<<<<<< HEAD
-  text("swap: " + swapBool, 400, 100); 
-=======
-  text("swap: " + swap, 400, 100); 
->>>>>>> 9e6c95fcb243edff9c670a0dc99f0519233b500e
-  text("firstClick: " + firstClick, 500, 50); 
-  text("secondClick: " + secondClick, 500, 100); 
-  //testing
+  textSize(50);
+  text("POINTS: " + updateProgress(), 100, 50);
   circle(mouseX, mouseY, 30);
 }
 
@@ -67,9 +40,8 @@ void mouseClicked() {
   if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
-      swap = false;
+      swapBool = false;
       mouse = 2;
-<<<<<<< HEAD
     }
   } else if (mouse == 2) {
     secondClick = getCandy(mouseX, mouseY);
@@ -78,40 +50,23 @@ void mouseClicked() {
       mouse = 1;
     }
   }
-=======
-    } 
-  } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
-    if (secondClick!=-1) {
-      swap = true;
-      mouse = 1;
-    }
-  }
-  
-  if (swap) {
-    candy firstTemp = candies.get(firstClick);
-    candies.set(firstClick, candies.get(secondClick));
-    candies.set(secondClick, firstTemp);
-  }
->>>>>>> 9e6c95fcb243edff9c670a0dc99f0519233b500e
 }
+
+int updateProgress() {
+  return candies.points;
+} 
 
 int getCandy(int x, int y) {
   for (int i = 0; i < candies.size(); i++) {
-    //testing
-    xval = candies.get(i).x;
-    yval = candies.get(i).y;
-    //testing
-    distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
+    float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
     if (distStore < 25) {
-      ind = i;
       return i;
     }
   }
   return -1;
 }
 
-int runBoard() {
+void runBoard() {
   while (ycor < height-80) {
     xcor = 50;
     while (xcor<width-TILESIZE) {
@@ -122,5 +77,4 @@ int runBoard() {
     }
     ycor+=TILESIZE;
   }
-  return candiesNum;
 }

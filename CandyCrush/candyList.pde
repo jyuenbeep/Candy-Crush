@@ -3,11 +3,12 @@ public class candyList {
   final color BLUE = #89CFF0;
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
-  
+
   ArrayList<candy> candies;
-  
+  int points; 
+
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-  
+
   candyList(int total) {
     int xcor = 90;
     int ycor = 140;
@@ -17,36 +18,36 @@ public class candyList {
       candies.add(new candy(xcor, ycor, rand));
       if (xcor+80<920) {
         xcor+=80;
-      }
-      else {
+      } else {
         xcor=90; 
         ycor+=80;
       }
     }
+    points = 0; 
   }
-  
+
   candy set(int index, candy c) {
     return candies.set(index, c);
   }
-  
+
   candy get(int index) {
     return candies.get(index);
   }
-  
+
   int size() {
     return candies.size();
   }
-  
+
   //void swap (ArrayList ary, int a, int b) {
   //  swap(ary, a, b);
   //}
-  
+
   void display() {
     for (int i = 0; i<candies.size(); i++) {
       candies.get(i).display();
     }
   }
-  
+
   void clear(int c) {
     if (c-1 >= 0 && c+1 <= 10) {
       if (candies.get(c).getColor() == candies.get(c-1).getColor() && candies.get(c).getColor() == candies.get(c+1).getColor()) {
@@ -56,8 +57,4 @@ public class candyList {
       }
     }
   }
-  
-  
-  
-  
 }
