@@ -61,3 +61,5 @@ Worked on trying to clear a whole row instead of only swapping. Once that was up
 5/27: helped fix the move function. Even tho we had the code, we just needed to switch the reference. 
 
 5/28-29: worked on the clearing method. It clears somewhat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
+
+5/30: I finished and did the row clearing and column clearing for 3 matches. Now im working to make matches such as L and T.
