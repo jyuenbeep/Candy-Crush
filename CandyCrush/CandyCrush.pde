@@ -76,9 +76,14 @@ void mouseClicked() {
     candy firstTemp = candies.get(firstClick);
     candies.set(firstClick, candies.get(secondClick));
     candies.set(secondClick, firstTemp);
+    
     candies.clearRowForThree();
     candies.clearColForThree();
     //candies.points+=100;
+<<<<<<< HEAD
+=======
+  }
+>>>>>>> bernadette
 
   }
 }
