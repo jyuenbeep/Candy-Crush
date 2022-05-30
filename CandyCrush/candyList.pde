@@ -11,16 +11,16 @@ public class candyList {
   int points; 
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-  
+
   int getCandy(float x, float y) {
-  for (int i = 0; i < candies.size(); i++) {
-    float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
-    if (distStore < 25) {
-      return i;
+    for (int i = 0; i < candies.size(); i++) {
+      float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
+      if (distStore < 25) {
+        return i;
+      }
     }
+    return -1;
   }
-  return -1;
-}
 
   candyList(int total) {
     int xcor = XSTART;
@@ -36,7 +36,7 @@ public class candyList {
         ycor+=INCREMENT;
       }
     }
-    points = 0; 
+    points = 0;
   }
 
   candy set(int index, candy c) {
@@ -66,8 +66,8 @@ public class candyList {
   //    }
   //  }
   //}
-  
-  boolean clear(candyList candies, int index) {
+
+  boolean clear(int index, int inc) {
     //int comboVERT = 0; 
     int comboHOR = 0;
     float xcor;
@@ -78,13 +78,15 @@ public class candyList {
     ycor = get(index).y;
     for (int i = 0; i<5; i++) {
       boolean allSame = true;
-      if (get(getCandy(xcor, ycor)).clr == comboColor && allSame) {
-        comboHOR++;
-      }
-      else {
+      int candyPlace = getCandy(xcor, ycor);
+      if (candyPlace>=0 && candyPlace<size()) {
+        if (get(candyPlace).clr == comboColor && allSame) {
+          comboHOR++;
+        }
+      } else {
         allSame = false;
       }
-      xcor+=INCREMENT;
+      xcor+=inc;
     }
     return (comboHOR>=3);
   }

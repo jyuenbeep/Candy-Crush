@@ -30,9 +30,15 @@ void draw() {
     candies.get(secondClick).x = tempX;
     candies.get(secondClick).y = tempY;
 
-    swapCandies = candies.clear(candies, secondClick);
+    swapCandies = candies.clear(secondClick, candies.INCREMENT);
     if (!swapCandies) {
-      swapCandies = candies.clear(candies, firstClick);
+      swapCandies = candies.clear(secondClick, -1*candies.INCREMENT);
+    }
+    if (!swapCandies) {
+      swapCandies = candies.clear(firstClick, candies.INCREMENT);
+    }
+    if (!swapCandies) {
+      swapCandies = candies.clear(firstClick, -1*candies.INCREMENT);
     }
 
     swapBool = false;
