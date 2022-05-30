@@ -11,6 +11,16 @@ public class candyList {
   int points; 
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
+  
+  int getCandy(int x, int y) {
+  for (int i = 0; i < candies.size(); i++) {
+    float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
+    if (distStore < 25) {
+      return i;
+    }
+  }
+  return -1;
+}
 
   candyList(int total) {
     int xcor = XSTART;

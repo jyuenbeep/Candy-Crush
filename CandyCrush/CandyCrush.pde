@@ -38,13 +38,13 @@ void draw() {
 
 void mouseClicked() {
   if (mouse == 1) {
-    firstClick = getCandy(mouseX, mouseY);
+    firstClick = candies.getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
       swapBool = false;
       mouse = 2;
     }
   } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
+    secondClick = candies.getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
       swapBool = true;
       mouse = 1;
@@ -55,16 +55,6 @@ void mouseClicked() {
 int updateProgress() {
   return candies.points;
 } 
-
-int getCandy(int x, int y) {
-  for (int i = 0; i < candies.size(); i++) {
-    float distStore = dist(x, y, candies.get(i).x, candies.get(i).y);
-    if (distStore < 25) {
-      return i;
-    }
-  }
-  return -1;
-}
 
 void runBoard() {
   while (ycor < height-80) {
