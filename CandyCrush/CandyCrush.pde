@@ -80,10 +80,7 @@ void mouseClicked() {
     candies.clearRowForThree();
     candies.clearColForThree();
     //candies.points+=100;
-<<<<<<< HEAD
-=======
-  }
->>>>>>> bernadette
+
 
   }
 }

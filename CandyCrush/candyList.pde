@@ -4,11 +4,11 @@ public class candyList {
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
   int points;
-<<<<<<< HEAD
+ 
 
-=======
+
   
->>>>>>> bernadette
+ 
   ArrayList<candy> candies;
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
