@@ -41,10 +41,6 @@ public class candyList {
     return candies.size();
   }
 
-  //void swap (ArrayList ary, int a, int b) {
-  //  swap(ary, a, b);
-  //}
-
   void display() {
     for (int i = 0; i<candies.size(); i++) {
       candies.get(i).display();
