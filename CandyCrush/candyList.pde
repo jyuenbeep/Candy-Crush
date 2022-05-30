@@ -26,6 +26,10 @@ public class candyList {
   }
   
   void set(int index, candy c) {
+    candies.set(index, c);
+  }
+  
+  void set1(int index, candy c) {
     candies.get(index).setColor(c.getColor());
   }
   
@@ -45,14 +49,15 @@ public class candyList {
     for (int i = 0; i < candies.size(); i++) {
       candies.get(i).display();
     }
-    delay(1000);
-    remove(50,51,52);
+    //delay(5000);
+    clearRowForThree();
+    
   }
   
-  void remove(int a, int b, int c) {
+  void removeRowForThree(int a, int b, int c) {
     while (a >= 10) {
       candy temp = get(a-10);
-      set(a, temp);
+      set1(a, temp);
       a -= 10;
     }
     float x = get(a).getX();
@@ -65,7 +70,7 @@ public class candyList {
     
     while (b >= 10) {
       candy temp = get(b-10);
-      set(b, temp);
+      set1(b, temp);
       b -= 10;
     }
     x = get(b).getX();
@@ -78,7 +83,7 @@ public class candyList {
     
    while (c >= 10) {
       candy temp = get(c-10);
-      set(c, temp);
+      set1(c, temp);
       c -= 10;
     }
     x = get(c).getX();
@@ -91,20 +96,21 @@ public class candyList {
 
   }
   
-  void clear(){
-    int i = 0;
-    while (i < candies.size()-2 && candies.get(i).getColor() == candies.get(i+1).getColor() && candies.get(i+1).getColor() == candies.get(i+2).getColor()) {
-      if (i-8 % 10 != 0 || i-9% 10 != 0) {
-        remove(i,i+1,i+2);
-      }
-      if (i == candies.size()-3) {
-        i = 0;
-      } else {
-        i++;
-      }
+  void clearRowForThree() {
+    while (clearRowForThreeH()) {
+      clearRowForThreeH();
     }
   }
   
+  boolean clearRowForThreeH() {
+    for (int i = 79; i >= 2 ; i--) { 
+      if (i % 10 != 0 && i - 1 % 10 != 0 && get(i).getColor() == get(i-1).getColor() && get(i).getColor() == get(i-2).getColor() ) {
+        removeRowForThree(i,i-1,i-2);
+        return true;
+      }
+    }
+    return false;
+  }
   
   
   
