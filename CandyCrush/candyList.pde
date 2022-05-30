@@ -49,10 +49,11 @@ public class candyList {
     for (int i = 0; i < candies.size(); i++) {
       candies.get(i).display();
     }
-    //delay(5000);
     clearRowForThree();
-    
+    clearColForThree();
   }
+  
+  
   
   void removeRowForThree(int a, int b, int c) {
     while (a >= 10) {
@@ -110,6 +111,42 @@ public class candyList {
       }
     }
     return false;
+  }
+  
+  
+  
+  
+  void clearColForThree() {
+    while (clearColForThreeH()) {
+      clearColForThreeH();
+    }
+  }
+  
+  boolean clearColForThreeH() {
+    for (int i = 79; i > 19 ; i--) { 
+      if  (get(i).getColor() == get(i-10).getColor() && get(i).getColor() == get(i-20).getColor() ) {
+        removeColForThree(i,i-10,i-20);
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  void removeColForThree(int a, int b, int c) {
+    while (a >= 30) {
+      candy temp = get(a-30);
+      set1(a, temp);
+      a -= 10;
+    }
+    while (a <= 29 && a >= 0) {
+      float x = get(a).getX();
+      float y = get(a).getY();
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      add(a, tem);
+      set1(a, tem);
+      a -= 10;
+    }
   }
   
   

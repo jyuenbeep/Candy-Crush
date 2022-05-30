@@ -71,6 +71,7 @@ void mouseClicked() {
     candies.set(firstClick, candies.get(secondClick));
     candies.set(secondClick, firstTemp);
     candies.clearRowForThree();
+    candies.clearColForThree();
   }
 
 }
