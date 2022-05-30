@@ -29,11 +29,15 @@ void draw() {
     candies.get(secondClick).y = tempY;
     swapBool = false;
   }
-  candies.clear(candies, secondClick);
+  boolean swapCandies = candies.clear(candies, secondClick);
+  if (!swapCandies) {
+    swapCandies = candies.clear(candies, firstClick);
+  }
   candies.display();
   fill(0);
   textSize(50);
   text("POINTS: " + updateProgress(), 100, 50);
+  text ("swap?: " + swapCandies, 500, 50); 
   circle(mouseX, mouseY, 30);
 }
 
