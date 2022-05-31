@@ -9,17 +9,18 @@ public class candyList {
 
   
  
-  ArrayList<candy> candies;
+  ArrayList<ArrayList<candy>> candies;
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
   candyList(int total) {
     int xcor = 90;
     int ycor = 140;
-    candies = new ArrayList<candy>();
+    candies = new ArrayList<ArrayList<candy>>();
     for (int i = 0; i<total; i++) {
+      candies.add(new ArrayList<candy>());
       color rand = colorsToChoose[(int)(Math.random()*4)];
-      candies.add(new candy(xcor, ycor, rand));
+      candies.get(i).add(new candy(xcor, ycor, rand));
       if (xcor+80<840) {
         xcor+=80;
       } else if (ycor+80 < 720) {
