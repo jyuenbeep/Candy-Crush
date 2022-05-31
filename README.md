@@ -25,8 +25,41 @@ Continued working on the prototype and discussed what our game would look like.
 5/21: 
 Classes/methods finalized and prototype basically done except for the UML diagram, which we will do based on the prototype. Also changed up the project description a little. 
 
+5/23:
+Worked on level{} class and added accessor/mutator methods.
+
+5/24:
+The board and setup is basically done but I am still trying to figure out movement. 
+
+5/25: 
+Moving the candies still not working so I'm working on that. Also managed to merge my changes onto main branch. 
+
+5/26: 
+Tried moving around the methods/variables and breaking down the code into smaller sections for testing and debugging. However, the error persists. I realized the error was with how I was switching the elements of the candyList but I don't know how to fix it. 
+
+5/27: 
+The candies move now! The issue was that I was switching the candies of the candyList, but not switching the positions of the actual candies. I changed it by changing the x and y positions of the two candies instead. Also changed the positions of some booleans after that.
+
+5/29: 
+My partner worked on trying to do the clear methods. I looked over the code and I might move the clear methods into candyType instead. I added in an extra instance variable to candyList and am thinking of changing up candyList to make it easier to check for edge-cases.
+
+5/30: 
+Worked on trying to clear a whole row instead of only swapping. Once that was up and running, I added in a instance variable for points for the candyList and displayed it in the draw. Also, I made it so that it would add 100 points everytime three candies were cleared. Also made it so that user can only swap adjacent candies. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
 
 5/20: Beautified the prototype. 
+
+5/22: Finished the prototype. Worked on the methods and on UML diagrams. Brainstormed ideas.
+
+5/23: began conding of a class. not sure if my branch commited.
+
+5/25: been trying to get movements to work and tried getting a different setup but its not going as planned. 
+
+5/27: helped fix the move function. Even tho we had the code, we just needed to switch the reference. 
+
+5/28-29: worked on the clearing method. It clears somewhat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
+
+5/30: I finished and did the row clearing and column clearing for 3 matches. Now im working to make matches such as L and T.
