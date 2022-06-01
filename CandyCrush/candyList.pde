@@ -163,6 +163,22 @@ public class candyList {
     }
   }
   
+  void removeColForThree(int a, int b) {
+    while (a >= 20) {
+      candy temp = get(a-20);
+      set1(a, temp);
+      a -= 10;
+    }
+    while (a <= 19 && a >= 0) {
+      float x = get(a).getX();
+      float y = get(a).getY();
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      add(a, tem);
+      set1(a, tem);
+      a -= 10;
+    }
+  }
   
   
   
