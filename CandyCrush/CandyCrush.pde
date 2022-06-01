@@ -79,8 +79,8 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-  for (int rows = 0; rows<candies.r; rows++) {
-    for (int cols = 0; cols<candies.c; cols++) {
+  for (int rows = 0; rows <candies.r; rows++) {
+    for (int cols = 0; cols <candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
       yval = candies.get(rows, cols).getY();
       distStore = dist(xval, yval, x, y);
@@ -95,7 +95,7 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-  while (ycor < height-candies.INCREMENT) {
+  while (ycor < height-80) {
     xcor = 50;
     rows=0;
     while (xcor<width-TILESIZE*2) {
