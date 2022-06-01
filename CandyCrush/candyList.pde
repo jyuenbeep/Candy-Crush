@@ -50,6 +50,10 @@ public class candyList {
   void set1(int row, int col, candy c) {
     candies[row][col].setColor(c.getColor());
   }
+  
+  //void add(int row, int col, candy c) {
+  //  candies[row][col].setColor(c.getColor());
+  //}
 
   candy get(int row, int col) {
     return candies[row][col];
@@ -71,44 +75,46 @@ public class candyList {
 
 
 
-  void removeRowForThree(int a, int b, int c) {
-    while (a >= 10) {
-      candy temp = get(a-10);
-      set1(a, temp);
-      a -= 10;
+  void removeRowForThree(int row, int col1, int col2, int col3) {
+    int tempRow = row;
+    int tempRow1 = row;
+    while (row >= 10) {
+      candy temp = get(row-10, col1);
+      set1(row, col1, temp);
+      row -= 10;
     }
-    float x = get(a).getX();
-    float y = get(a).getY();
-    if (a <= 9 && a >= 0) {
+    float x = get(row, col1).getX();
+    float y = get(row, col1).getY();
+    if (row <= 9 && row >= 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
-      add(a, tem);
+      set1(row,col1, tem);
     }
 
-    while (b >= 10) {
-      candy temp = get(b-10);
-      set1(b, temp);
-      b -= 10;
+    while (tempRow >= 10) {
+      candy temp = get(tempRow-10, col2);
+      set1(tempRow, col2, temp);
+      tempRow -= 10;
     }
-    x = get(b).getX();
-    y = get(b).getY();
-    if (b <= 9 && b >= 0) {
+    x = get(tempRow, col2).getX();
+    y = get(tempRow, col2).getY();
+    if (tempRow <= 9 && tempRow >= 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
-      add(b, tem);
+      set1(tempRow,col2, tem);
     }
 
-    while (c >= 10) {
-      candy temp = get(c-10);
-      set1(c, temp);
-      c -= 10;
+    while (tempRow1 >= 10) {
+      candy temp = get(tempRow1-10, col3);
+      set1(tempRow1, col3, temp);
+      tempRow1 -= 10;
     }
-    x = get(c).getX();
-    y = get(c).getY();
-    if (c <= 9 && c >= 0) {
+    x = get(tempRow1, col3).getX();
+    y = get(tempRow1, col3).getY();
+    if (tempRow1 <= 9 && tempRow1 >= 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
-      add(c, tem);
+      set1(tempRow1,col3, tem);
     }
   }
 
@@ -124,10 +130,12 @@ public class candyList {
   }
 
   boolean clearRowForThreeH() {
-    for (int i = 79; i >= 2; i--) { 
-      if (i % 10 != 0 && i - 1 % 10 != 0 && get(i).getColor() == get(i-1).getColor() && get(i).getColor() == get(i-2).getColor() ) {
-        removeRowForThree(i, i-1, i-2);
-        return true;
+    for (int i = 0; i < r; i ++) {
+      for (int j = 0; j < c - 2; j++) {
+        if (get(i,j) == get (i,j+1) && get(i,j) == get (i,j+2)) {
+          removeRowForThree(i,j,j+1,j+2);
+          return true;
+        }
       }
     }
     return false;
@@ -143,29 +151,52 @@ public class candyList {
   }
 
   boolean clearColForThreeH() {
-    for (int i = 79; i > 19; i--) { 
-      if  (get(i).getColor() == get(i-10).getColor() && get(i).getColor() == get(i-20).getColor() ) {
-        removeColForThree(i, i-10, i-20);
-        return true;
+    for (int i = 0; i < c; i ++) {
+      for (int j = 0; j < r - 2; j++) {
+        if (get(i,j) == get (i+1,j) && get(i,j) == get (i+2,j)) {
+          removeColForThree(i,j+2,j+1,j);
+          return true;
+        }
       }
     }
     return false;
   }
 
-  void removeColForThree(int a, int b, int c) {
-    while (a >= 30) {
-      candy temp = get(a-30);
-      set1(a, temp);
-      a -= 10;
+  void removeColForThree(int col, int row1, int row2, int row3) {
+    while (row1 >= 30) {
+      candy temp = get(row1-30, col);
+      set1(row1, col, temp);
+      row1 -= 10;
     }
-    while (a <= 29 && a >= 0) {
-      float x = get(a).getX();
-      float y = get(a).getY();
+    while (row1 <= 29 && row1 >= 0) {
+      float x = get(row1, col).getX();
+      float y = get(row1, col).getY();
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
-      add(a, tem);
-      set1(a, tem);
-      a -= 10;
+      set1(row1, col, tem);
+      row1 -= 10;
     }
   }
+
+  
+  //void removeColForThree(int a, int b) {
+  //  while (a >= 20) {
+  //    candy temp = get(a-20);
+  //    set1(a, temp);
+  //    a -= 10;
+  //  }
+  //  while (a <= 19 && a >= 0) {
+  //    float x = get(a).getX();
+  //    float y = get(a).getY();
+  //    color rand = colorsToChoose[(int)(Math.random()*4)];
+  //    candy tem = new candy(x, y, rand);
+  //    add(a, tem);
+  //    set1(a, tem);
+  //    a -= 10;
+  //  }
+  //}
+  
+  
+  
+
 }
