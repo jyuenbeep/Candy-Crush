@@ -1,5 +1,5 @@
 public class level {
-  static int levelCount;
+  int levelCount;
   int row;
   int col;
   
