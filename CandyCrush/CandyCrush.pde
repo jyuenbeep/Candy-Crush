@@ -1,7 +1,6 @@
 final int TILESIZE = 80;
 int ycor; 
 int xcor;
-int candiesNum = runBoard();
 candyList candies;
 int mouse = 1; 
 
@@ -84,7 +83,8 @@ int getCandy(float x, float y) {
     for (int cols = 0; cols<candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
       yval = candies.get(rows, cols).getY();
-      distStore = dist(xval, yval, x, y) {
+      distStore = dist(xval, yval, x, y);
+      if (distStore<25) {
         rowIndex = rows;
         colIndex = cols;
         return 0;
