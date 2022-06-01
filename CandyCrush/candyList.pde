@@ -31,20 +31,20 @@ public class candyList {
     points = 0;
   }
 
-  void set(int index, candy c) {
-    candies.set(index, c);
+  void set(int row, int col, candy c) {
+    candies.get(row).set(col, c);
   }
 
-  void set1(int index, candy c) {
-    candies.get(index).setColor(c.getColor());
+  void set1(int row, int col, candy c) {
+    candies.get(row).get(col).setColor(c.getColor());
   }
 
-  void add(int index, candy c) {
-    candies.get(index).setColor(c.getColor());
+  void add(int row, int col, candy c) {
+    candies.get(row).get(col).setColor(c.getColor());
   }
 
-  candy get(int index) {
-    return candies.get(index);
+  candy get(int row, int col) {
+    return candies.get(row).get(col);
   }
 
   int size() {
@@ -52,8 +52,10 @@ public class candyList {
   }
 
   void display() {
-    for (int i = 0; i < candies.size(); i++) {
-      candies.get(i).display();
+    for (int row = 0; row < candies.size(); row++) {
+      for (int col = 0; col < candies.get(row).size(); col++) {
+        candies.get(row).get(col).display();
+      } 
     }
     clearRowForThree();
  
