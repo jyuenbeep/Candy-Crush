@@ -26,7 +26,7 @@ public class candyList {
     candies = new candy[rows][cols];
     
     for (int r = 0; r <rows; r++) {
-      float xcor = XSTART;
+      float xcor = XSTART-80;
       for (int c = 0; c <cols; c++) {
         color rand = colorsToChoose[(int)(Math.random()*4)];
         candies[r][c] = new candy(xcor, ycor, rand);
@@ -65,8 +65,8 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    clearRowForThree();
-    clearColForThree();
+    //clearRowForThree();
+    //clearColForThree();
   }
 
 
