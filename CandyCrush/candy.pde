@@ -28,4 +28,12 @@ public class candy {
   void setColor(color c) {
     clr = c;
   }
+  
+  void setX(float xvar) {
+    x = xvar;
+  }
+  
+  void setY(float yvar) {
+    y = yvar;
+  }
 }
