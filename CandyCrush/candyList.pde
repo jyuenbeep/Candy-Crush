@@ -4,63 +4,69 @@ public class candyList {
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
   int points;
- 
+  int r;
+  int c;
 
+  candy[][] candies;
 
-  
- 
-  ArrayList<candy> candies;
+  final int HEIGHT = 840;
+  final int WIDTH = 720;
+  final int INCREMENT = 80;
+  final int XSTART = 90;
+  final int YSTART = 140;
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
-  candyList(int total) {
-    int xcor = 90;
-    int ycor = 140;
-    candies = new ArrayList<candy>();
-    for (int i = 0; i<total; i++) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candies.add(new candy(xcor, ycor, rand));
-      if (xcor+80<840) {
-        xcor+=80;
-      } else if (ycor+80 < 720) {
-        xcor=90; 
-        ycor+=80;
+  candyList(int rows, int cols) {
+    
+    r = rows;
+    c = cols;
+    
+    int ycor = YSTART;
+    candies = new candy[rows][cols];
+    
+    for (int r = 0; r<rows; r++) {
+      xcor=XSTART;
+      for (int c = 0; c<cols; c++) {
+        color rand = colorsToChoose[(int)(Math.random()*4)];
+        candies[r][c].setColor(rand);
+        //
+        xcor+=INCREMENT;
+        candies[r][c].setX(xcor);
+        candies[r][c].setY(ycor);
+        //
       }
+      ycor+=INCREMENT;
     }
+    
     points = 0;
+    
   }
 
-  void set(int index, candy c) {
-    candies.set(index, c);
+  void set(int row, int col, candy c) {
+    candies[row][col] = c;
   }
 
-  void set1(int index, candy c) {
-    candies.get(index).setColor(c.getColor());
+  void set1(int row, int col, candy c) {
+    candies[row][col].setColor(c.getColor());
   }
 
-  void add(int index, candy c) {
-    candies.get(index).setColor(c.getColor());
-  }
-
-  candy get(int index) {
-    return candies.get(index);
-  }
-
-  int size() {
-    return candies.size();
+  candy get(int row, int col) {
+    return candies[row][col];
   }
 
   void display() {
-    for (int i = 0; i < candies.size(); i++) {
-      candies.get(i).display();
+    for (int r = 0; r < candies.length; r++) {
+      for (int c = 0; c < candies[r].length; c++) {
+        candies[r][c].display();
+      }
     }
     clearRowForThree();
- 
     clearColForThree();
   }
-  
-  
-  
+
+
+
 
 
 
@@ -126,26 +132,26 @@ public class candyList {
     }
     return false;
   }
-  
-  
-  
-  
+
+
+
+
   void clearColForThree() {
     while (clearColForThreeH()) {
       clearColForThreeH();
     }
   }
-  
+
   boolean clearColForThreeH() {
-    for (int i = 79; i > 19 ; i--) { 
+    for (int i = 79; i > 19; i--) { 
       if  (get(i).getColor() == get(i-10).getColor() && get(i).getColor() == get(i-20).getColor() ) {
-        removeColForThree(i,i-10,i-20);
+        removeColForThree(i, i-10, i-20);
         return true;
       }
     }
     return false;
   }
-  
+
   void removeColForThree(int a, int b, int c) {
     while (a >= 30) {
       candy temp = get(a-30);
@@ -162,8 +168,4 @@ public class candyList {
       a -= 10;
     }
   }
-  
-  
-  
-  
 }
