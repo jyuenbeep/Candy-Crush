@@ -4,6 +4,8 @@ public class candyList {
   final color GREEN = #00FF00;
   final color YELLOW = #FFFF00;
   int points;
+  int r;
+  int c;
 
   candy[][] candies;
 
@@ -16,6 +18,9 @@ public class candyList {
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
   candyList(int rows, int cols) {
+    
+    r = rows;
+    c = cols;
     
     int ycor = YSTART;
     candies = new candy[rows][cols];
