@@ -42,6 +42,7 @@ public class candyList {
     points = 0;
     
   }
+  
 
   void set(int row, int col, candy c) {
     candies[row][col] = c;
@@ -65,7 +66,7 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    //clearRowForThree();
+    clearRowForThree();
     //clearColForThree();
   }
 
