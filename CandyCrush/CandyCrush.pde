@@ -82,8 +82,8 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-  for (int r = 0; r<rows; r++) {
-    for (int c = 0; c<cols; c++) {
+  for (int r = 0; r<candies.r; r++) {
+    for (int c = 0; c<candies.c; c++) {
       xval = candies.get(r, c).getX();
       yval = candies.get(r, c).getY();
       distStore = dist(xval, yval, x, y);
