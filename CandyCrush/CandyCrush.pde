@@ -28,7 +28,7 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-  candies = new candyList(10, 10);
+  candies = new candyList(rows, cols);
 }
 
 void draw() {
