@@ -28,11 +28,7 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-<<<<<<< HEAD
-  candies = new candyList(8, 10);
-=======
   candies = new candyList(rows, cols);
->>>>>>> jasmine
 }
 
 void draw() {
@@ -83,17 +79,14 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-<<<<<<< HEAD
   for (int rows = 0; rows < candies.r; rows++) {
     for (int cols = 0; cols < candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
       yval = candies.get(rows, cols).getY();
-=======
   for (int r = 0; r<rows; r++) {
     for (int c = 0; c<cols; c++) {
       xval = candies.get(r, c).getX();
       yval = candies.get(r, c).getY();
->>>>>>> jasmine
       distStore = dist(xval, yval, x, y);
       if (distStore<25) {
         rowIndex = r;
@@ -106,10 +99,7 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-<<<<<<< HEAD
-=======
   cols=0;
->>>>>>> jasmine
   while (ycor < height-80) {
     xcor = 50;
     rows=0;
