@@ -28,11 +28,8 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-<<<<<<< HEAD
-  candies = new candyList(8, 10);
-=======
-  candies = new candyList(rows, cols);
->>>>>>> 5bf695a46e6baf3c350d48b356899b776473eb27
+  
+  candies = new candyList(8,10);
 }
 
 void draw() {
@@ -43,13 +40,16 @@ void draw() {
   testRun();
 
   fill(0);
-
+  //testing
+  textSize(30);
+  text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
+  text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
   //testing
   circle(mouseX, mouseY, 30);
 }
 
 void mouseClicked() {
-  if (mouse == 1) { 
+  if (mouse == 1) {
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
       firstRI = rowIndex;
@@ -83,13 +83,8 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-  for (int rows = 0; rows < candies.r; rows++) {
-    for (int cols = 0; cols < candies.c; cols++) {
-      xval = candies.get(rows, cols).getX();
-      println(xval);
-      yval = candies.get(rows, cols).getY();
-  for (int r = 0; r<rows; r++) {
-    for (int c = 0; c<cols; c++) {
+  for (int r = 0; r<candies.r; r++) {
+    for (int c = 0; c<candies.c; c++) {
       xval = candies.get(r, c).getX();
       yval = candies.get(r, c).getY();
       distStore = dist(xval, yval, x, y);
