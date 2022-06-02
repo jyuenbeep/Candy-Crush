@@ -85,7 +85,7 @@ public class candyList {
     }
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
-    if (row <= 9 && row >= 0) {
+    if (row < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(row,col1, tem);
@@ -98,7 +98,7 @@ public class candyList {
     }
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
-    if (tempRow <= 9 && tempRow >= 0) {
+    if (tempRow < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(tempRow,col2, tem);
@@ -111,7 +111,7 @@ public class candyList {
     }
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
-    if (tempRow1 <= 9 && tempRow1 >= 0) {
+    if (tempRow1 < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(tempRow1,col3, tem);
@@ -126,7 +126,7 @@ public class candyList {
     }
     if (count>=1) {
       points+=100;
-    }
+    } 
   }
 
   boolean clearRowForThreeH() {

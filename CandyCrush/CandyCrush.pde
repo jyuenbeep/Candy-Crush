@@ -28,7 +28,7 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-  candies = new candyList(10, 10);
+  candies = new candyList(8, 10);
 }
 
 void draw() {
@@ -79,8 +79,8 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-  for (int rows = 0; rows <candies.r; rows++) {
-    for (int cols = 0; cols <candies.c; cols++) {
+  for (int rows = 0; rows < candies.r; rows++) {
+    for (int cols = 0; cols < candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
       yval = candies.get(rows, cols).getY();
       distStore = dist(xval, yval, x, y);
