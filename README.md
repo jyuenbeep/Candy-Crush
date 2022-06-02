@@ -49,6 +49,9 @@ Worked on trying to clear a whole row instead of only swapping. Once that was up
 5/31:
 Decided to change the candyList from a 1d array to a 2d array of candies. Had to edit the constructor + all methods, accesors, and mutators associated. 
 
+6/1:
+Code is broken right now after the change to 2d array. The setup and swapping does not work. Neither does the dropping down candies after combo matching. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
