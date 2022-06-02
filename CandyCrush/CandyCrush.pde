@@ -28,7 +28,7 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-  candies = new candyList(10, 10);
+  candies = new candyList(8, 10);
 }
 
 void draw() {
@@ -45,7 +45,7 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (mouse == 1) {
+  if (mouse == 1) { 
     firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
       firstRI = rowIndex;

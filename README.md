@@ -46,6 +46,12 @@ My partner worked on trying to do the clear methods. I looked over the code and 
 5/30: 
 Worked on trying to clear a whole row instead of only swapping. Once that was up and running, I added in a instance variable for points for the candyList and displayed it in the draw. Also, I made it so that it would add 100 points everytime three candies were cleared. Also made it so that user can only swap adjacent candies. 
 
+5/31:
+Decided to change the candyList from a 1d array to a 2d array of candies. Had to edit the constructor + all methods, accesors, and mutators associated. 
+
+6/1:
+Code is broken right now after the change to 2d array. The setup and swapping does not work. Neither does the dropping down candies after combo matching. 
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
