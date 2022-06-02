@@ -79,14 +79,14 @@ void mouseClicked() {
 }
 
 int getCandy(float x, float y) {
-  for (int rows = 0; rows<candies.r; rows++) {
-    for (int cols = 0; cols<candies.c; cols++) {
-      xval = candies.get(rows, cols).getX();
-      yval = candies.get(rows, cols).getY();
+  for (int r = 0; r<rows; r++) {
+    for (int c = 0; c<cols; c++) {
+      xval = candies.get(r, c).getX();
+      yval = candies.get(r, c).getY();
       distStore = dist(xval, yval, x, y);
       if (distStore<25) {
-        rowIndex = rows;
-        colIndex = cols;
+        rowIndex = r;
+        colIndex = c;
         return 0;
       }
     }
