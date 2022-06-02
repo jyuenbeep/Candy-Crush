@@ -86,6 +86,7 @@ int getCandy(float x, float y) {
   for (int rows = 0; rows < candies.r; rows++) {
     for (int cols = 0; cols < candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
+      println(xval);
       yval = candies.get(rows, cols).getY();
   for (int r = 0; r<rows; r++) {
     for (int c = 0; c<cols; c++) {
