@@ -12,8 +12,8 @@ public class candyList {
   final int HEIGHT = 840;
   final int WIDTH = 720;
   final int INCREMENT = 80;
-  final int XSTART = 90;
-  final int YSTART = 140;
+  final float XSTART = 90;
+  final float YSTART = 140;
 
   color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
 
@@ -22,14 +22,14 @@ public class candyList {
     r = rows;
     c = cols;
     
-    int ycor = YSTART;
+    float ycor = YSTART;
     candies = new candy[rows][cols];
     
-    for (int r = 0; r<rows; r++) {
-      xcor=XSTART;
-      for (int c = 0; c<cols; c++) {
+    for (int r = 0; r <rows; r++) {
+      float xcor = XSTART-80;
+      for (int c = 0; c <cols; c++) {
         color rand = colorsToChoose[(int)(Math.random()*4)];
-        candies[r][c].setColor(rand);
+        candies[r][c] = new candy(xcor, ycor, rand);
         //
         xcor+=INCREMENT;
         candies[r][c].setX(xcor);
@@ -65,8 +65,8 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    clearRowForThree();
-    clearColForThree();
+    //clearRowForThree();
+    //clearColForThree();
   }
 
 
@@ -85,7 +85,7 @@ public class candyList {
     }
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
-    if (row <= 9 && row >= 0) {
+    if (row < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(row,col1, tem);
@@ -98,7 +98,7 @@ public class candyList {
     }
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
-    if (tempRow <= 9 && tempRow >= 0) {
+    if (tempRow < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(tempRow,col2, tem);
@@ -111,7 +111,7 @@ public class candyList {
     }
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
-    if (tempRow1 <= 9 && tempRow1 >= 0) {
+    if (tempRow1 < r) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
       set1(tempRow1,col3, tem);
@@ -126,7 +126,7 @@ public class candyList {
     }
     if (count>=1) {
       points+=100;
-    }
+    } 
   }
 
   boolean clearRowForThreeH() {
