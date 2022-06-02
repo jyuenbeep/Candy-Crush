@@ -39,7 +39,10 @@ void draw() {
   testRun();
 
   fill(0);
-
+  //testing
+  textSize(30);
+  text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
+  text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
   //testing
   circle(mouseX, mouseY, 30);
 }
