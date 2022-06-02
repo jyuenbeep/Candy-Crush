@@ -28,7 +28,7 @@ int secondCI;
 void setup() {
   size(1000, 800);
   runBoard();
-  candies = new candyList(rows, cols);
+  candies = new candyList(8, 10);
 }
 
 void draw() {
@@ -73,8 +73,8 @@ void mouseClicked() {
     candies.set1(secondRI, secondCI, firstTempCandy);
     swapBool = false;
 
-    //candies.clearRowForThree();
-    //candies.clearColForThree();
+    candies.clearRowForThree();
+    candies.clearColForThree();
   }
 }
 
@@ -83,14 +83,10 @@ int getCandy(float x, float y) {
     for (int cols = 0; cols < candies.c; cols++) {
       xval = candies.get(rows, cols).getX();
       yval = candies.get(rows, cols).getY();
-  for (int r = 0; r<rows; r++) {
-    for (int c = 0; c<cols; c++) {
-      xval = candies.get(r, c).getX();
-      yval = candies.get(r, c).getY();
       distStore = dist(xval, yval, x, y);
       if (distStore<25) {
-        rowIndex = r;
-        colIndex = c;
+        rowIndex = rows;
+        colIndex = cols;
         return 0;
       }
     }
@@ -99,7 +95,6 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-  cols=0;
   while (ycor < height-80) {
     xcor = 50;
     rows=0;

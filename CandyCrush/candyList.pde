@@ -25,23 +25,15 @@ public class candyList {
     float ycor = YSTART;
     candies = new candy[rows][cols];
     
-<<<<<<< HEAD
     for (int r = 0; r <rows; r++) {
       float xcor = XSTART-80;
       for (int c = 0; c <cols; c++) {
         color rand = colorsToChoose[(int)(Math.random()*4)];
         candies[r][c] = new candy(xcor, ycor, rand);
-=======
-    for (int i = 0; i<rows; i++) {
-      xcor=XSTART;
-      for (int j = 0; j<cols; j++) {
-        color rand = colorsToChoose[(int)(Math.random()*4)];
-        candies[i][j].setColor(rand);
->>>>>>> jasmine
         //
         xcor+=INCREMENT;
-        candies[i][j].setX(xcor);
-        candies[i][j].setY(ycor);
+        candies[r][c].setX(xcor);
+        candies[r][c].setY(ycor);
         //
       }
       ycor+=INCREMENT;
