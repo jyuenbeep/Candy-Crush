@@ -73,8 +73,8 @@ void mouseClicked() {
     candies.set1(secondRI, secondCI, firstTempCandy);
     swapBool = false;
 
-    candies.clearRowForThree();
-    candies.clearColForThree();
+    //candies.clearRowForThree();
+    //candies.clearColForThree();
   }
 }
 
@@ -95,7 +95,8 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-  while (ycor < height-candies.INCREMENT) {
+  cols=0;
+  while (ycor < height-80) {
     xcor = 50;
     rows=0;
     while (xcor<width-TILESIZE*2) {
