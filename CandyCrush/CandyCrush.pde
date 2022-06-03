@@ -64,7 +64,7 @@ void draw() {
   text("cols: " + candies.c, 500, 100); 
   text(frameRate, 10, 20);
   //testing
-  circle(mouseX, mouseY,20);
+  //circle(mouseX, mouseY,20);
 }
 
 void mouseClicked() {
@@ -92,7 +92,6 @@ void mouseClicked() {
   if (swapBool) {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
-
     //candies.clearRowForThree();
     //candies.clearColForThree();
   }
@@ -104,7 +103,7 @@ int getCandy(float x, float y) {
       float xval = candies.get(r, c).getX();
       float yval = candies.get(r, c).getY();
       float distStore = dist(xval, yval, x, y);
-      if (distStore<25) {
+      if (distStore<40) {
         rowIndex = r;
         colIndex = c;
         return 0;
