@@ -62,8 +62,8 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    clearRowForThree();
-    clearColForThree();
+    //clearRowForThree();
+    //clearColForThree();
   }
   
 
@@ -168,6 +168,39 @@ public class candyList {
       set1(row, col, tem);
       row -= 1;
     }
+  }
+  
+  void removeColForTwo(int row, int col) {
+    while (row >= 2) {
+      candy temp = get(row-2, col);
+      set1(row , col, temp);
+      row -= 1;
+    }
+    while (row <= 1 && row >= 0) {
+      float x = get(row, col).getX();
+      float y = get(row, col).getY();
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      set1(row, col, tem);
+      row -= 1;
+    }
+  }
+  
+  boolean clearLshape() {
+    for (int i = 0; i < r-2; i ++) {
+      for (int j = 0; j < c-2; j++) {
+        if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
+          if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
+            //get(i,j+1).getColor() == get(i+1,j+1).getColor() && get(i,j).getColor() == get(i+2,j+1).getColor()
+            //get(i,j+2).getColor() == get(i+1,j+2).getColor() && get(i,j).getColor() == get(i+2,j+2).getColor()
+            removeRowForThree(i,j,j+1,j+2);
+            removeColForTwo(i+2,j);
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
   

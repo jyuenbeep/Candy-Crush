@@ -76,7 +76,7 @@ void mouseClicked() {
     candies.set1(firstRI, firstCI, secondTempCandy); 
     candies.set1(secondRI, secondCI, firstTempCandy);
     swapBool = false;
-
+    //candies.clearLshape();
     //candies.clearRowForThree();
     //candies.clearColForThree();
   }
