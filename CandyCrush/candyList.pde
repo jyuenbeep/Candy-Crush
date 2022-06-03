@@ -51,6 +51,10 @@ public class candyList {
   void set1(int row, int col, candy c) {
     candies[row][col].setColor(c.getColor());
   }
+  
+  void changeColor(int row, int col, color c) {
+    candies[row][col].setColor(c);
+  }
 
   candy get(int row, int col) {
     return candies[row][col];
@@ -191,12 +195,18 @@ public class candyList {
       for (int j = 0; j < c-2; j++) {
         if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
           if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
-            //get(i,j+1).getColor() == get(i+1,j+1).getColor() && get(i,j).getColor() == get(i+2,j+1).getColor()
-            //get(i,j+2).getColor() == get(i+1,j+2).getColor() && get(i,j).getColor() == get(i+2,j+2).getColor()
             removeRowForThree(i,j,j+1,j+2);
             removeColForTwo(i+2,j);
             return true;
-          }
+           } else if (get(i,j+1).getColor() == get(i+1,j+1).getColor() && get(i,j+1).getColor() == get(i+2,j+1).getColor()) {
+            removeRowForThree(i,j,j+1,j+2);
+            removeColForTwo(i+2,j+1);
+            return true;
+           } else if (get(i,j+2).getColor() == get(i+1,j+2).getColor() && get(i,j).getColor() == get(i+2,j+2).getColor()) {
+            removeRowForThree(i,j,j+1,j+2);
+            removeColForTwo(i+2,j+2);
+            return true;
+          }  
         }
       }
     }
