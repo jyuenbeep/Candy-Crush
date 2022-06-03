@@ -63,7 +63,7 @@ void draw() {
   ycor = 100;
   background(255); 
   fill(#808080);
-  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2); 
+  //image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2); 
 
   testRun();
 
@@ -72,8 +72,9 @@ void draw() {
   textSize(30);
   text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
   text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
+  text(frameRate, 10, 20);
   //testing
-  circle(mouseX, mouseY, 30);
+  circle(mouseX, mouseY,20);
 }
 
 void mouseClicked() {
@@ -99,10 +100,11 @@ void mouseClicked() {
     }
   }
   if (swapBool) {
-    candy firstTempCandy = candies.get(firstRI, firstCI);
-    candy secondTempCandy = candies.get(secondRI, secondCI);
-    candies.set1(firstRI, firstCI, secondTempCandy); 
-    candies.set1(secondRI, secondCI, firstTempCandy);
+    //candy firstTempCandy = candies.get(firstRI, firstCI);
+    //candy secondTempCandy = candies.get(secondRI, secondCI);
+    //candies.set1(firstRI, firstCI, secondTempCandy); 
+    //candies.set1(secondRI, secondCI, firstTempCandy);
+    candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
 
     //candies.clearRowForThree();

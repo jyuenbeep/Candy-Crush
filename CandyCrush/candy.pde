@@ -11,15 +11,19 @@ public class candy {
     this.clr = clr; 
   }
 
-  void display(PImage img) {
+  void display() {
     //fill(clr);
     //circle (x, y, 50.0);
     //i = loadImage(c);
-    image(img, x-40, y-40, 80, 80); 
+    image(c, x-40, y-40, 80, 80); 
   }
 
   color getColor() {
     return clr;
+  }
+  
+  void setColor(color clr) {
+    this.clr = clr;
   }
   
   void setImage(PImage img) {

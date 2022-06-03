@@ -28,22 +28,16 @@ public class candyList {
     float ycor = YSTART;
     candies = new candy[rows][cols];
     
-    for (int r = 0; r <rows; r++) {
-      float xcor = XSTART-80;
-      for (int c = 0; c <cols; c++) {
+    for (int i = 0; i<rows; i++) {
+      float xcor = XSTART;
+      for (int j = 0; j<cols; j++) {
         int randIndex = (int)(Math.random()*images.length);
-        candies[r][c] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
-        //
+        candies[i][j] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
         xcor+=INCREMENT;
-        //candies[r][c].setX(xcor);
-        //candies[r][c].setY(ycor);
-        //
       }
       ycor+=INCREMENT;
-    }
-    
-    points = 0;
-    
+    } 
+    points = 0;   
   }
 
   void set(int row, int col, candy c) {
@@ -54,9 +48,14 @@ public class candyList {
     candies[row][col].setImage(c.getImage());
   }
   
-  //void add(int row, int col, candy c) {
-  //  candies[row][col].setColor(c.getColor());
-  //}
+  void swapCandies(int x1, int y1, int x2, int y2) {
+    PImage tempImage = candies[x1][y1].getImage();
+    color tempColor = candies[x1][y1].getColor(); 
+    candies[x1][y2].setImage(candies[x2][y2].getImage());
+    candies[x1][y2].setColor(candies[x2][y2].getColor());
+    candies[x2][y2].setImage(tempImage);
+    candies[x2][y2].setColor(tempColor);
+  }
 
   candy get(int row, int col) {
     return candies[row][col];
@@ -65,7 +64,7 @@ public class candyList {
   void display() {
     for (int r = 0; r < candies.length; r++) {
       for (int c = 0; c < candies[r].length; c++) {
-        candies[r][c].display(candies[r][c].getImage());
+        candies[r][c].display();
       }
     }
     //clearRowForThree();
