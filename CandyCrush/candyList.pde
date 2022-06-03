@@ -52,6 +52,10 @@ public class candyList {
     candies[row][col].setColor(c.getColor());
   }
   
+  void changeColor(int row, int col, color c) {
+    candies[row][col].setColor(c);
+  }
+  
   //void add(int row, int col, candy c) {
   //  candies[row][col].setColor(c.getColor());
   //}

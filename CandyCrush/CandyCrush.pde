@@ -71,10 +71,10 @@ void mouseClicked() {
     }
   }
   if (swapBool) {
-    candy firstTempCandy = candies.get(firstRI, firstCI);
-    candy secondTempCandy = candies.get(secondRI, secondCI);
-    candies.set1(firstRI, firstCI, secondTempCandy); 
-    candies.set1(secondRI, secondCI, firstTempCandy);
+    color firstTempColor = candies.get(firstRI, firstCI).getColor();
+    color secondTempColor = candies.get(secondRI, secondCI).getColor();
+    candies.changeColor(secondRI, secondCI, firstTempColor);
+    candies.changeColor(firstRI, firstCI, secondTempColor);
     swapBool = false;
 
     //candies.clearRowForThree();
