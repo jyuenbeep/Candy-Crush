@@ -44,8 +44,8 @@ public class candyList {
   void swapCandies(int x1, int y1, int x2, int y2) {
     PImage tempImage = candies[x1][y1].getImage();
     color tempColor = candies[x1][y1].getColor(); 
-    candies[x1][y2].setImage(candies[x2][y2].getImage());
-    candies[x1][y2].setColor(candies[x2][y2].getColor());
+    candies[x1][y1].setImage(candies[x2][y2].getImage());
+    candies[x1][y1].setColor(candies[x2][y2].getColor());
     candies[x2][y2].setImage(tempImage);
     candies[x2][y2].setColor(tempColor);
   }
