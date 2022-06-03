@@ -1,22 +1,15 @@
-
 public class candyList {
   int points;
   int r;
   int c;
-
   candy[][] candies;
   PImage[] imagesList;
   color[] colorsList; 
-
   final int HEIGHT = 840;
   final int WIDTH = 720;
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
-
-  //color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-  //String[] imagesToChoose = new String[]{"red.png", "blue.png", "purple.png", "green.png", "yellow.png", "orange.png"};
-  //color[] colorsToChoose = new color[]{RED, BLUE, PURPLE, GREEN, YELLOW, ORANGE};
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
     

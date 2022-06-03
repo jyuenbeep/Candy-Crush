@@ -23,6 +23,7 @@ PImage yellowCandy;
 PImage greenCandy;
 PImage purpleCandy;
 PImage blueCandy;
+
 //colors
 final color RED = #AA4A44;
 final color BLUE = #89CFF0;
@@ -34,8 +35,8 @@ final color ORANGE = #FFA500;
 void setup() {
   size(1000, 800);
   runBoard();
-  //images
   backgroundImg = loadImage("background.jpg");
+  //images
   redCandy = loadImage("red.png");
   yellowCandy = loadImage("yellow.png");
   blueCandy = loadImage("blue.png");
@@ -50,13 +51,11 @@ void setup() {
 }
 
 void draw() {
-  ycor = 100;
-  background(255); 
-  fill(#808080);
+  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
+  fill(#D3D3D3);
   runBoard();
   candies.display();
   fill(0);
-  
   //testing
   textSize(30);
   text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
@@ -117,6 +116,7 @@ int getCandy(float x, float y) {
 
 void runBoard() {
   rows=0;
+  ycor=100; 
   while (ycor < height-80) {
     xcor = 50;
     cols=0;
