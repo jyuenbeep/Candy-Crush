@@ -116,17 +116,16 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-  cols=0;
+  rows=0;
   while (ycor < height-80) {
     xcor = 50;
-    rows=0;
+    cols=0;
     while (xcor<width-TILESIZE*2) {
-      //stroke(10);
       rect(xcor, ycor, TILESIZE, TILESIZE);
       xcor+=TILESIZE;
-      rows++;
+      cols++;
     }
     ycor+=TILESIZE;
-    cols++;
+    rows++;
   }
 }
