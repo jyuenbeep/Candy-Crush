@@ -1,31 +1,32 @@
 public class candy {
   float x, y;
   color clr;
-  String c;
-  PImage i;
+  PImage c;
+  //PImage i;
 
-  public candy (float x, float y, String c, color clr) {
+  public candy (float x, float y, PImage c, color clr) {
     this.x = x;
     this.y = y;
     this.c = c;
+    this.clr = clr; 
   }
 
-  void display() {
+  void display(PImage img) {
     //fill(clr);
     //circle (x, y, 50.0);
-    i = loadImage(c);
-    image(i, x-40, y-40, 80, 80); 
+    //i = loadImage(c);
+    image(img, x-40, y-40, 80, 80); 
   }
 
   color getColor() {
     return clr;
   }
   
-  void setImage(String img) {
+  void setImage(PImage img) {
     c = img;
   }
   
-  String getImage() {
+  PImage getImage() {
     return c;
   }
 

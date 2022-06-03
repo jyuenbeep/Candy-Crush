@@ -26,20 +26,44 @@ int secondRI;
 int secondCI;
 
 //images
-PImage img; 
+PImage backgroundImg;
+PImage redCandy;
+PImage orangeCandy;
+PImage yellowCandy;
+PImage greenCandy;
+PImage purpleCandy;
+PImage blueCandy;
+//colors
+final color RED = #AA4A44;
+final color BLUE = #89CFF0;
+final color GREEN = #00FF00;
+final color YELLOW = #FFFF00;
+final color PURPLE = #800080;
+final color ORANGE = #FFA500;
 
 void setup() {
   size(1000, 800);
   runBoard();
-  candies = new candyList(rows, cols);
-  img = loadImage("background.jpg");
+  //images
+  backgroundImg = loadImage("background.jpg");
+  redCandy = loadImage("red.png");
+  yellowCandy = loadImage("yellow.png");
+  blueCandy = loadImage("blue.png");
+  greenCandy = loadImage("green.png");
+  purpleCandy = loadImage("purple.png");
+  orangeCandy = loadImage("orange.png");
+  //arrays
+  PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
+  color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
+  //constructor
+  candies = new candyList(rows, cols, imgs, clrs);
 }
 
 void draw() {
   ycor = 100;
   background(255); 
   fill(#808080);
-  image(img, 0, 0, img.width*2, img.height*2); 
+  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2); 
 
   testRun();
 

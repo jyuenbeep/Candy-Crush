@@ -1,16 +1,12 @@
 
 public class candyList {
-  final color RED = #AA4A44;
-  final color BLUE = #89CFF0;
-  final color GREEN = #00FF00;
-  final color YELLOW = #FFFF00;
-  final color PURPLE = #800080;
-  final color ORANGE = #FFA500;
   int points;
   int r;
   int c;
 
   candy[][] candies;
+  PImage[] imagesList;
+  color[] colorsList; 
 
   final int HEIGHT = 840;
   final int WIDTH = 720;
@@ -19,13 +15,15 @@ public class candyList {
   final float YSTART = 140;
 
   //color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-  String[] imagesToChoose = new String[]{"red.png", "blue.png", "purple.png", "green.png", "yellow.png", "orange.png"};
-  color[] colorsToChoose = new color[]{RED, BLUE, PURPLE, GREEN, YELLOW, ORANGE};
+  //String[] imagesToChoose = new String[]{"red.png", "blue.png", "purple.png", "green.png", "yellow.png", "orange.png"};
+  //color[] colorsToChoose = new color[]{RED, BLUE, PURPLE, GREEN, YELLOW, ORANGE};
 
-  candyList(int rows, int cols) {
+  candyList(int rows, int cols, PImage[] images, color[] colors) {
     
     r = rows;
     c = cols;
+    imagesList = images.clone();
+    colorsList = colors.clone(); 
     
     float ycor = YSTART;
     candies = new candy[rows][cols];
@@ -33,8 +31,8 @@ public class candyList {
     for (int r = 0; r <rows; r++) {
       float xcor = XSTART-80;
       for (int c = 0; c <cols; c++) {
-        int randIndex = (int)(Math.random()*6);
-        candies[r][c] = new candy(xcor, ycor, imagesToChoose[randIndex], colorsToChoose[randIndex]);
+        int randIndex = (int)(Math.random()*images.length);
+        candies[r][c] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
         //
         xcor+=INCREMENT;
         //candies[r][c].setX(xcor);
@@ -67,7 +65,7 @@ public class candyList {
   void display() {
     for (int r = 0; r < candies.length; r++) {
       for (int c = 0; c < candies[r].length; c++) {
-        candies[r][c].display();
+        candies[r][c].display(candies[r][c].getImage());
       }
     }
     //clearRowForThree();
@@ -91,8 +89,8 @@ public class candyList {
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
     if (row < r) {
-      int randIndex = (int)(Math.random()*6);
-      candy tem = new candy(x, y, imagesToChoose[randIndex], colorsToChoose[randIndex]);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row,col1, tem);
     }
 
@@ -104,8 +102,8 @@ public class candyList {
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
     if (tempRow < r) {
-      int randIndex = (int)(Math.random()*6);
-      candy tem = new candy(x, y, imagesToChoose[randIndex], colorsToChoose[randIndex]);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(tempRow,col2, tem);
     }
 
@@ -117,8 +115,8 @@ public class candyList {
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
     if (tempRow1 < r) {
-      int randIndex = (int)(Math.random()*6);
-      candy tem = new candy(x, y, imagesToChoose[randIndex], colorsToChoose[randIndex]);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(tempRow1,col3, tem);
     }
   }
@@ -176,8 +174,8 @@ public class candyList {
     while (row1 <= 29 && row1 >= 0) {
       float x = get(row1, col).getX();
       float y = get(row1, col).getY();
-      int randIndex = (int)(Math.random()*6);
-      candy tem = new candy(x, y, imagesToChoose[randIndex], colorsToChoose[randIndex]);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row1, col, tem);
       row1 -= 10;
     }
