@@ -55,6 +55,13 @@ public class candyList {
   void changeColor(int row, int col, color c) {
     candies[row][col].setColor(c);
   }
+<<<<<<< HEAD
+=======
+  
+  //void add(int row, int col, candy c) {
+  //  candies[row][col].setColor(c.getColor());
+  //}
+>>>>>>> 00533456276a10b62be0c236f15b7ddd16937ca3
 
   candy get(int row, int col) {
     return candies[row][col];
