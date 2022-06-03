@@ -25,16 +25,21 @@ int firstCI;
 int secondRI;
 int secondCI;
 
+//images
+PImage img; 
+
 void setup() {
   size(1000, 800);
   runBoard();
   candies = new candyList(rows, cols);
+  img = loadImage("background.jpg");
 }
 
 void draw() {
   ycor = 100;
   background(255); 
   fill(#808080);
+  image(img, 0, 0, img.width*2, img.height*2); 
 
   testRun();
 
