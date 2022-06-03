@@ -26,7 +26,7 @@ public class candyList {
     colorsList = colors.clone(); 
     
     float ycor = YSTART;
-    candies = new candy[rows][cols];
+    candies = new candy[r][c];
     
     for (int i = 0; i<rows; i++) {
       float xcor = XSTART;
@@ -62,9 +62,9 @@ public class candyList {
   }
 
   void display() {
-    for (int r = 0; r < candies.length; r++) {
-      for (int c = 0; c < candies[r].length; c++) {
-        candies[r][c].display();
+    for (int i = 0; i<r; i++) {
+      for (int j = 0; j<c; j++) {
+        candies[i][j].display();
       }
     }
     //clearRowForThree();

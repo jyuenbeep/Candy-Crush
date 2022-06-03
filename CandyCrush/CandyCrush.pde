@@ -3,21 +3,11 @@ int ycor;
 int xcor;
 candyList candies;
 int mouse = 1; 
-
 int rows;
 int cols;
-
 boolean swapBool = false;
 
-//for testing
-float xval; 
-float yval;
-float distStore;
-int ind;
-int firstClick;
-int secondClick;
-
-//testing2 
+//testing 
 int rowIndex;
 int colIndex;
 int firstRI;
@@ -63,15 +53,16 @@ void draw() {
   ycor = 100;
   background(255); 
   fill(#808080);
-  //image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2); 
-
-  testRun();
-
+  runBoard();
+  candies.display();
   fill(0);
+  
   //testing
   textSize(30);
   text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
   text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
+  text("rows: " + candies.r, 500, 50);
+  text("cols: " + candies.c, 500, 100); 
   text(frameRate, 10, 20);
   //testing
   circle(mouseX, mouseY,20);
@@ -79,7 +70,7 @@ void draw() {
 
 void mouseClicked() {
   if (mouse == 1) {
-    firstClick = getCandy(mouseX, mouseY);
+    int firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
       firstRI = rowIndex;
       firstCI = colIndex;
@@ -87,7 +78,7 @@ void mouseClicked() {
       mouse = 2;
     }
   } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
+    int secondClick = getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
       secondRI = rowIndex;
       secondCI = colIndex;
@@ -100,10 +91,6 @@ void mouseClicked() {
     }
   }
   if (swapBool) {
-    //candy firstTempCandy = candies.get(firstRI, firstCI);
-    //candy secondTempCandy = candies.get(secondRI, secondCI);
-    //candies.set1(firstRI, firstCI, secondTempCandy); 
-    //candies.set1(secondRI, secondCI, firstTempCandy);
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
 
@@ -115,9 +102,9 @@ void mouseClicked() {
 int getCandy(float x, float y) {
   for (int r = 0; r<candies.r; r++) {
     for (int c = 0; c<candies.c; c++) {
-      xval = candies.get(r, c).getX();
-      yval = candies.get(r, c).getY();
-      distStore = dist(xval, yval, x, y);
+      float xval = candies.get(r, c).getX();
+      float yval = candies.get(r, c).getY();
+      float distStore = dist(xval, yval, x, y);
       if (distStore<25) {
         rowIndex = r;
         colIndex = c;
@@ -142,9 +129,4 @@ void runBoard() {
     ycor+=TILESIZE;
     cols++;
   }
-}
-
-void testRun() {
-  runBoard();
-  candies.display();
 }
