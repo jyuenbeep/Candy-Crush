@@ -52,6 +52,9 @@ Decided to change the candyList from a 1d array to a 2d array of candies. Had to
 6/1:
 Code is broken right now after the change to 2d array. The setup and swapping does not work. Neither does the dropping down candies after combo matching. 
 
+6/2:
+Fixed the swapping. Added images and changed the candies to look like the in-game sprites but it's making the program run very slow.
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
