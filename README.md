@@ -69,3 +69,7 @@ Code is broken right now after the change to 2d array. The setup and swapping do
 5/28-29: worked on the clearing method. It clears somewhat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
 
 5/30: I finished and did the row clearing and column clearing for 3 matches. Now im working to make matches such as L and T.
+
+5/31-6/1: fixed all the methods to correspond with the 2d array. We got stuck at some silly part but we figured it out. 
+
+6/2: Finished the top L/T shape clearing method. All the clearing methods work. Now i'm working on the upside down L/T clearing method. I also implemented a new class called level. Just wrote down some basic level methods such get, set, constructors. 
