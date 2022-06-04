@@ -3,11 +3,7 @@ public class candy {
   color clr;
   PImage c;
 
-<<<<<<< HEAD
-  public candy(float x, float y, color clr) {
-=======
   public candy (float x, float y, PImage c, color clr) {
->>>>>>> jasmine
     this.x = x;
     this.y = y;
     this.c = c;

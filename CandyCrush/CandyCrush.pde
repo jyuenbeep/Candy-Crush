@@ -35,10 +35,6 @@ final color ORANGE = #FFA500;
 void setup() {
   size(1000, 800);
   runBoard();
-<<<<<<< HEAD
-  
-  candies = new candyList(8,10);
-=======
   backgroundImg = loadImage("background.jpg");
   //images
   redCandy = loadImage("red.png");
@@ -52,7 +48,6 @@ void setup() {
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(rows, cols, imgs, clrs);
->>>>>>> jasmine
 }
 
 void draw() {
@@ -61,13 +56,6 @@ void draw() {
   runBoard();
   candies.display();
   fill(0);
-<<<<<<< HEAD
-  //testing
-  textSize(30);
-  text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
-  text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
-=======
->>>>>>> jasmine
   //testing
   textSize(30);
   text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
@@ -76,7 +64,7 @@ void draw() {
   text("cols: " + candies.c, 500, 100); 
   text(frameRate, 10, 20);
   //testing
-  //circle(mouseX, mouseY,20);
+  circle(mouseX, mouseY,20);
 }
 
 void mouseClicked() {
@@ -102,20 +90,9 @@ void mouseClicked() {
     }
   }
   if (swapBool) {
-<<<<<<< HEAD
-    color firstTempColor = candies.get(firstRI, firstCI).getColor();
-    color secondTempColor = candies.get(secondRI, secondCI).getColor();
-    candies.changeColor(secondRI, secondCI, firstTempColor);
-    candies.changeColor(firstRI, firstCI, secondTempColor);
-    swapBool = false;
-    //candies.clearLshape3();
-    //candies.clearLshape2();
-    //candies.clearLshape1();
-    //candies.clearLshape();
-=======
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
->>>>>>> jasmine
+
     //candies.clearRowForThree();
     //candies.clearColForThree();
   }
@@ -124,17 +101,10 @@ void mouseClicked() {
 int getCandy(float x, float y) {
   for (int r = 0; r<candies.r; r++) {
     for (int c = 0; c<candies.c; c++) {
-<<<<<<< HEAD
-      xval = candies.get(r, c).getX();
-      yval = candies.get(r, c).getY();
-      distStore = dist(xval, yval, x, y);
-      if (distStore<25) {
-=======
       float xval = candies.get(r, c).getX();
       float yval = candies.get(r, c).getY();
       float distStore = dist(xval, yval, x, y);
-      if (distStore<40) {
->>>>>>> jasmine
+      if (distStore<25) {
         rowIndex = r;
         colIndex = c;
         return 0;
