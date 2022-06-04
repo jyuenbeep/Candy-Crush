@@ -3,21 +3,12 @@ int ycor;
 int xcor;
 candyList candies;
 int mouse = 1; 
-
 int rows;
 int cols;
-
+int MOVES;
 boolean swapBool = false;
 
-//for testing
-float xval; 
-float yval;
-float distStore;
-int ind;
-int firstClick;
-int secondClick;
-
-//testing2 
+//testing 
 int rowIndex;
 int colIndex;
 int firstRI;
@@ -25,32 +16,68 @@ int firstCI;
 int secondRI;
 int secondCI;
 
+//images
+PImage backgroundImg;
+PImage redCandy;
+PImage orangeCandy;
+PImage yellowCandy;
+PImage greenCandy;
+PImage purpleCandy;
+PImage blueCandy;
+
+//colors
+final color RED = #AA4A44;
+final color BLUE = #89CFF0;
+final color GREEN = #00FF00;
+final color YELLOW = #FFFF00;
+final color PURPLE = #800080;
+final color ORANGE = #FFA500;
+
 void setup() {
   size(1000, 800);
   runBoard();
-  
-  candies = new candyList(8,10);
+  backgroundImg = loadImage("background.jpg");
+  //images
+  redCandy = loadImage("red.png");
+  yellowCandy = loadImage("yellow.png");
+  blueCandy = loadImage("blue.png");
+  greenCandy = loadImage("green.png");
+  purpleCandy = loadImage("purple.png");
+  orangeCandy = loadImage("orange.png");
+  //arrays
+  PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
+  color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
+  //constructor
+  candies = new candyList(rows, cols, imgs, clrs);
+  MOVES = 20;
 }
 
 void draw() {
-  ycor = 100;
-  background(255); 
-  fill(#808080);
-
-  testRun();
-
+  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
+  fill(#D3D3D3);
+  runBoard();
+  candies.display();
   fill(0);
   //testing
-  textSize(30);
-  text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
-  text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
+  textSize(40);
+  fill(#D98121);
+  textMode(MODEL);
+  text("CANDY CRUSH ", 310, 75); 
+  textSize(20);
+  //text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
+  //text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
+  fill(0);
+  text("MOVES LEFT: " + MOVES, 50, 80);
+  text("GOAL: ", 650, 80);
+  //text("cols: " + candies.c, 500, 100); 
+  text(frameRate, 40, 40);
   //testing
-  circle(mouseX, mouseY, 30);
+  circle(mouseX, mouseY,20);
 }
 
 void mouseClicked() {
   if (mouse == 1) {
-    firstClick = getCandy(mouseX, mouseY);
+    int firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
       firstRI = rowIndex;
       firstCI = colIndex;
@@ -58,7 +85,7 @@ void mouseClicked() {
       mouse = 2;
     }
   } else if (mouse == 2) {
-    secondClick = getCandy(mouseX, mouseY);
+    int secondClick = getCandy(mouseX, mouseY);
     if (secondClick!=-1) {
       secondRI = rowIndex;
       secondCI = colIndex;
@@ -70,27 +97,19 @@ void mouseClicked() {
       mouse = 1;
     }
   }
-  if (swapBool) {
-    color firstTempColor = candies.get(firstRI, firstCI).getColor();
-    color secondTempColor = candies.get(secondRI, secondCI).getColor();
-    candies.changeColor(secondRI, secondCI, firstTempColor);
-    candies.changeColor(firstRI, firstCI, secondTempColor);
+  if (swapBool && MOVES > 0) {
+    MOVES--;
+    candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
-    //candies.clearLshape3();
-    //candies.clearLshape2();
-    //candies.clearLshape1();
-    //candies.clearLshape();
-    //candies.clearRowForThree();
-    //candies.clearColForThree();
   }
 }
 
 int getCandy(float x, float y) {
   for (int r = 0; r<candies.r; r++) {
     for (int c = 0; c<candies.c; c++) {
-      xval = candies.get(r, c).getX();
-      yval = candies.get(r, c).getY();
-      distStore = dist(xval, yval, x, y);
+      float xval = candies.get(r, c).getX();
+      float yval = candies.get(r, c).getY();
+      float distStore = dist(xval, yval, x, y);
       if (distStore<25) {
         rowIndex = r;
         colIndex = c;
@@ -102,22 +121,21 @@ int getCandy(float x, float y) {
 }
 
 void runBoard() {
-  cols=0;
+  rows=0;
+  ycor=100; 
   while (ycor < height-80) {
     xcor = 50;
-    rows=0;
+    cols=0;
     while (xcor<width-TILESIZE*2) {
-      //stroke(10);
       rect(xcor, ycor, TILESIZE, TILESIZE);
       xcor+=TILESIZE;
-      rows++;
+      cols++;
     }
     ycor+=TILESIZE;
-    cols++;
+    rows++;
   }
 }
 
-void testRun() {
-  runBoard();
-  candies.display();
+void clearBoard() {
+  //shows a screen if you met the goal and won or lost the level
 }

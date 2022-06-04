@@ -1,46 +1,35 @@
 public class candyList {
-  final color RED = #AA4A44;
-  final color BLUE = #89CFF0;
-  final color GREEN = #00FF00;
-  final color YELLOW = #FFFF00;
   int points;
   int r;
   int c;
-
   candy[][] candies;
-
+  PImage[] imagesList;
+  color[] colorsList; 
   final int HEIGHT = 840;
   final int WIDTH = 720;
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
 
-  color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-
-  candyList(int rows, int cols) {
+  candyList(int rows, int cols, PImage[] images, color[] colors) {
     
     r = rows;
     c = cols;
-    
+    imagesList = images.clone();
+    colorsList = colors.clone();
     float ycor = YSTART;
-    candies = new candy[rows][cols];
+    candies = new candy[r][c];
     
-    for (int r = 0; r <rows; r++) {
-      float xcor = XSTART-80;
-      for (int c = 0; c <cols; c++) {
-        color rand = colorsToChoose[(int)(Math.random()*4)];
-        candies[r][c] = new candy(xcor, ycor, rand);
-        //
+    for (int i = 0; i<rows; i++) {
+      float xcor = XSTART;
+      for (int j = 0; j<cols; j++) {
+        int randIndex = (int)(Math.random()*images.length);
+        candies[i][j] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
         xcor+=INCREMENT;
-        candies[r][c].setX(xcor);
-        candies[r][c].setY(ycor);
-        //
       }
       ycor+=INCREMENT;
-    }
-    
-    points = 0;
-    
+    } 
+    points = 0;   
   }
   
 
@@ -49,11 +38,16 @@ public class candyList {
   }
 
   void set1(int row, int col, candy c) {
-    candies[row][col].setColor(c.getColor());
+    candies[row][col].setImage(c.getImage());
   }
   
-  void changeColor(int row, int col, color c) {
-    candies[row][col].setColor(c);
+  void swapCandies(int x1, int y1, int x2, int y2) {
+    PImage tempImage = candies[x1][y1].getImage();
+    color tempColor = candies[x1][y1].getColor(); 
+    candies[x1][y1].setImage(candies[x2][y2].getImage());
+    candies[x1][y1].setColor(candies[x2][y2].getColor());
+    candies[x2][y2].setImage(tempImage);
+    candies[x2][y2].setColor(tempColor);
   }
 
   candy get(int row, int col) {
@@ -66,8 +60,12 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    //clearRowForThree();
-    //clearColForThree();
+    clearLshape();
+    clearLshape1();
+    clearLshape2();
+    clearLshape3();
+    clearRowForThree();
+    clearColForThree();
   }
   
 
@@ -82,8 +80,8 @@ public class candyList {
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
     if (row == 0) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row,col1, tem);
     }
 
@@ -95,8 +93,8 @@ public class candyList {
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
     if (tempRow == 0) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(tempRow,col2, tem);
     }
 
@@ -108,8 +106,8 @@ public class candyList {
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
     if (tempRow1 == 0) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(tempRow1,col3, tem);
     }
   }
@@ -128,7 +126,7 @@ public class candyList {
   boolean clearRowForThreeH() {
     for (int i = 0; i < r; i ++) {
       for (int j = 0; j < c - 2; j++) {
-        if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
+        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
           removeRowForThree(i,j,j+1,j+2);
           return true;
         }
@@ -149,7 +147,7 @@ public class candyList {
   boolean clearColForThreeH() {
     for (int i = 0; i < c; i ++) {
       for (int j = 0; j < r - 2; j++) {
-        if (get(j,i).getColor() == get (j+1,i).getColor() && get(j,i).getColor() == get (j+2,i).getColor()) {
+        if (get(j,i).getImage() == get (j+1,i).getImage() && get(j,i).getImage() == get(j+2,i).getImage()) {
           removeColForThree(j+2,i);
           return true;
         }
@@ -167,9 +165,9 @@ public class candyList {
     while (row <= 2 && row >= 0) {
       float x = get(row, col).getX();
       float y = get(row, col).getY();
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
-      set1(row, col, tem);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+      set1(row,col, tem);
       row -= 1;
     }
   }
@@ -183,8 +181,8 @@ public class candyList {
     while (row <= 1 && row >= 0) {
       float x = get(row, col).getX();
       float y = get(row, col).getY();
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row, col, tem);
       row -= 1;
     }
@@ -201,8 +199,8 @@ public class candyList {
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
     if (row == 0) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row,col1, tem);
     }
 
@@ -214,8 +212,8 @@ public class candyList {
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
     if (tempRow == 0) {
-      color rand = colorsToChoose[(int)(Math.random()*4)];
-      candy tem = new candy(x, y, rand);
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(tempRow,col2, tem);
     }
   }
@@ -233,16 +231,16 @@ public class candyList {
   boolean clearLshapeH() {
     for (int i = 0; i < r-2; i ++) {
       for (int j = 0; j < c-2; j++) {
-        if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
-          if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
+        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
             removeRowForThree(i,j,j+1,j+2);
             removeColForTwo(i+2,j);
             return true;
-           } else if (get(i,j+1).getColor() == get(i+1,j+1).getColor() && get(i,j+1).getColor() == get(i+2,j+1).getColor()) {
+           } else if (get(i,j+1).getImage() == get(i+1,j+1).getImage() && get(i,j+1).getImage() == get(i+2,j+1).getImage()) {
             removeRowForThree(i,j,j+1,j+2);
             removeColForTwo(i+2,j+1);
             return true;
-           } else if (get(i,j+2).getColor() == get(i+1,j+2).getColor() && get(i,j).getColor() == get(i+2,j+2).getColor()) {
+           } else if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j).getImage() == get(i+2,j+2).getImage()) {
             removeRowForThree(i,j,j+1,j+2);
             removeColForTwo(i+2,j+2);
             return true;
@@ -266,16 +264,16 @@ public class candyList {
     for (int i = 0; i < r; i++) {
       for (int j = 0; j < c-2; j++) {
         if (i-2 >= 0) {
-           if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
-             if (get(i,j).getColor() == get(i-1,j).getColor() && get(i,j).getColor() == get(i-2,j).getColor()) {
+           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
               removeRowForThree(i,j,j+1,j+2);
               removeColForTwo(i,j);
               return true;
-             } else if (get(i,j+1).getColor() == get(i-1,j+1).getColor() && get(i,j+1).getColor() == get(i-2,j+1).getColor()) {
+             } else if (get(i,j+1).getImage() == get(i-1,j+1).getImage() && get(i,j+1).getImage() == get(i-2,j+1).getImage()) {
               removeRowForThree(i,j,j+1,j+2);
               removeColForTwo(i,j-1);
               return true;
-             } else if (get(i,j+2).getColor() == get(i-1,j+2).getColor() && get(i,j+2).getColor() == get(i-2,j-2).getColor()) {
+             } else if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j-2).getImage()) {
               removeRowForThree(i,j,j+1,j+2);
               removeColForTwo(i,j-2);
               return true;
@@ -299,16 +297,16 @@ public class candyList {
   boolean clearLshapeH2() {
     for (int i = 0; i < r-2; i++) {
       for (int j = 0; j < c-2; j++) {
-         if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
-           if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
+         if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
             removeColForThree(i+2,j);
             removeRowForTwo(i,j+1,j+2);
             return true;
-           } else if (get(i+1,j).getColor() == get(i+1,j+1).getColor() && get(i+1,j).getColor() == get(i+1,j+2).getColor()) {
+           } else if (get(i+1,j).getImage() == get(i+1,j+1).getImage() && get(i+1,j).getImage() == get(i+1,j+2).getImage()) {
             removeColForThree(i+2,j);
             removeRowForTwo(i+1,j+1,j+2);
             return true;
-           } else if (get(i+2,j).getColor() == get(i+2,j+1).getColor() && get(i+2,j).getColor() == get(i+2,j+2).getColor()) {
+           } else if (get(i+2,j).getImage() == get(i+2,j+1).getImage() && get(i+2,j).getImage() == get(i+2,j+2).getImage()) {
             removeColForThree(i+2,j);
             removeRowForTwo(i+2,j+1,j+2);
             return true;
@@ -332,16 +330,16 @@ public class candyList {
     for (int i = 0; i < r-2; i++) {
       for (int j = 0; j < c; j++) {
         if (j-2 >= 0) {
-          if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
-             if (get(i,j).getColor() == get(i,j-1).getColor() && get(i,j).getColor() == get(i,j-2).getColor()) {
+          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+             if (get(i,j).getImage() == get(i,j-1).getImage() && get(i,j).getImage() == get(i,j-2).getImage()) {
               removeColForThree(i+2,j);
               removeRowForTwo(i,j-1,j-2);
               return true;
-             } else if (get(i+1,j).getColor() == get(i+1,j-1).getColor() && get(i+1,j).getColor() == get(i+1,j-2).getColor()) {
+             } else if (get(i+1,j).getImage() == get(i+1,j-1).getImage() && get(i+1,j).getImage() == get(i+1,j-2).getImage()) {
               removeColForThree(i+2,j);
               removeRowForTwo(i+1,j-1,j-2);
               return true;
-             } else if (get(i+2,j).getColor() == get(i+2,j-1).getColor() && get(i+2,j).getColor() == get(i+2,j-2).getColor()) {
+             } else if (get(i+2,j).getImage() == get(i+2,j-1).getImage() && get(i+2,j).getImage() == get(i+2,j-2).getImage()) {
               removeColForThree(i+2,j);
               removeRowForTwo(i+2,j-1,j-2);
               return true;

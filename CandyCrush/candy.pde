@@ -1,20 +1,33 @@
 public class candy {
   float x, y;
   color clr;
+  PImage c;
 
-  public candy(float x, float y, color clr) {
+  public candy(float x, float y, PImage c, color clr) {
     this.x = x;
     this.y = y;
     this.clr = clr;
+    this.c =c;
   }
 
   void display() {
-    fill(clr);
-    circle (x, y, 50.0);
+    image(c, x-40, y-40, 80, 80);
   }
 
   color getColor() {
     return clr;
+  }
+  
+  void setColor(color clr) {
+    this.clr = clr;
+  }
+  
+  void setImage(PImage img) {
+    c = img;
+  }
+  
+  PImage getImage() {
+    return c;
   }
 
   float getX() {
@@ -23,10 +36,6 @@ public class candy {
 
   float getY() {
     return y;
-  }
-
-  void setColor(color c) {
-    clr = c;
   }
   
   void setX(float xvar) {
