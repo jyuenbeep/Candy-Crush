@@ -5,10 +5,7 @@ candyList candies;
 int mouse = 1; 
 int rows;
 int cols;
-<<<<<<< HEAD
-=======
 int MOVES;
->>>>>>> bernadette
 boolean swapBool = false;
 
 //testing 
@@ -52,10 +49,7 @@ void setup() {
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(rows, cols, imgs, clrs);
-<<<<<<< HEAD
-=======
   MOVES = 20;
->>>>>>> bernadette
 }
 
 void draw() {
@@ -65,14 +59,6 @@ void draw() {
   candies.display();
   fill(0);
   //testing
-<<<<<<< HEAD
-  textSize(30);
-  text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
-  text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
-  text("rows: " + candies.r, 500, 50);
-  text("cols: " + candies.c, 500, 100); 
-  text(frameRate, 10, 20);
-=======
   textSize(40);
   fill(#D98121);
   textMode(MODEL);
@@ -85,7 +71,6 @@ void draw() {
   text("GOAL: ", 650, 80);
   //text("cols: " + candies.c, 500, 100); 
   text(frameRate, 40, 40);
->>>>>>> bernadette
   //testing
   circle(mouseX, mouseY,20);
 }
@@ -112,19 +97,10 @@ void mouseClicked() {
       mouse = 1;
     }
   }
-<<<<<<< HEAD
-  if (swapBool) {
-    candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    swapBool = false;
-
-    //candies.clearRowForThree();
-    //candies.clearColForThree();
-=======
   if (swapBool && MOVES > 0) {
     MOVES--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
->>>>>>> bernadette
   }
 }
 
@@ -159,10 +135,8 @@ void runBoard() {
     rows++;
   }
 }
-<<<<<<< HEAD
-=======
+
 
 void clearBoard() {
   //shows a screen if you met the goal and won or lost the level
 }
->>>>>>> bernadette

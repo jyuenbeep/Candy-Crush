@@ -3,7 +3,6 @@ public class candy {
   color clr;
   PImage c;
 
-<<<<<<< HEAD
   public candy (float x, float y, PImage c, color clr) {
     this.x = x;
     this.y = y;
@@ -13,17 +12,6 @@ public class candy {
 
   void display() {
     image(c, x-40, y-40, 80, 80); 
-=======
-  public candy(float x, float y, PImage c, color clr) {
-    this.x = x;
-    this.y = y;
-    this.clr = clr;
-    this.c =c;
-  }
-
-  void display() {
-    image(c, x-40, y-40, 80, 80);
->>>>>>> bernadette
   }
 
   color getColor() {
