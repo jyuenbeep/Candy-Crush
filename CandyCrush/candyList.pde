@@ -1,28 +1,25 @@
 public class candyList {
-  final color RED = #AA4A44;
-  final color BLUE = #89CFF0;
-  final color GREEN = #00FF00;
-  final color YELLOW = #FFFF00;
   int points;
   int r;
   int c;
-
   candy[][] candies;
-
+  PImage[] imagesList;
+  color[] colorsList; 
   final int HEIGHT = 840;
   final int WIDTH = 720;
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
 
-  color[] colorsToChoose = new color[]{RED, BLUE, GREEN, YELLOW};
-
-  candyList(int rows, int cols) {
+  candyList(int rows, int cols, PImage[] images, color[] colors) {
     
     r = rows;
     c = cols;
+    imagesList = images.clone();
+    colorsList = colors.clone(); 
     
     float ycor = YSTART;
+<<<<<<< HEAD
     candies = new candy[rows][cols];
     
     for (int r = 0; r <rows; r++) {
@@ -35,12 +32,20 @@ public class candyList {
         candies[r][c].setX(xcor);
         candies[r][c].setY(ycor);
         //
+=======
+    candies = new candy[r][c];
+    
+    for (int i = 0; i<rows; i++) {
+      float xcor = XSTART;
+      for (int j = 0; j<cols; j++) {
+        int randIndex = (int)(Math.random()*images.length);
+        candies[i][j] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
+        xcor+=INCREMENT;
+>>>>>>> jasmine
       }
       ycor+=INCREMENT;
-    }
-    
-    points = 0;
-    
+    } 
+    points = 0;   
   }
   
 
@@ -49,9 +54,10 @@ public class candyList {
   }
 
   void set1(int row, int col, candy c) {
-    candies[row][col].setColor(c.getColor());
+    candies[row][col].setImage(c.getImage());
   }
   
+<<<<<<< HEAD
   void changeColor(int row, int col, color c) {
     candies[row][col].setColor(c);
   }
@@ -62,15 +68,25 @@ public class candyList {
   //  candies[row][col].setColor(c.getColor());
   //}
 >>>>>>> 00533456276a10b62be0c236f15b7ddd16937ca3
+=======
+  void swapCandies(int x1, int y1, int x2, int y2) {
+    PImage tempImage = candies[x1][y1].getImage();
+    color tempColor = candies[x1][y1].getColor(); 
+    candies[x1][y1].setImage(candies[x2][y2].getImage());
+    candies[x1][y1].setColor(candies[x2][y2].getColor());
+    candies[x2][y2].setImage(tempImage);
+    candies[x2][y2].setColor(tempColor);
+  }
+>>>>>>> jasmine
 
   candy get(int row, int col) {
     return candies[row][col];
   }
 
   void display() {
-    for (int r = 0; r < candies.length; r++) {
-      for (int c = 0; c < candies[r].length; c++) {
-        candies[r][c].display();
+    for (int i = 0; i<r; i++) {
+      for (int j = 0; j<c; j++) {
+        candies[i][j].display();
       }
     }
     //clearRowForThree();
@@ -88,9 +104,15 @@ public class candyList {
     }
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
+<<<<<<< HEAD
     if (row == 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
+=======
+    if (row < r) {
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+>>>>>>> jasmine
       set1(row,col1, tem);
     }
 
@@ -101,9 +123,15 @@ public class candyList {
     }
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
+<<<<<<< HEAD
     if (tempRow == 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
+=======
+    if (tempRow < r) {
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+>>>>>>> jasmine
       set1(tempRow,col2, tem);
     }
 
@@ -114,9 +142,15 @@ public class candyList {
     }
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
+<<<<<<< HEAD
     if (tempRow1 == 0) {
       color rand = colorsToChoose[(int)(Math.random()*4)];
       candy tem = new candy(x, y, rand);
+=======
+    if (tempRow1 < r) {
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+>>>>>>> jasmine
       set1(tempRow1,col3, tem);
     }
   }
@@ -127,9 +161,15 @@ public class candyList {
       //count++;
       clearRowForThreeH();
     }
+<<<<<<< HEAD
     //if (count>=1) {
     //  points+=100;
     //} 
+=======
+    if (count>=1) {
+      points+=100;
+    } 
+>>>>>>> jasmine
   }
 
   boolean clearRowForThreeH() {
@@ -171,6 +211,7 @@ public class candyList {
       set1(row , col, temp);
       row -= 1;
     }
+<<<<<<< HEAD
     while (row <= 2 && row >= 0) {
       float x = get(row, col).getX();
       float y = get(row, col).getY();
@@ -364,4 +405,15 @@ public class candyList {
   
   
 
+=======
+    while (row1 <= 29 && row1 >= 0) {
+      float x = get(row1, col).getX();
+      float y = get(row1, col).getY();
+      int randIndex = (int)(Math.random()*imagesList.length);
+      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+      set1(row1, col, tem);
+      row1 -= 10;
+    }
+  }
+>>>>>>> jasmine
 }
