@@ -197,7 +197,47 @@ public class candyList {
     }
   }
   
-  boolean clearLshape() {
+  
+  void removeRowForTwo(int row, int col1, int col2) {
+    int tempRow = row;
+    while (row > 0) {
+      candy temp = get(row-1, col1);
+      set1(row, col1, temp);
+      row -= 1;
+    }
+    float x = get(row, col1).getX();
+    float y = get(row, col1).getY();
+    if (row == 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      set1(row,col1, tem);
+    }
+
+    while (tempRow > 0) {
+      candy temp = get(tempRow-1, col2);
+      set1(tempRow, col2, temp);
+      tempRow -= 1;
+    }
+    x = get(tempRow, col2).getX();
+    y = get(tempRow, col2).getY();
+    if (tempRow == 0) {
+      color rand = colorsToChoose[(int)(Math.random()*4)];
+      candy tem = new candy(x, y, rand);
+      set1(tempRow,col2, tem);
+    }
+  }
+  
+  
+  
+  
+  //Clearing upside down L & T
+  void clearLshape() {
+    while (clearLshapeH()) {
+      clearLshapeH();
+    }
+  }
+  
+  boolean clearLshapeH() {
     for (int i = 0; i < r-2; i ++) {
       for (int j = 0; j < c-2; j++) {
         if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
@@ -219,7 +259,106 @@ public class candyList {
     }
     return false;
   }
+  
+  
+  
+  //Clearing L & upside T 
+  void clearLshape1() {
+    while (clearLshapeH1()) {
+      clearLshapeH1();
+    }
+  }
+  
+  boolean clearLshapeH1() {
+    for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c-2; j++) {
+        if (i-2 >= 0) {
+           if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
+             if (get(i,j).getColor() == get(i-1,j).getColor() && get(i,j).getColor() == get(i-2,j).getColor()) {
+              removeRowForThree(i,j,j+1,j+2);
+              removeColForTwo(i,j);
+              return true;
+             } else if (get(i,j+1).getColor() == get(i-1,j+1).getColor() && get(i,j+1).getColor() == get(i-2,j+1).getColor()) {
+              removeRowForThree(i,j,j+1,j+2);
+              removeColForTwo(i,j-1);
+              return true;
+             } else if (get(i,j+2).getColor() == get(i-1,j+2).getColor() && get(i,j+2).getColor() == get(i-2,j-2).getColor()) {
+              removeRowForThree(i,j,j+1,j+2);
+              removeColForTwo(i,j-2);
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
+  
+  
 
+  //clearing right side L/T
+    void clearLshape2() {
+    while (clearLshapeH2()) {
+      clearLshapeH2();
+    }
+  }
+  
+  boolean clearLshapeH2() {
+    for (int i = 0; i < r-2; i++) {
+      for (int j = 0; j < c-2; j++) {
+         if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
+           if (get(i,j).getColor() == get(i,j+1).getColor() && get(i,j).getColor() == get(i,j+2).getColor()) {
+            removeColForThree(i+2,j);
+            removeRowForTwo(i,j+1,j+2);
+            return true;
+           } else if (get(i+1,j).getColor() == get(i+1,j+1).getColor() && get(i+1,j).getColor() == get(i+1,j+2).getColor()) {
+            removeColForThree(i+2,j);
+            removeRowForTwo(i+1,j+1,j+2);
+            return true;
+           } else if (get(i+2,j).getColor() == get(i+2,j+1).getColor() && get(i+2,j).getColor() == get(i+2,j+2).getColor()) {
+            removeColForThree(i+2,j);
+            removeRowForTwo(i+2,j+1,j+2);
+            return true;
+          }
+        }    
+      }
+    }
+    return false;
+  }
+  
+  
+  
+  //clearing left side L/T
+  void clearLshape3() {
+    while (clearLshapeH3()) {
+      clearLshapeH3();
+    }
+  }
+  
+  boolean clearLshapeH3() {
+    for (int i = 0; i < r-2; i++) {
+      for (int j = 0; j < c; j++) {
+        if (j-2 >= 0) {
+          if (get(i,j).getColor() == get(i+1,j).getColor() && get(i,j).getColor() == get(i+2,j).getColor()) {
+             if (get(i,j).getColor() == get(i,j-1).getColor() && get(i,j).getColor() == get(i,j-2).getColor()) {
+              removeColForThree(i+2,j);
+              removeRowForTwo(i,j-1,j-2);
+              return true;
+             } else if (get(i+1,j).getColor() == get(i+1,j-1).getColor() && get(i+1,j).getColor() == get(i+1,j-2).getColor()) {
+              removeColForThree(i+2,j);
+              removeRowForTwo(i+1,j-1,j-2);
+              return true;
+             } else if (get(i+2,j).getColor() == get(i+2,j-1).getColor() && get(i+2,j).getColor() == get(i+2,j-2).getColor()) {
+              removeColForThree(i+2,j);
+              removeRowForTwo(i+2,j-1,j-2);
+              return true;
+            }
+          } 
+        }     
+      }
+    }
+    return false;
+  }
   
   
   

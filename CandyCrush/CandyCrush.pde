@@ -76,7 +76,10 @@ void mouseClicked() {
     candies.changeColor(secondRI, secondCI, firstTempColor);
     candies.changeColor(firstRI, firstCI, secondTempColor);
     swapBool = false;
-    candies.clearLshape();
+    //candies.clearLshape3();
+    //candies.clearLshape2();
+    //candies.clearLshape1();
+    //candies.clearLshape();
     //candies.clearRowForThree();
     //candies.clearColForThree();
   }
