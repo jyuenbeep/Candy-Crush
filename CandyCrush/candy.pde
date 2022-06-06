@@ -3,15 +3,15 @@ public class candy {
   color clr;
   PImage c;
 
-  public candy (float x, float y, PImage c, color clr) {
+  public candy(float x, float y, PImage c, color clr) {
     this.x = x;
     this.y = y;
-    this.c = c;
-    this.clr = clr; 
+    this.clr = clr;
+    this.c =c;
   }
 
   void display() {
-    image(c, x-40, y-40, 80, 80); 
+    image(c, x-40, y-40, 80, 80);
   }
 
   color getColor() {

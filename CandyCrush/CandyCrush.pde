@@ -136,7 +136,6 @@ void runBoard() {
   }
 }
 
-
 void clearBoard() {
   //shows a screen if you met the goal and won or lost the level
 }

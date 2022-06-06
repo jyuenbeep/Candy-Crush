@@ -16,8 +16,7 @@ public class candyList {
     r = rows;
     c = cols;
     imagesList = images.clone();
-    colorsList = colors.clone(); 
-
+    colorsList = colors.clone();
     float ycor = YSTART;
     candies = new candy[r][c];
     
@@ -32,6 +31,7 @@ public class candyList {
     } 
     points = 0;   
   }
+  
 
   void set(int row, int col, candy c) {
     candies[row][col] = c;
@@ -55,9 +55,9 @@ public class candyList {
   }
 
   void display() {
-    for (int i = 0; i<r; i++) {
-      for (int j = 0; j<c; j++) {
-        candies[i][j].display();
+    for (int r = 0; r < candies.length; r++) {
+      for (int c = 0; c < candies[r].length; c++) {
+        candies[r][c].display();
       }
     }
     clearLshape();
@@ -67,20 +67,15 @@ public class candyList {
     clearRowForThree();
     clearColForThree();
   }
-
-
-
-
-
-
+  
 
   void removeRowForThree(int row, int col1, int col2, int col3) {
     int tempRow = row;
     int tempRow1 = row;
-    while (row >= 10) {
-      candy temp = get(row-10, col1);
+    while (row > 0) {
+      candy temp = get(row-1, col1);
       set1(row, col1, temp);
-      row -= 10;
+      row -= 1;
     }
     float x = get(row, col1).getX();
     float y = get(row, col1).getY();
@@ -90,10 +85,10 @@ public class candyList {
       set1(row,col1, tem);
     }
 
-    while (tempRow >= 10) {
-      candy temp = get(tempRow-10, col2);
+    while (tempRow > 0) {
+      candy temp = get(tempRow-1, col2);
       set1(tempRow, col2, temp);
-      tempRow -= 10;
+      tempRow -= 1;
     }
     x = get(tempRow, col2).getX();
     y = get(tempRow, col2).getY();
@@ -103,10 +98,10 @@ public class candyList {
       set1(tempRow,col2, tem);
     }
 
-    while (tempRow1 >= 10) {
-      candy temp = get(tempRow1-10, col3);
+    while (tempRow1 > 0) {
+      candy temp = get(tempRow1-1, col3);
       set1(tempRow1, col3, temp);
-      tempRow1 -= 10;
+      tempRow1 -= 1;
     }
     x = get(tempRow1, col3).getX();
     y = get(tempRow1, col3).getY();
@@ -118,14 +113,14 @@ public class candyList {
   }
 
   void clearRowForThree() {
-    int count = 0;
+    //int count = 0;
     while (clearRowForThreeH()) {
-      count++;
+      //count++;
       clearRowForThreeH();
     }
-    if (count>=1) {
-      points+=100;
-    } 
+    //if (count>=1) {
+    //  points+=100;
+    //} 
   }
 
   boolean clearRowForThreeH() {
@@ -161,24 +156,6 @@ public class candyList {
     return false;
   }
 
-
-  void removeColForThree(int col, int row1, int row2, int row3) {
-    while (row1 >= 30) {
-      candy temp = get(row1-30, col);
-      set1(row1, col, temp);
-      row1 -= 10;
-    }
-    while (row1 <= 29 && row1 >= 0) {
-      float x = get(row1, col).getX();
-      float y = get(row1, col).getY();
-      int randIndex = (int)(Math.random()*imagesList.length);
-      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(row1, col, tem);
-      row1 -= 10;
-    }
-  }
-
-  
   void removeColForThree(int row, int col) {
     while (row >= 3) {
       candy temp = get(row-3, col);
