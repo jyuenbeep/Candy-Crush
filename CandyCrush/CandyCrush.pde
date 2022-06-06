@@ -33,6 +33,9 @@ final color YELLOW = #FFFF00;
 final color PURPLE = #800080;
 final color ORANGE = #FFA500;
 
+PImage[] imgs; 
+color[] clrs;
+
 void setup() {
   size(1000, 800);
   runBoard();
@@ -52,8 +55,8 @@ void setup() {
   greenCandy.resize(80,80);
   purpleCandy.resize(80,80);
   //arrays
-  PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
-  color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
+  imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
+  clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(rows, cols, imgs, clrs);
   MOVES = 20;
@@ -108,6 +111,13 @@ void mouseClicked() {
     MOVES--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
+  }
+}
+
+void keyPressed() {
+  if (key=='r') {
+    candies = new candyList(rows, cols, imgs, clrs);
+    candies.display();
   }
 }
 
