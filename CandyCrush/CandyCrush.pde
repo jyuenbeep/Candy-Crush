@@ -7,6 +7,7 @@ int rows;
 int cols;
 int MOVES;
 boolean swapBool = false;
+level testing;
 
 //testing 
 int rowIndex;
@@ -48,7 +49,8 @@ void setup() {
   PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
-  candies = new candyList(rows, cols, imgs, clrs);
+  testing = new level();
+  candies = new candyList(testing.getRow(), testing.getCol(), imgs, clrs);
   MOVES = 20;
 }
 

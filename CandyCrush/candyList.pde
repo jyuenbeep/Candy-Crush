@@ -12,9 +12,9 @@ public class candyList {
   final float YSTART = 140;
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
-    
     r = rows;
     c = cols;
+    
     imagesList = images.clone();
     colorsList = colors.clone();
     float ycor = YSTART;

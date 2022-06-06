@@ -13,7 +13,7 @@ public class candy {
   void display() {
     image(c, x-40, y-40, 80, 80);
   }
-
+  
   color getColor() {
     return clr;
   }
