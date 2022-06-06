@@ -1,5 +1,5 @@
-public class level {
-  int levelCount;
+public static class level {
+  static int levelCount;
   int row;
   int col;
   
@@ -8,9 +8,12 @@ public class level {
   }
   
   level() {
-    if (levelCount >= 0 && levelCount <= 10 ) {
+    if (levelCount >= 0 && levelCount <= 2 ) {
       row = 10;
       col = 10;
+    } else {
+      row = 15;
+      col = 15;
     }
   }
   
