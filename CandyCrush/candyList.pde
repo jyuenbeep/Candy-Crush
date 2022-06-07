@@ -90,7 +90,7 @@ public class candyList {
     int combo=0;
     boolean addCombo = true;
     for (int inc = 0; inc<2; inc++) {
-      for (int j = col; j!=col+(increment+5); j+=increment) {
+      for (int j = col; j!=col+(increment*5); j+=increment) {
         if (addCombo && candies[row][j].getColor()==storeColor) {
           combo++;
         }
