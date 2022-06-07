@@ -9,19 +9,15 @@ public class candyList {
   final int WIDTH = 720;
   final int INCREMENT = 80;
   final float XSTART = 90;
-  final float YSTART = 140;
-
-  int[] DC; 
+  final float YSTART = 140; 
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
-
     r = rows;
     c = cols;
     imagesList = images.clone();
     colorsList = colors.clone();
     float ycor = YSTART;
     candies = new candy[r][c];
-
     for (int i = 0; i<rows; i++) {
       float xcor = XSTART;
       for (int j = 0; j<cols; j++) {
@@ -32,7 +28,6 @@ public class candyList {
       ycor+=INCREMENT;
     } 
     points = 0;
-    DC = new int[2];
   }
 
 
@@ -42,6 +37,7 @@ public class candyList {
 
   void set1(int row, int col, candy c) {
     candies[row][col].setImage(c.getImage());
+    candies[row][col].setColor(c.getColor());
   }
 
   void swapCandies(int x1, int y1, int x2, int y2) {
@@ -71,74 +67,31 @@ public class candyList {
     clearColForThree();
   }
 
-  void clearRowReal (int r1, int c1, int r2, int c2) {
-    int maxX = r1;
-    int maxY = c1;
-    int[] dirCombo = clearRow(r1, c1);
-    int[] dirCombo2 = clearRow(r2, c2);
-    if (dirCombo[0]<dirCombo2[0]) {
-      maxX = r2;
-      maxY = c2;
-      dirCombo = clearRow(r2, c2);
-    }
-    int maxCombo = dirCombo[0];
-    if (maxCombo>=3) {
-      for (int i = maxX; maxX>0; i--) {
-        for (int j = maxY; j!=maxY+((maxCombo-1)*dirCombo[1]); j+=dirCombo[1]) {
-          swapCandies(i, j, i-1, j);
-        }
-      }
-    }
-  }
-
-  int[] clearRow(int row, int col) {
-    int[] dirCombo = new int[2];
-    // maxCombo[0], direction[1]
-    color storeColor = candies[row][col].getColor();
-    int increment = -1;
-    int combo=0;
-    boolean addCombo;
-    for (int inc = 0; inc<2; inc++) {
-      addCombo = true;
-      for (int j = col; j!=col+(increment*4); j+=increment) {
-        if (j>=0 && j<c) {
-          if (addCombo && candies[row][j].getColor()==storeColor) {
-            combo++;
-          } else {
-            addCombo = false;
-          }
-        }
-      }
-      if (combo>dirCombo[0]) {
-        dirCombo[0] = combo;
-        dirCombo[1] = increment;
-      }
-      increment = 1;
-      combo = 0;
-    }
-    DC = dirCombo;
-    return dirCombo;
-  }
-
-  int getMaxCombo() {
-    return DC[0];
-  }
-
-  int getDirection() {
-    return DC[1];
-  }
-
   void clearColForThree() {
-    while (clearColForThreeH()) {
-      clearColForThreeH();
+    while (clearCol()) {
+      clearCol();
     }
   }
 
-  boolean clearColForThreeH() { 
+  boolean clearCol() { 
+    boolean makeCombo = true;
     for (int i = 0; i < c; i ++) {
-      for (int j = 0; j < r - 2; j++) {
-        if (get(j, i).getImage() == get (j+1, i).getImage() && get(j, i).getImage() == get(j+2, i).getImage()) {
-          removeColForThree(j+2, i);
+      for (int j = 0; j < r - 4; j++) {
+        PImage check = get(j, i).getImage();
+        if (check==get(j+1, i).getImage() && check==get(j+2, i).getImage()) {
+          if (check==get(j+3, i).getImage()) {
+            if (check==get(j+4, i).getImage()) {
+              removeCol(j+4, i, 5);
+              makeCombo = false;
+            }
+            if (makeCombo) {
+              removeCol(j+3, i, 4);
+              makeCombo = false;
+            }
+          }
+          if (makeCombo) {
+            removeCol(j+2, i, 3);
+          }
           return true;
         }
       }
@@ -146,13 +99,13 @@ public class candyList {
     return false;
   }
 
-  void removeColForThree(int row, int col) {
-    while (row >= 3) {
-      candy temp = get(row-3, col);
+  void removeCol(int row, int col, int combo) {
+    while (row >= combo) {
+      candy temp = get(row-combo, col);
       set1(row, col, temp);
       row -= 1;
     }
-    while (row <= 2 && row >= 0) {
+    while (row <= combo-1 && row >= 0) {
       float x = get(row, col).getX();
       float y = get(row, col).getY();
       int randIndex = (int)(Math.random()*imagesList.length);

@@ -80,7 +80,7 @@ void draw() {
   text(frameRate, 40, 40);
   //testing
   circle(mouseX, mouseY,20);
-  text("COMBO: " + candies.getMaxCombo() + " DIRECTION: " + candies.getDirection(), 50, 100); 
+  //text("COMBO: " + candies.getMaxCombo() + " DIRECTION: " + candies.getDirection(), 50, 100); 
 }
 
 void mouseClicked() {
@@ -107,8 +107,7 @@ void mouseClicked() {
   }
   if (swapBool && MOVES > 0) {
     MOVES--;
-    candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    candies.clearRowReal(firstRI, firstCI, secondRI, secondCI); 
+    candies.swapCandies(firstRI, firstCI, secondRI, secondCI); 
     swapBool = false;
   }
 }
