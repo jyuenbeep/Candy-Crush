@@ -5,7 +5,6 @@ candyList candies;
 int mouse = 1; 
 int rows;
 int cols;
-int MOVES;
 boolean swapBool = false;
 level testing;
 
@@ -51,7 +50,6 @@ void setup() {
   //constructor
   testing = new level();
   candies = new candyList(testing.getRow(), testing.getCol(), imgs, clrs);
-  MOVES = 20;
 }
 
 void draw() {
@@ -69,10 +67,13 @@ void draw() {
   //text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
   //text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
   fill(0);
-  text("MOVES LEFT: " + MOVES, 50, 80);
-  text("GOAL: ", 650, 80);
+  text("MOVES LEFT: " + testing.moves, 50, 80);
+  text("GOAL1: " + testing.goal1 , 600, 45);
+  text("GOAL2: " + testing.goal2 , 700, 45);
+  text("GOAL3: " + testing.goal3 , 800, 45);
   //text("cols: " + candies.c, 500, 100); 
   text(frameRate, 40, 40);
+  text("level: " + testing.getLevel(),55, 60);
   //testing
   circle(mouseX, mouseY,20);
 }
@@ -99,10 +100,14 @@ void mouseClicked() {
       mouse = 1;
     }
   }
-  if (swapBool && MOVES > 0) {
-    MOVES--;
+  if (swapBool && testing.moves > 0) {
+    testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     swapBool = false;
+  }
+  if (testing.moves == 0) {
+    testing.increaseLevel();
+    testing.reset();
   }
 }
 
