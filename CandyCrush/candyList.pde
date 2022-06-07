@@ -71,10 +71,20 @@ public class candyList {
   }
   
   void clearRowReal (int comboNum, int row, int col) {
-    color tempColor;
-    PImage tempImage;  
     storeColor = candies[row][col].getColor();
-    if (clearRow(5, row, col)) {
+    int combo = comboNum;
+    if (comboNum>2) {
+      if (clearRow(5, row, col)) {
+        combo = 5;
+      }
+      else if (clearRow(4, row, col)) {
+        combo = 4;
+      }
+      else if (clearRow(3, row, col)) {
+        combo = 3;
+      }
+    }
+    if (clearRow(combo, row, col)) {
       for (int i = row; row>0; row--) {
         for (int j = col; j<col+comboNum; j++) {
           swapCandies(i, j, i-1, j);
@@ -183,134 +193,134 @@ public class candyList {
   
   
   //Clearing upside down L & T
-  void clearLshape() {
-    while (clearLshapeH()) {
-      clearLshapeH();
-    }
-  }
+  //void clearLshape() {
+  //  while (clearLshapeH()) {
+  //    clearLshapeH();
+  //  }
+  //}
   
-  boolean clearLshapeH() {
-    for (int i = 0; i < r-2; i ++) {
-      for (int j = 0; j < c-2; j++) {
-        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j);
-            return true;
-           } else if (get(i,j+1).getImage() == get(i+1,j+1).getImage() && get(i,j+1).getImage() == get(i+2,j+1).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j+1);
-            return true;
-           } else if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j).getImage() == get(i+2,j+2).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j+2);
-            return true;
-          }  
-        }
-      }
-    }
-    return false;
-  }
+  //boolean clearLshapeH() {
+  //  for (int i = 0; i < r-2; i ++) {
+  //    for (int j = 0; j < c-2; j++) {
+  //      if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+  //        if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+  //          removeRowForThree(i,j,j+1,j+2);
+  //          removeColForTwo(i+2,j);
+  //          return true;
+  //         } else if (get(i,j+1).getImage() == get(i+1,j+1).getImage() && get(i,j+1).getImage() == get(i+2,j+1).getImage()) {
+  //          removeRowForThree(i,j,j+1,j+2);
+  //          removeColForTwo(i+2,j+1);
+  //          return true;
+  //         } else if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j).getImage() == get(i+2,j+2).getImage()) {
+  //          removeRowForThree(i,j,j+1,j+2);
+  //          removeColForTwo(i+2,j+2);
+  //          return true;
+  //        }  
+  //      }
+  //    }
+  //  }
+  //  return false;
+  //}
   
   
   
-  //Clearing L & upside T 
-  void clearLshape1() {
-    while (clearLshapeH1()) {
-      clearLshapeH1();
-    }
-  }
+  ////Clearing L & upside T 
+  //void clearLshape1() {
+  //  while (clearLshapeH1()) {
+  //    clearLshapeH1();
+  //  }
+  //}
   
-  boolean clearLshapeH1() {
-    for (int i = 0; i < r; i++) {
-      for (int j = 0; j < c-2; j++) {
-        if (i-2 >= 0) {
-           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j);
-              return true;
-             } else if (get(i,j+1).getImage() == get(i-1,j+1).getImage() && get(i,j+1).getImage() == get(i-2,j+1).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j-1);
-              return true;
-             } else if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j-2).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j-2);
-              return true;
-            }
-          }
-        }
-      }
-    }
-    return false;
-  }
+  //boolean clearLshapeH1() {
+  //  for (int i = 0; i < r; i++) {
+  //    for (int j = 0; j < c-2; j++) {
+  //      if (i-2 >= 0) {
+  //         if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+  //           if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
+  //            removeRowForThree(i,j,j+1,j+2);
+  //            removeColForTwo(i,j);
+  //            return true;
+  //           } else if (get(i,j+1).getImage() == get(i-1,j+1).getImage() && get(i,j+1).getImage() == get(i-2,j+1).getImage()) {
+  //            removeRowForThree(i,j,j+1,j+2);
+  //            removeColForTwo(i,j-1);
+  //            return true;
+  //           } else if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j-2).getImage()) {
+  //            removeRowForThree(i,j,j+1,j+2);
+  //            removeColForTwo(i,j-2);
+  //            return true;
+  //          }
+  //        }
+  //      }
+  //    }
+  //  }
+  //  return false;
+  //}
   
   
 
-  //clearing right side L/T
-    void clearLshape2() {
-    while (clearLshapeH2()) {
-      clearLshapeH2();
-    }
-  }
+  ////clearing right side L/T
+  //  void clearLshape2() {
+  //  while (clearLshapeH2()) {
+  //    clearLshapeH2();
+  //  }
+  //}
   
-  boolean clearLshapeH2() {
-    for (int i = 0; i < r-2; i++) {
-      for (int j = 0; j < c-2; j++) {
-         if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i,j+1,j+2);
-            return true;
-           } else if (get(i+1,j).getImage() == get(i+1,j+1).getImage() && get(i+1,j).getImage() == get(i+1,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i+1,j+1,j+2);
-            return true;
-           } else if (get(i+2,j).getImage() == get(i+2,j+1).getImage() && get(i+2,j).getImage() == get(i+2,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i+2,j+1,j+2);
-            return true;
-          }
-        }    
-      }
-    }
-    return false;
-  }
+  //boolean clearLshapeH2() {
+  //  for (int i = 0; i < r-2; i++) {
+  //    for (int j = 0; j < c-2; j++) {
+  //       if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+  //         if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+  //          removeColForThree(i+2,j);
+  //          removeRowForTwo(i,j+1,j+2);
+  //          return true;
+  //         } else if (get(i+1,j).getImage() == get(i+1,j+1).getImage() && get(i+1,j).getImage() == get(i+1,j+2).getImage()) {
+  //          removeColForThree(i+2,j);
+  //          removeRowForTwo(i+1,j+1,j+2);
+  //          return true;
+  //         } else if (get(i+2,j).getImage() == get(i+2,j+1).getImage() && get(i+2,j).getImage() == get(i+2,j+2).getImage()) {
+  //          removeColForThree(i+2,j);
+  //          removeRowForTwo(i+2,j+1,j+2);
+  //          return true;
+  //        }
+  //      }    
+  //    }
+  //  }
+  //  return false;
+  //}
   
   
   
-  //clearing left side L/T
-  void clearLshape3() {
-    while (clearLshapeH3()) {
-      clearLshapeH3();
-    }
-  }
+  ////clearing left side L/T
+  //void clearLshape3() {
+  //  while (clearLshapeH3()) {
+  //    clearLshapeH3();
+  //  }
+  //}
   
-  boolean clearLshapeH3() {
-    for (int i = 0; i < r-2; i++) {
-      for (int j = 0; j < c; j++) {
-        if (j-2 >= 0) {
-          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-             if (get(i,j).getImage() == get(i,j-1).getImage() && get(i,j).getImage() == get(i,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i,j-1,j-2);
-              return true;
-             } else if (get(i+1,j).getImage() == get(i+1,j-1).getImage() && get(i+1,j).getImage() == get(i+1,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i+1,j-1,j-2);
-              return true;
-             } else if (get(i+2,j).getImage() == get(i+2,j-1).getImage() && get(i+2,j).getImage() == get(i+2,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i+2,j-1,j-2);
-              return true;
-            }
-          } 
-        }     
-      }
-    }
-    return false;
-  }
+  //boolean clearLshapeH3() {
+  //  for (int i = 0; i < r-2; i++) {
+  //    for (int j = 0; j < c; j++) {
+  //      if (j-2 >= 0) {
+  //        if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+  //           if (get(i,j).getImage() == get(i,j-1).getImage() && get(i,j).getImage() == get(i,j-2).getImage()) {
+  //            removeColForThree(i+2,j);
+  //            removeRowForTwo(i,j-1,j-2);
+  //            return true;
+  //           } else if (get(i+1,j).getImage() == get(i+1,j-1).getImage() && get(i+1,j).getImage() == get(i+1,j-2).getImage()) {
+  //            removeColForThree(i+2,j);
+  //            removeRowForTwo(i+1,j-1,j-2);
+  //            return true;
+  //           } else if (get(i+2,j).getImage() == get(i+2,j-1).getImage() && get(i+2,j).getImage() == get(i+2,j-2).getImage()) {
+  //            removeColForThree(i+2,j);
+  //            removeRowForTwo(i+2,j-1,j-2);
+  //            return true;
+  //          }
+  //        } 
+  //      }     
+  //    }
+  //  }
+  //  return false;
+  //}
   
   
   
