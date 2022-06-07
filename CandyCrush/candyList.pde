@@ -87,39 +87,6 @@ public class candyList {
       combo--;
     }
   }
-  
-  void clearColThree() {
-    for (int i = 0; i < c; i ++) {
-      for (int j = 0; j < r - 2; j++) {
-        PImage check = get(j, i).getImage();
-        if (check==get(j+1, i).getImage() && check==get(j+2, i).getImage()) {
-          removeCol(j+2, i, 3);
-        }
-      }
-    }
-  }
-
-  void clearColFour() {
-    for (int i = 0; i < c; i ++) {
-      for (int j = 0; j < r - 3; j++) {
-        PImage check = get(j, i).getImage();
-        if (check==get(j+1, i).getImage() && check==get(j+2, i).getImage() && check==get(j+3, i).getImage()) {
-          removeCol(j+3, i, 4);
-        }
-      }
-    }
-  }
-
-  void clearColFive() {
-    for (int i = 0; i < c; i ++) {
-      for (int j = 0; j < r - 4; j++) {
-        PImage check = get(j, i).getImage();
-        if (check==get(j+1, i).getImage() && check==get(j+2, i).getImage() && check==get(j+3, i).getImage() && check==get(j+4, i).getImage()) {
-          removeCol(j+4, i, 5);
-        }
-      }
-    }
-  }
 
   void removeCol(int row, int col, int combo) {
     while (row >= combo) {
