@@ -10,6 +10,8 @@ public class candyList {
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
+  
+  color storeColor; 
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
     
@@ -60,83 +62,42 @@ public class candyList {
         candies[r][c].display();
       }
     }
-    clearLshape();
-    clearLshape1();
-    clearLshape2();
-    clearLshape3();
-    clearRowForThree();
+    //clearLshape();
+    //clearLshape1();
+    //clearLshape2();
+    //clearLshape3();
+    //clearRowForThree();
     clearColForThree();
   }
   
-
-  void removeRowForThree(int row, int col1, int col2, int col3) {
-    int tempRow = row;
-    int tempRow1 = row;
-    while (row > 0) {
-      candy temp = get(row-1, col1);
-      set1(row, col1, temp);
-      row -= 1;
-    }
-    float x = get(row, col1).getX();
-    float y = get(row, col1).getY();
-    if (row == 0) {
-      int randIndex = (int)(Math.random()*imagesList.length);
-      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(row,col1, tem);
-    }
-
-    while (tempRow > 0) {
-      candy temp = get(tempRow-1, col2);
-      set1(tempRow, col2, temp);
-      tempRow -= 1;
-    }
-    x = get(tempRow, col2).getX();
-    y = get(tempRow, col2).getY();
-    if (tempRow == 0) {
-      int randIndex = (int)(Math.random()*imagesList.length);
-      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(tempRow,col2, tem);
-    }
-
-    while (tempRow1 > 0) {
-      candy temp = get(tempRow1-1, col3);
-      set1(tempRow1, col3, temp);
-      tempRow1 -= 1;
-    }
-    x = get(tempRow1, col3).getX();
-    y = get(tempRow1, col3).getY();
-    if (tempRow1 == 0) {
-      int randIndex = (int)(Math.random()*imagesList.length);
-      candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(tempRow1,col3, tem);
-    }
-  }
-
-  void clearRowForThree() {
-    //int count = 0;
-    while (clearRowForThreeH()) {
-      //count++;
-      clearRowForThreeH();
-    }
-    //if (count>=1) {
-    //  points+=100;
-    //} 
-  }
-
-  boolean clearRowForThreeH() {
-    for (int i = 0; i < r; i ++) {
-      for (int j = 0; j < c - 2; j++) {
-        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-          removeRowForThree(i,j,j+1,j+2);
-          return true;
+  void clearRowReal (int comboNum, int row, int col) {
+    color tempColor;
+    PImage tempImage;  
+    storeColor = candies[row][col].getColor();
+    if (clearRow(5, row, col)) {
+      for (int i = row; row>0; row--) {
+        for (int j = col; j<col+comboNum; j++) {
+          swapCandies(i, j, i-1, j);
         }
+      }
+      for (int t = col; t<col+comboNum; t++) {
+        int randIndex = (int)(Math.random()*imagesList.length);
+        candies[0][t] = new candy(candies[0][t].getX(), candies[0][t].getY(), imagesList[randIndex], colorsList[randIndex]);
+      }
+    }
+  }
+
+  boolean clearRow(int comboNum, int row, int col) {
+    if (row>=0 && row<r && col>=0 && col<c) {
+      if (comboNum==0) {
+        return true;
+      }
+      else if (comboNum>0 && candies[row][col].getColor()==storeColor) {
+      clearRow(comboNum-1, row, col+1);
       }
     }
     return false;
   }
-
-
-
 
   void clearColForThree() {
     while (clearColForThreeH()) {

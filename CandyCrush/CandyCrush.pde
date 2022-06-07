@@ -110,6 +110,9 @@ void mouseClicked() {
   if (swapBool && MOVES > 0) {
     MOVES--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    candies.clearRowReal(5, firstRI, firstCI);
+    candies.clearRowReal(4, firstRI, firstCI);
+    candies.clearRowReal(3, firstRI, firstCI);
     swapBool = false;
   }
 }
