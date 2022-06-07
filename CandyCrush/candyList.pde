@@ -10,18 +10,18 @@ public class candyList {
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
-  
+
   color storeColor; 
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
-    
+
     r = rows;
     c = cols;
     imagesList = images.clone();
     colorsList = colors.clone();
     float ycor = YSTART;
     candies = new candy[r][c];
-    
+
     for (int i = 0; i<rows; i++) {
       float xcor = XSTART;
       for (int j = 0; j<cols; j++) {
@@ -31,9 +31,9 @@ public class candyList {
       }
       ycor+=INCREMENT;
     } 
-    points = 0;   
+    points = 0;
   }
-  
+
 
   void set(int row, int col, candy c) {
     candies[row][col] = c;
@@ -42,7 +42,7 @@ public class candyList {
   void set1(int row, int col, candy c) {
     candies[row][col].setImage(c.getImage());
   }
-  
+
   void swapCandies(int x1, int y1, int x2, int y2) {
     PImage tempImage = candies[x1][y1].getImage();
     color tempColor = candies[x1][y1].getColor(); 
@@ -69,9 +69,17 @@ public class candyList {
     //clearRowForThree();
     clearColForThree();
   }
-  
+
   void clearRowReal (int row, int col) {
     int[] dirCombo = clearRow(row, col);
+    if (dirCombo[0]>=3) {
+      if (dirCombo[0]>=5) {
+        for (int i = row; row>0; row++) {
+          for (int j = col; j<col+dirCombo[0]; j++) {
+          }
+        }
+      }
+    }
   }
 
   int[] clearRow(int row, int col) {
@@ -106,8 +114,8 @@ public class candyList {
   boolean clearColForThreeH() { 
     for (int i = 0; i < c; i ++) {
       for (int j = 0; j < r - 2; j++) {
-        if (get(j,i).getImage() == get (j+1,i).getImage() && get(j,i).getImage() == get(j+2,i).getImage()) {
-          removeColForThree(j+2,i);
+        if (get(j, i).getImage() == get (j+1, i).getImage() && get(j, i).getImage() == get(j+2, i).getImage()) {
+          removeColForThree(j+2, i);
           return true;
         }
       }
@@ -118,7 +126,7 @@ public class candyList {
   void removeColForThree(int row, int col) {
     while (row >= 3) {
       candy temp = get(row-3, col);
-      set1(row , col, temp);
+      set1(row, col, temp);
       row -= 1;
     }
     while (row <= 2 && row >= 0) {
@@ -126,15 +134,15 @@ public class candyList {
       float y = get(row, col).getY();
       int randIndex = (int)(Math.random()*imagesList.length);
       candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(row,col, tem);
+      set1(row, col, tem);
       row -= 1;
     }
   }
-  
+
   void removeColForTwo(int row, int col) {
     while (row >= 2) {
       candy temp = get(row-2, col);
-      set1(row , col, temp);
+      set1(row, col, temp);
       row -= 1;
     }
     while (row <= 1 && row >= 0) {
@@ -146,8 +154,8 @@ public class candyList {
       row -= 1;
     }
   }
-  
-  
+
+
   void removeRowForTwo(int row, int col1, int col2) {
     int tempRow = row;
     while (row > 0) {
@@ -160,7 +168,7 @@ public class candyList {
     if (row == 0) {
       int randIndex = (int)(Math.random()*imagesList.length);
       candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(row,col1, tem);
+      set1(row, col1, tem);
     }
 
     while (tempRow > 0) {
@@ -173,20 +181,20 @@ public class candyList {
     if (tempRow == 0) {
       int randIndex = (int)(Math.random()*imagesList.length);
       candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
-      set1(tempRow,col2, tem);
+      set1(tempRow, col2, tem);
     }
   }
-  
-  
-  
-  
+
+
+
+
   //Clearing upside down L & T
   //void clearLshape() {
   //  while (clearLshapeH()) {
   //    clearLshapeH();
   //  }
   //}
-  
+
   //boolean clearLshapeH() {
   //  for (int i = 0; i < r-2; i ++) {
   //    for (int j = 0; j < c-2; j++) {
@@ -209,16 +217,16 @@ public class candyList {
   //  }
   //  return false;
   //}
-  
-  
-  
+
+
+
   ////Clearing L & upside T 
   //void clearLshape1() {
   //  while (clearLshapeH1()) {
   //    clearLshapeH1();
   //  }
   //}
-  
+
   //boolean clearLshapeH1() {
   //  for (int i = 0; i < r; i++) {
   //    for (int j = 0; j < c-2; j++) {
@@ -243,8 +251,8 @@ public class candyList {
   //  }
   //  return false;
   //}
-  
-  
+
+
 
   ////clearing right side L/T
   //  void clearLshape2() {
@@ -252,7 +260,7 @@ public class candyList {
   //    clearLshapeH2();
   //  }
   //}
-  
+
   //boolean clearLshapeH2() {
   //  for (int i = 0; i < r-2; i++) {
   //    for (int j = 0; j < c-2; j++) {
@@ -275,16 +283,16 @@ public class candyList {
   //  }
   //  return false;
   //}
-  
-  
-  
+
+
+
   ////clearing left side L/T
   //void clearLshape3() {
   //  while (clearLshapeH3()) {
   //    clearLshapeH3();
   //  }
   //}
-  
+
   //boolean clearLshapeH3() {
   //  for (int i = 0; i < r-2; i++) {
   //    for (int j = 0; j < c; j++) {
@@ -309,9 +317,4 @@ public class candyList {
   //  }
   //  return false;
   //}
-  
-  
-  
-  
-
 }
