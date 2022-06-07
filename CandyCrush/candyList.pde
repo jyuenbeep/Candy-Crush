@@ -10,7 +10,7 @@ public class candyList {
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
-  
+
   int[] DC; 
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
@@ -81,9 +81,10 @@ public class candyList {
       maxY = c2;
       dirCombo = clearRow(r2, c2);
     }
-    if (dirCombo[0]>=3) {
+    int maxCombo = dirCombo[0];
+    if (maxCombo>=3) {
       for (int i = maxX; maxX>0; i--) {
-        for (int j = maxY; j<maxY+(dirCombo[0]*dirCombo[1]); j+=dirCombo[1]) {
+        for (int j = maxY; j!=maxY+((maxCombo-1)*dirCombo[1]); j+=dirCombo[1]) {
           swapCandies(i, j, i-1, j);
         }
       }
@@ -96,17 +97,18 @@ public class candyList {
     color storeColor = candies[row][col].getColor();
     int increment = -1;
     int combo=0;
-    boolean addCombo = true;
+    boolean addCombo;
     for (int inc = 0; inc<2; inc++) {
+      addCombo = true;
       for (int j = col; j!=col+(increment*4); j+=increment) {
-        if (addCombo && candies[row][j].getColor()==storeColor) {
-          combo++;
-        }
-        else {
-          addCombo = false; 
+        if (j>=0 && j<c) {
+          if (addCombo && candies[row][j].getColor()==storeColor) {
+            combo++;
+          } else {
+            addCombo = false;
+          }
         }
       }
-      inc++;
       if (combo>dirCombo[0]) {
         dirCombo[0] = combo;
         dirCombo[1] = increment;
@@ -117,11 +119,11 @@ public class candyList {
     DC = dirCombo;
     return dirCombo;
   }
-  
+
   int getMaxCombo() {
     return DC[0];
   }
-  
+
   int getDirection() {
     return DC[1];
   }
