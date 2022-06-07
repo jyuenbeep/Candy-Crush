@@ -74,15 +74,13 @@ void draw() {
   textMode(MODEL);
   text("CANDY CRUSH ", 310, 75); 
   textSize(20);
-  //text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
-  //text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
   fill(0);
   text("MOVES LEFT: " + MOVES, 50, 80);
   text("GOAL: ", 650, 80);
-  //text("cols: " + candies.c, 500, 100); 
   text(frameRate, 40, 40);
   //testing
   circle(mouseX, mouseY,20);
+  text("COMBO: " + candies.getMaxCombo() + " DIRECTION: " + candies.getDirection(), 50, 100); 
 }
 
 void mouseClicked() {
@@ -110,10 +108,7 @@ void mouseClicked() {
   if (swapBool && MOVES > 0) {
     MOVES--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    //candies.clearRowReal(5, firstRI, firstCI);
-    //candies.clearRowReal(4, firstRI, firstCI);
-    candies.clearRowReal(firstRI, firstCI);
-    //candies.clearRowReal(secondRI, secondRI);
+    candies.clearRowReal(firstRI, firstCI); 
     swapBool = false;
   }
 }

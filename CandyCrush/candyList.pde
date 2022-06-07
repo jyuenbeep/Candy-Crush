@@ -10,8 +10,8 @@ public class candyList {
   final int INCREMENT = 80;
   final float XSTART = 90;
   final float YSTART = 140;
-
-  color storeColor; 
+  
+  int[] DC; 
 
   candyList(int rows, int cols, PImage[] images, color[] colors) {
 
@@ -32,6 +32,7 @@ public class candyList {
       ycor+=INCREMENT;
     } 
     points = 0;
+    DC = new int[2];
   }
 
 
@@ -105,7 +106,16 @@ public class candyList {
       increment = 1;
       combo = 0;
     }
+    DC = dirCombo;
     return dirCombo;
+  }
+  
+  int getMaxCombo() {
+    return DC[0];
+  }
+  
+  int getDirection() {
+    return DC[1];
   }
 
   void clearColForThree() {
