@@ -82,9 +82,9 @@ public class candyList {
       dirCombo = clearRow(r2, c2);
     }
     if (dirCombo[0]>=3) {
-      for (int i = maxX; maxX>0; maxX--) {
-        for (int j = maxY; j<maxY+dirCombo[0]; j+=dirCombo[1]) {
-          swapCandies(i, j, i, j-1);
+      for (int i = maxX; maxX>0; i--) {
+        for (int j = maxY; j<maxY+(dirCombo[0]*dirCombo[1]); j+=dirCombo[1]) {
+          swapCandies(i, j, i-1, j);
         }
       }
     }
