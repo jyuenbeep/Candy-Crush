@@ -115,7 +115,7 @@ public class candyList {
     }
   }
 
-  boolean clearColForThreeH() {
+  boolean clearColForThreeH() { 
     for (int i = 0; i < c; i ++) {
       for (int j = 0; j < r - 2; j++) {
         if (get(j,i).getImage() == get (j+1,i).getImage() && get(j,i).getImage() == get(j+2,i).getImage()) {
