@@ -73,9 +73,6 @@ public class candyList {
   void clearRowReal (int row, int col) {
     int[] dirCombo = clearRow(row, col);
     if (dirCombo[0]>=3) {
-      if (dirCombo[0]>=5) {
-        dirCombo[0] = 5;
-      }
       for (int i = row; row>0; row++) {
         for (int j = col; j<col+dirCombo[0]; j+=dirCombo[1]) {
           swapCandies(i, j, i, j-1);
@@ -90,10 +87,14 @@ public class candyList {
     color storeColor = candies[row][col].getColor();
     int increment = -1;
     int combo=0;
+    boolean addCombo = true;
     for (int inc = 0; inc<2; inc++) {
-      for (int j = col; j!=col*increment; j+=increment) {
-        if (candies[row][j].getColor()==storeColor) {
+      for (int j = col; j!=col+(increment+5); j+=increment) {
+        if (addCombo && candies[row][j].getColor()==storeColor) {
           combo++;
+        }
+        else {
+          addCombo = false; 
         }
       }
       inc++;
