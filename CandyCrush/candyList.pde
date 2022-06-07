@@ -74,9 +74,11 @@ public class candyList {
     int[] dirCombo = clearRow(row, col);
     if (dirCombo[0]>=3) {
       if (dirCombo[0]>=5) {
-        for (int i = row; row>0; row++) {
-          for (int j = col; j<col+dirCombo[0]; j++) {
-          }
+        dirCombo[0] = 5;
+      }
+      for (int i = row; row>0; row++) {
+        for (int j = col; j<col+dirCombo[0]; j+=dirCombo[1]) {
+          swapCandies(i, j, i, j-1);
         }
       }
     }

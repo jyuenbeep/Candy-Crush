@@ -112,8 +112,8 @@ void mouseClicked() {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     //candies.clearRowReal(5, firstRI, firstCI);
     //candies.clearRowReal(4, firstRI, firstCI);
-    candies.clearRowReal(3, firstRI, firstCI);
-    candies.clearRowReal(3, secondRI, secondRI);
+    candies.clearRowReal(firstRI, firstCI);
+    //candies.clearRowReal(secondRI, secondRI);
     swapBool = false;
   }
 }
