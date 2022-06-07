@@ -70,43 +70,31 @@ public class candyList {
     clearColForThree();
   }
   
-  void clearRowReal (int comboNum, int row, int col) {
-    storeColor = candies[row][col].getColor();
-    int combo = comboNum;
-    if (comboNum>2) {
-      if (clearRow(5, row, col)) {
-        combo = 5;
-      }
-      else if (clearRow(4, row, col)) {
-        combo = 4;
-      }
-      else if (clearRow(3, row, col)) {
-        combo = 3;
-      }
-    }
-    if (clearRow(combo, row, col)) {
-      for (int i = row; row>0; row--) {
-        for (int j = col; j<col+comboNum; j++) {
-          swapCandies(i, j, i-1, j);
-        }
-      }
-      for (int t = col; t<col+comboNum; t++) {
-        int randIndex = (int)(Math.random()*imagesList.length);
-        candies[0][t] = new candy(candies[0][t].getX(), candies[0][t].getY(), imagesList[randIndex], colorsList[randIndex]);
-      }
-    }
+  void clearRowReal (int row, int col) {
+    int[] dirCombo = clearRow(row, col);
   }
 
-  boolean clearRow(int comboNum, int row, int col) {
-    if (row>=0 && row<r && col>=0 && col<c) {
-      if (comboNum==0) {
-        return true;
+  int[] clearRow(int row, int col) {
+    int[] dirCombo = new int[2];
+    // maxCombo[0], direction[1]
+    color storeColor = candies[row][col].getColor();
+    int increment = -1;
+    int combo=0;
+    for (int inc = 0; inc<2; inc++) {
+      for (int j = col; j!=col*increment; j+=increment) {
+        if (candies[row][j].getColor()==storeColor) {
+          combo++;
+        }
       }
-      else if (comboNum>0 && candies[row][col].getColor()==storeColor) {
-      clearRow(comboNum-1, row, col+1);
+      inc++;
+      if (combo>dirCombo[0]) {
+        dirCombo[0] = combo;
+        dirCombo[1] = increment;
       }
+      increment = 1;
+      combo = 0;
     }
-    return false;
+    return dirCombo;
   }
 
   void clearColForThree() {
