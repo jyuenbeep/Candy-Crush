@@ -44,6 +44,14 @@ void setup() {
   greenCandy = loadImage("green.png");
   purpleCandy = loadImage("purple.png");
   orangeCandy = loadImage("orange.png");
+  
+  redCandy.resize(80,80);
+  yellowCandy.resize(80,80);
+  blueCandy.resize(80,80);
+  orangeCandy.resize(80,80);
+  greenCandy.resize(80,80);
+  purpleCandy.resize(80,80);
+  
   //arrays
   PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
