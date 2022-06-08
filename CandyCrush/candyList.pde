@@ -71,7 +71,7 @@ public class candyList {
     int combo = 5;
     while (combo!=3) {
       for (int i = 0; i<c; i++) {
-        for (int j = 0; j<r-combo-1; j++) {   
+        for (int j = 0; j<r-combo+1; j++) {   
           boolean go = true;
           PImage check = get(j, i).getImage();
           for (int inc = 1; inc<combo; inc++) {
