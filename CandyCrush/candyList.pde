@@ -53,6 +53,7 @@ public class candyList {
     return candies[row][col];
   }
 
+//CLEARCOL() INSTEAD OF CLEARCOLFORTHREE()
   void display() {
     for (int r = 0; r < candies.length; r++) {
       for (int c = 0; c < candies[r].length; c++) {
@@ -67,6 +68,7 @@ public class candyList {
     clearCol();
   }
 
+// COLUMNS WORKING
   void clearCol() {
     int combo = 5;
     while (combo>=3) {
@@ -103,6 +105,7 @@ public class candyList {
       row -= 1;
     }
   }
+//COLUMNS WORKING
 
   void removeColForTwo(int row, int col) {
     while (row >= 2) {
