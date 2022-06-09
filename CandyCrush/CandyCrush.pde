@@ -1,4 +1,4 @@
-final int TILESIZE = 80;
+int TILESIZE;
 int ycor; 
 int xcor;
 candyList candies;
@@ -35,29 +35,28 @@ final color ORANGE = #FFA500;
 
 void setup() {
   size(1000, 800);
-  runBoard();
+  testing = new level();
+  TILESIZE = testing.size;
   backgroundImg = loadImage("background.jpg");
-  //images
+  //images //<>//
   redCandy = loadImage("red.png");
   yellowCandy = loadImage("yellow.png");
   blueCandy = loadImage("blue.png");
   greenCandy = loadImage("green.png");
-  purpleCandy = loadImage("purple.png");
+  purpleCandy = loadImage("purple.png"); //<>//
   orangeCandy = loadImage("orange.png");
-  
-  redCandy.resize(80,80);
-  yellowCandy.resize(80,80);
-  blueCandy.resize(80,80);
-  orangeCandy.resize(80,80);
-  greenCandy.resize(80,80);
-  purpleCandy.resize(80,80);
-  
-  //arrays
+  redCandy.resize(TILESIZE,TILESIZE);
+  yellowCandy.resize(TILESIZE,TILESIZE);
+  blueCandy.resize(TILESIZE,TILESIZE); //<>//
+  orangeCandy.resize(TILESIZE,TILESIZE);
+  greenCandy.resize(TILESIZE,TILESIZE);
+  purpleCandy.resize(TILESIZE,TILESIZE);
+  //arrays //<>//
   PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
-  testing = new level();
-  candies = new candyList(testing.getRow(), testing.getCol(), imgs, clrs);
+  candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
+  //runBoard();
 }
 
 void draw() {
@@ -138,8 +137,8 @@ int getCandy(float x, float y) {
 void runBoard() {
   rows=0;
   ycor=100; 
-  while (ycor < height-80) {
-    xcor = 50;
+  while (ycor < height-TILESIZE) {
+    xcor = 40;
     cols=0;
     while (xcor<width-TILESIZE*2) {
       rect(xcor, ycor, TILESIZE, TILESIZE);

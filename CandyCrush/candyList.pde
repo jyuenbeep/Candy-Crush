@@ -7,27 +7,33 @@ public class candyList {
   color[] colorsList; 
   final int HEIGHT = 840;
   final int WIDTH = 720;
-  final int INCREMENT = 80;
-  final float XSTART = 90;
-  final float YSTART = 140;
+  int INCREMENT;
+  float XSTART;
+  float YSTART;
+  int size;
+  int tilesize;
 
-  candyList(int rows, int cols, PImage[] images, color[] colors) {
+  candyList(int rows, int cols, PImage[] images, color[] colors, int size, float xstart, float ystart, int tilesize) {
     r = rows;
     c = cols;
-    
+    this.size = size;
+    INCREMENT = size;
+    XSTART = xstart;
+    YSTART = ystart;
+    this.tilesize = tilesize;
     imagesList = images.clone();
     colorsList = colors.clone();
     float ycor = YSTART;
     candies = new candy[r][c];
     
-    for (int i = 0; i<rows; i++) {
+    for (int i = 0; i<r; i++) {
       float xcor = XSTART;
-      for (int j = 0; j<cols; j++) {
+      for (int j = 0; j<c; j++) {
         int randIndex = (int)(Math.random()*images.length);
         candies[i][j] = new candy(xcor, ycor, images[randIndex], colors[randIndex]);
-        xcor+=INCREMENT;
+        xcor+=INCREMENT*2;
       }
-      ycor+=INCREMENT;
+      ycor+=INCREMENT*2;
     } 
     points = 0;   
   }
@@ -55,11 +61,13 @@ public class candyList {
   }
 
   void display() {
+    int a = INCREMENT;
     for (int r = 0; r < candies.length; r++) {
       for (int c = 0; c < candies[r].length; c++) {
-        candies[r][c].display();
+        candies[r][c].display(a);
       }
     }
+    
     clearLshape();
     clearLshape1();
     clearLshape2();
@@ -67,6 +75,9 @@ public class candyList {
     clearRowForThree();
     clearColForThree();
   }
+  
+  
+  
   
 
   void removeRowForThree(int row, int col1, int col2, int col3) {

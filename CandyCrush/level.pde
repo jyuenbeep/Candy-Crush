@@ -6,30 +6,24 @@ public static class level {
   int goal2;
   int goal3;
   int moves;
+  int size;
   
   public level() {
     if (levelCount >= 0 && levelCount <= 2 ) {
       row = 8;
       col = 10;
     } else {
-      row = 15;
-      col = 15;
+      row = 11;
+      col = 14;
     }
     setGoal();
     setMoves();
+    setSize();
   }
   
   
   int getLevel() {
     return levelCount;
-  }
-  
-  int getRow() {
-    return row;
-  }
-
-  int getCol() {
-    return col;
   }
   
   void increaseLevel() {
@@ -55,4 +49,39 @@ public static class level {
     setMoves();
   }
   
+  void setSize() {
+    if (levelCount >= 0 && levelCount <= 2 ) {
+      size = 80;
+    } else {
+      size = 100; 
+    }
+  }
+  
+  float getXstart() {
+     if (levelCount >= 0 && levelCount <= 2 ) {
+      return 80;
+    } else {
+      return 0; 
+    }
+  }
+  
+  float getYstart() {
+     if (levelCount >= 0 && levelCount <= 2 ) {
+      return 140;
+    } else {
+      return 0; 
+    }
+  }
+  
+  int getTilesize(){
+    if (levelCount >= 0 && levelCount <= 2 ) {
+      return 80;
+    } else {
+      return 0; 
+    }
+  }
+  
+  
+  
+
 }
