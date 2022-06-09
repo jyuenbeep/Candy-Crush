@@ -114,7 +114,14 @@ void mouseClicked() {
   }
   if (testing.moves == 0) {
     testing.increaseLevel();
-    testing.reset();
+    //testing.reset();
+  }
+}
+
+void keyPressed() {
+  if (keyCode == TAB) {
+    testing.increaseLevel();
+    setup();
   }
 }
 
