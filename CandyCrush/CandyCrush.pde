@@ -109,7 +109,6 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    candies.clearLshape();
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
