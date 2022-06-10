@@ -81,6 +81,7 @@ void draw() {
   fill(0);
   text("MOVES LEFT: " + testing.moves, 50, 80);
   text("LEVEL GOAL", 650, 25); 
+  setGoal();
   text(testing.goal1, 660, 70);
   text(testing.goal2, 760, 70);
   text(testing.goal3, 860, 70);
