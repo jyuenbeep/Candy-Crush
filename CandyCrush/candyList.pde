@@ -67,19 +67,10 @@ public class candyList {
         candies[r][c].display(a);
       }
     }
-    
-    clearLshape();
-    clearLshape1();
-    clearLshape2();
-    clearLshape3();
-    clearRowForThree();
-    clearColForThree();
   }
-  
-  
-  
-  
 
+  
+  //need these functions
   void removeRowForThree(int row, int col1, int col2, int col3) {
     int tempRow = row;
     int tempRow1 = row;
@@ -123,50 +114,6 @@ public class candyList {
     }
   }
 
-  void clearRowForThree() {
-    //int count = 0;
-    while (clearRowForThreeH()) {
-      //count++;
-      clearRowForThreeH();
-    }
-    //if (count>=1) {
-    //  points+=100;
-    //} 
-  }
-
-  boolean clearRowForThreeH() {
-    for (int i = 0; i < r; i ++) {
-      for (int j = 0; j < c - 2; j++) {
-        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-          removeRowForThree(i,j,j+1,j+2);
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-
-
-
-  void clearColForThree() {
-    while (clearColForThreeH()) {
-      clearColForThreeH();
-    }
-  }
-
-  boolean clearColForThreeH() {
-    for (int i = 0; i < c; i ++) {
-      for (int j = 0; j < r - 2; j++) {
-        if (get(j,i).getImage() == get (j+1,i).getImage() && get(j,i).getImage() == get(j+2,i).getImage()) {
-          removeColForThree(j+2,i);
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   void removeColForThree(int row, int col) {
     while (row >= 3) {
       candy temp = get(row-3, col);
@@ -202,7 +149,7 @@ public class candyList {
   
   void removeRowForTwo(int row, int col1, int col2) {
     int tempRow = row;
-    while (row > 0) {
+    while (row >= 1) {
       candy temp = get(row-1, col1);
       set1(row, col1, temp);
       row -= 1;
@@ -215,7 +162,7 @@ public class candyList {
       set1(row,col1, tem);
     }
 
-    while (tempRow > 0) {
+    while (tempRow >= 1) {
       candy temp = get(tempRow-1, col2);
       set1(tempRow, col2, temp);
       tempRow -= 1;
@@ -239,54 +186,40 @@ public class candyList {
     }
   }
   
+  
   boolean clearLshapeH() {
-    for (int i = 0; i < r-2; i ++) {
-      for (int j = 0; j < c-2; j++) {
-        if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j);
-            return true;
-           } else if (get(i,j+1).getImage() == get(i+1,j+1).getImage() && get(i,j+1).getImage() == get(i+2,j+1).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j+1);
-            return true;
-           } else if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j).getImage() == get(i+2,j+2).getImage()) {
-            removeRowForThree(i,j,j+1,j+2);
-            removeColForTwo(i+2,j+2);
-            return true;
-          }  
+    for (int i = 0; i < r; i ++) {
+      for (int j = 0; j +2 < c; j++) {
+        if (i + 2 < r) {
+          if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+            if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+               removeRowForThree(i, j , j+1, j+2);
+               removeColForTwo(i+2,j);
+               return true;
+            }
+          }
+          if (get(i,j+2).getImage() == get(i,j).getImage() && get(i,j+2).getImage() == get(i,j+1).getImage()) {
+            if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j+2).getImage() == get(i+2,j+2).getImage()) {
+               removeRowForThree(i, j, j+1, j+2);
+               removeColForTwo(i+2,j+2);
+               return true;
+            }
+          }
         }
-      }
-    }
-    return false;
-  }
-  
-  
-  
-  //Clearing L & upside T 
-  void clearLshape1() {
-    while (clearLshapeH1()) {
-      clearLshapeH1();
-    }
-  }
-  
-  boolean clearLshapeH1() {
-    for (int i = 0; i < r; i++) {
-      for (int j = 0; j < c-2; j++) {
-        if (i-2 >= 0) {
-           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j);
+        
+        if (i - 2 >= 0) {
+          if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
+            if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
+              removeColForThree(i,j);
+              removeRowForTwo(i,j+1, j+2); 
               return true;
-             } else if (get(i,j+1).getImage() == get(i-1,j+1).getImage() && get(i,j+1).getImage() == get(i-2,j+1).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j-1);
-              return true;
-             } else if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j-2).getImage()) {
-              removeRowForThree(i,j,j+1,j+2);
-              removeColForTwo(i,j-2);
+            }
+          }
+          
+          if (get(i,j+2).getImage() == get(i,j).getImage() && get(i,j+2).getImage() == get(i,j+1).getImage()) {
+            if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j+2).getImage()) {
+              removeColForThree(i,j+2);
+              removeRowForTwo(i,j, j+1);
               return true;
             }
           }
@@ -295,72 +228,10 @@ public class candyList {
     }
     return false;
   }
+  
   
   
 
-  //clearing right side L/T
-    void clearLshape2() {
-    while (clearLshapeH2()) {
-      clearLshapeH2();
-    }
-  }
-  
-  boolean clearLshapeH2() {
-    for (int i = 0; i < r-2; i++) {
-      for (int j = 0; j < c-2; j++) {
-         if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i,j+1,j+2);
-            return true;
-           } else if (get(i+1,j).getImage() == get(i+1,j+1).getImage() && get(i+1,j).getImage() == get(i+1,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i+1,j+1,j+2);
-            return true;
-           } else if (get(i+2,j).getImage() == get(i+2,j+1).getImage() && get(i+2,j).getImage() == get(i+2,j+2).getImage()) {
-            removeColForThree(i+2,j);
-            removeRowForTwo(i+2,j+1,j+2);
-            return true;
-          }
-        }    
-      }
-    }
-    return false;
-  }
-  
-  
-  
-  //clearing left side L/T
-  void clearLshape3() {
-    while (clearLshapeH3()) {
-      clearLshapeH3();
-    }
-  }
-  
-  boolean clearLshapeH3() {
-    for (int i = 0; i < r-2; i++) {
-      for (int j = 0; j < c; j++) {
-        if (j-2 >= 0) {
-          if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
-             if (get(i,j).getImage() == get(i,j-1).getImage() && get(i,j).getImage() == get(i,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i,j-1,j-2);
-              return true;
-             } else if (get(i+1,j).getImage() == get(i+1,j-1).getImage() && get(i+1,j).getImage() == get(i+1,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i+1,j-1,j-2);
-              return true;
-             } else if (get(i+2,j).getImage() == get(i+2,j-1).getImage() && get(i+2,j).getImage() == get(i+2,j-2).getImage()) {
-              removeColForThree(i+2,j);
-              removeRowForTwo(i+2,j-1,j-2);
-              return true;
-            }
-          } 
-        }     
-      }
-    }
-    return false;
-  }
   
   
   

@@ -1,5 +1,5 @@
 public static class level {
-  static int levelCount = 0;
+  static int levelCount = 3;
   int row;
   int col;
   int goal1;
@@ -35,6 +35,9 @@ public static class level {
   
   void setGoal(){
     if (levelCount >= 0 && levelCount <= 2) {
+      //goal1 = 0;
+      //goal2 = 0;
+      //goal3 = 0;
       goal1 = (int)(Math.random()*3)+1;
       goal2 = (int)(Math.random()*2)+1;
       goal3 = (int)(Math.random()*1)+1;
@@ -59,10 +62,9 @@ public static class level {
     }
   }
   
-  //void reset() {
-  //  setGoal();
-  //  setMoves();
-  //}
+  void reset() {
+    levelCount = 0;
+  }
   
   void setSize() {
     if (levelCount >= 0 && levelCount < 3 ) {
