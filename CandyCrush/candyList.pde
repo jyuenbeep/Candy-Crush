@@ -66,6 +66,7 @@ public class candyList {
     //clearLshape3();
     //clearRowForThree();
     clearCol();
+    clearRow();
   }
 
 // COLUMNS WORKING
@@ -82,7 +83,7 @@ public class candyList {
             }
           }
           if (go) {
-            removeCol(j+(combo-1), i, combo);
+            removeRow(j+(combo-1), i, combo);
           }
         }
       }
@@ -107,11 +108,32 @@ public class candyList {
   }
 //COLUMNS WORKING
 
+void clearRow() {
+    int combo = 5;
+    while (combo>=3) {
+      for (int i = 0; i<r; i++) {
+        for (int j = 0; j<c-(combo-1); j++) {   
+          boolean go = true;
+          PImage check = get(i,j).getImage();
+          for (int inc = 1; inc<combo; inc++) {
+            if (check!=get(i+inc,j).getImage()) {
+              go = false;
+            }
+          }
+          if (go) {
+            removeCol(i+(combo-1), j, combo);
+          }
+        }
+      }
+      combo--;
+    }
+  }
+
   void removeRow(int row, int col, int combo) {
     while (col<=1 && col>=0) {
       float x = get(row, col).getX();
       float y = get(row, col).getY();
-      int randIndex = (int)(Math.random()*imagesList.length));
+      int randIndex = (int)(Math.random()*imagesList.length);
       candy temp = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
       set1(row, col, temp);
       col--;
