@@ -107,6 +107,17 @@ public class candyList {
   }
 //COLUMNS WORKING
 
+  void removeRow(int row, int col, int combo) {
+    while (col<=1 && col>=0) {
+      float x = get(row, col).getX();
+      float y = get(row, col).getY();
+      int randIndex = (int)(Math.random()*imagesList.length));
+      candy temp = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+      set1(row, col, temp);
+      col--;
+    }
+  }
+
   void removeColForTwo(int row, int col) {
     while (row >= 2) {
       candy temp = get(row-2, col);
