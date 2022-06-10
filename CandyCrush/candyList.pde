@@ -88,9 +88,9 @@ public class candyList {
             }
           }
           if (go) {
-            removeCol(j+(combo-1), i, combo);
             this.combo = combo;
             comboImage = get(j,i).getImage();
+            removeCol(j+(combo-1), i, combo);
           }
         }
       }

@@ -81,7 +81,6 @@ void draw() {
   fill(0);
   text("MOVES LEFT: " + testing.moves, 50, 80);
   text("LEVEL GOAL", 650, 25); 
-  setGoal();
   text(testing.goal1, 660, 70);
   text(testing.goal2, 760, 70);
   text(testing.goal3, 860, 70);
@@ -119,6 +118,7 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    setGoal();
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
