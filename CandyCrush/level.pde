@@ -7,6 +7,9 @@ public static class level {
   int goal3;
   int moves;
   int size;
+  PImage gol1;
+  PImage gol2;
+  PImage gol3;
   
   public level() {
     if (levelCount >= 0 && levelCount < 3 ) {
@@ -19,7 +22,6 @@ public static class level {
       row = 11;
       col = 14;
     }
-    setGoal();
     setMoves();
     setSize();
   }
@@ -33,7 +35,10 @@ public static class level {
     levelCount++;
   }
   
-  void setGoal(){
+  void setGoal(PImage gol1, PImage gol2, PImage gol3){
+    this.gol1 = gol1;
+    this.gol2 = gol2;
+    this.gol3 = gol3;
     if (levelCount >= 0 && levelCount <= 2) {
       //goal1 = 0;
       //goal2 = 0;
@@ -42,14 +47,21 @@ public static class level {
       goal2 = (int)(Math.random()*2)+1;
       goal3 = (int)(Math.random()*1)+1;
     } else if (levelCount >= 3 && levelCount < 7) {
-      goal1 = (int)(Math.random()*7)+1;
-      goal2 = (int)(Math.random()*8)+1;
-      goal3 = (int)(Math.random()*9)+1;
+      goal1 = (int)(Math.random()*7)+3;
+      goal2 = (int)(Math.random()*8)+3;
+      goal3 = (int)(Math.random()*9)+3;
     } else {
-      goal1 = (int)(Math.random()*5)+1;
-      goal2 = (int)(Math.random()*10)+1;
-      goal3 = (int)(Math.random()*14)+1;
+      goal1 = (int)(Math.random()*5)+5;
+      goal2 = (int)(Math.random()*10)+5;
+      goal3 = (int)(Math.random()*14)+5;
     }
+  }
+  
+  boolean matches(PImage a, PImage b) {
+    if (a == b) {
+      return true;
+    }
+    return false;
   }
   
   void setMoves(){
@@ -104,9 +116,6 @@ public static class level {
     } else {
       return 80;
     }
-  }
-  
-  
-  
+  } 
 
 }

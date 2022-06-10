@@ -24,6 +24,7 @@ PImage yellowCandy;
 PImage greenCandy;
 PImage purpleCandy;
 PImage blueCandy;
+PImage[] imgs;
 
 //colors
 final color RED = #AA4A44;
@@ -52,33 +53,37 @@ void setup() {
   greenCandy.resize(TILESIZE,TILESIZE);
   purpleCandy.resize(TILESIZE,TILESIZE);
   //arrays //<>//
-  PImage[] imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
+  imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
   //runBoard();
+  showGoal();
 }
 
 void draw() {
   image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
   fill(#D3D3D3);
   runBoard();
+  //showGoal();
   candies.display();
   fill(0);
   //testing
   textSize(40);
   fill(#D98121);
   textMode(MODEL);
-  text("CANDY CRUSH ", 310, 75); 
+  text("CANDY CRUSH ", 250, 75); 
   textSize(20);
-  //text("coordinate one: (" + firstRI + ", " + firstCI + ")", 50, 50);
-  //text("coordinate two: (" + secondRI + ", " + secondCI + ")", 50, 100);
   fill(0);
   text("MOVES LEFT: " + testing.moves, 50, 80);
-  text("GOAL1: " + testing.goal1 + "  " , 600, 45);
-  text("GOAL2: " + testing.goal2 + "  " , 700, 45);
-  text("GOAL3: " + testing.goal3 + "  "  , 800, 45);
-  text(frameRate, 45, 40);
+  text("LEVEL GOAL", 650, 25); 
+  text(testing.goal1, 660, 70);
+  text(testing.goal2, 760, 70);
+  text(testing.goal3, 860, 70);
+  image(testing.gol1, 600, 40, 50, 50);
+  image(testing.gol2, 700, 40, 50, 50);
+  image(testing.gol3, 800, 40, 50, 50);
+  text(frameRate, 10, 15);
   text("level: " + testing.getLevel(),50, 60);
   //testing
   circle(mouseX, mouseY,20);
@@ -129,40 +134,54 @@ void keyPressed() {
   }
 }
 
-int getCandy(float x, float y) {
-  for (int r = 0; r<candies.r; r++) {
-    for (int c = 0; c<candies.c; c++) {
-      float xval = candies.get(r, c).getX();
-      float yval = candies.get(r, c).getY();
-      float distStore = dist(xval, yval, x, y);
-      if (distStore<25) {
-        rowIndex = r;
-        colIndex = c;
-        return 0;
+  int getCandy(float x, float y) {
+    for (int r = 0; r<candies.r; r++) {
+      for (int c = 0; c<candies.c; c++) {
+        float xval = candies.get(r, c).getX();
+        float yval = candies.get(r, c).getY();
+        float distStore = dist(xval, yval, x, y);
+        if (distStore<25) {
+          rowIndex = r;
+          colIndex = c;
+          return 0;
+        }
       }
     }
+    return -1;
   }
-  return -1;
-}
 
-void runBoard() {
-  rows=0;
-  ycor=100; 
-  while (ycor < height-TILESIZE) {
-    xcor = 40;
-    cols=0;
-    while (xcor<width-TILESIZE*2) {
-      rect(xcor, ycor, TILESIZE, TILESIZE);
-      xcor+=TILESIZE;
-      cols++;
+  void runBoard() {
+    rows=0;
+    ycor=100; 
+    while (ycor < height-TILESIZE) {
+      xcor = 40;
+      cols=0;
+      while (xcor<width-TILESIZE*2) {
+        rect(xcor, ycor, TILESIZE, TILESIZE);
+        xcor+=TILESIZE;
+        cols++;
+      }
+      ycor+=TILESIZE;
+      rows++;
     }
-    ycor+=TILESIZE;
-    rows++;
   }
-}
 
-void clearBoard() {
-  if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
-     text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
+  void showGoal() {
+    int randIndex1 = (int)(Math.random()*imgs.length);
+    int randIndex2 = (int)(Math.random()*imgs.length);
+    while (randIndex2 == randIndex1) {
+      randIndex2 = (int)(Math.random()*imgs.length);
+    }
+    int randIndex3 = (int)(Math.random()*imgs.length);
+    while (randIndex3 == randIndex2 || randIndex3 == randIndex1) {
+      randIndex3 = (int)(Math.random()*imgs.length);
+    }
+    testing.setGoal(imgs[randIndex1], imgs[randIndex2], imgs[randIndex3]);
   }
-}
+  
+  
+  void clearBoard() {
+    if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
+       text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
+    }
+  }
