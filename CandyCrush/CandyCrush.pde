@@ -35,7 +35,7 @@ final color PURPLE = #800080;
 final color ORANGE = #FFA500;
 
 //change goal
-color goalCandy; 
+PImage goalImage; 
 int goalNumber; 
 
 void setup() {
@@ -183,8 +183,18 @@ void keyPressed() {
     testing.setGoal(imgs[randIndex1], imgs[randIndex2], imgs[randIndex3]);
   }
   
-  void setShowGoal() {
-    
+  void setGoal() {
+    goalNumber = candies.combo;
+    goalImage = candies.comboImage;
+    if (testing.gol1 == goalImage) {
+      testing.goal1-=goalNumber;
+    }
+    if (testing.gol2 == goalImage) {
+      testing.goal2-=goalNumber;
+    }
+    if (testing.gol3 == goalImage) {
+      testing.goal3-=goalNumber;
+    }
   }
   
   void clearBoard() {

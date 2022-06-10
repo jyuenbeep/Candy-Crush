@@ -12,7 +12,10 @@ public class candyList {
   float YSTART;
   int size;
   int tilesize;
+  
+  //setting goal
   int combo;
+  PImage comboImage;
 
   candyList(int rows, int cols, PImage[] images, color[] colors, int size, float xstart, float ystart, int tilesize) {
     r = rows;
@@ -87,6 +90,7 @@ public class candyList {
           if (go) {
             removeCol(j+(combo-1), i, combo);
             this.combo = combo;
+            comboImage = get(j,i).getImage();
           }
         }
       }
