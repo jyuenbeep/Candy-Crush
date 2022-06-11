@@ -117,6 +117,7 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    candies.displayClearing();
     setGoal();
     swapBool = false;
   }
@@ -184,7 +185,6 @@ void keyPressed() {
   }
   
   void setGoal() {
-    candies.displayClearing();
     goalNumber = candies.combo;
     goalImage = candies.comboImage;
     if (testing.gol1 == goalImage) {
