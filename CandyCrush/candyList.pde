@@ -129,7 +129,7 @@ public class candyList {
           }
           if (go) {
             this.combo = combo;
-            comboImage = get(j,i).getImage();
+            comboImage = get(i,j).getImage();
             removeRow(i,j+(combo-1),  combo);
           }
         }
