@@ -34,6 +34,10 @@ final color YELLOW = #FFFF00;
 final color PURPLE = #800080;
 final color ORANGE = #FFA500;
 
+//change goal
+PImage goalImage; 
+int goalNumber; 
+
 void setup() {
   size(1000, 800);
   testing = new level();
@@ -114,7 +118,11 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    candies.clearLshape();
+    candies.clearTshape();
     candies.clearRow();
+    candies.clearCol();    
+    setGoal();
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
@@ -180,6 +188,28 @@ void keyPressed() {
     testing.setGoal(imgs[randIndex1], imgs[randIndex2], imgs[randIndex3]);
   }
   
+  void setGoal() {
+    goalNumber = candies.combo;
+    goalImage = candies.comboImage;
+    if (testing.gol1 == goalImage && testing.goal1 > 0 ) {
+      testing.goal1-=goalNumber;
+      if (testing.goal1 < 0) {
+        testing.goal1 = 0;
+      }
+    }
+    if (testing.gol2 == goalImage && testing.goal2 > 0) {
+      testing.goal2-=goalNumber;
+      if (testing.goal2 < 0) {
+        testing.goal2 = 0;
+      }
+    }
+    if (testing.gol3 == goalImage && testing.goal3 > 0) {
+      testing.goal3-=goalNumber;
+      if (testing.goal3 < 0) {
+        testing.goal3 = 0;
+      }
+    }
+  }
   
   void clearBoard() {
     if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
