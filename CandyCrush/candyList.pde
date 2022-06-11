@@ -71,10 +71,12 @@ public class candyList {
         candies[r][c].display(a);
       }
     }
+  }
+  
+  void displayClearing() {
     clearCol();
     clearRow();
   }
-  
   
   void clearCol() {
     int combo = 5;
@@ -90,7 +92,7 @@ public class candyList {
           }
           if (go) {
             this.combo = combo;
-            comboImage = get(j,i).getImage();
+            comboImage = check;
             removeCol(j+(combo-1), i, combo);
           }
         }
@@ -129,7 +131,7 @@ public class candyList {
           }
           if (go) {
             this.combo = combo;
-            comboImage = get(i,j).getImage();
+            comboImage = check;
             removeRow(i,j+(combo-1),  combo);
           }
         }

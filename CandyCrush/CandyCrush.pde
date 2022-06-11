@@ -69,7 +69,6 @@ void draw() {
   image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
   fill(#D3D3D3);
   runBoard();
-  //showGoal();
   candies.display();
   fill(0);
   //testing
@@ -185,6 +184,7 @@ void keyPressed() {
   }
   
   void setGoal() {
+    candies.displayClearing();
     goalNumber = candies.combo;
     goalImage = candies.comboImage;
     if (testing.gol1 == goalImage) {
