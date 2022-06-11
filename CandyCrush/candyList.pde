@@ -12,6 +12,10 @@ public class candyList {
   float YSTART;
   int size;
   int tilesize;
+  
+  //setting goal
+  int combo;
+  PImage comboImage;
 
   candyList(int rows, int cols, PImage[] images, color[] colors, int size, float xstart, float ystart, int tilesize) {
     r = rows;
@@ -68,6 +72,7 @@ public class candyList {
       }
     }
     clearCol();
+    clearRow();
   }
   
   
@@ -84,6 +89,8 @@ public class candyList {
             }
           }
           if (go) {
+            this.combo = combo;
+            comboImage = get(j,i).getImage();
             removeCol(j+(combo-1), i, combo);
           }
         }
@@ -108,7 +115,48 @@ public class candyList {
     }
   }
   
-  
+  void clearRow() {
+    int combo = 5;
+    while (combo>=3) {
+      for (int i = 0; i<r; i++) {
+        for (int j = 0; j<c-(combo-1); j++) {   
+          boolean go = true;
+          PImage check = get(i, j).getImage();
+          for (int inc = 1; inc<combo; inc++) {
+            if (check!=get(i,j+inc).getImage()) {
+              go = false;
+            }
+          }
+          if (go) {
+            this.combo = combo;
+            comboImage = get(i,j).getImage();
+            removeRow(i,j+(combo-1),  combo);
+          }
+        }
+      }
+      combo--;
+    }
+  }
+
+  void removeRow(int row, int col, int combo) {
+    while (combo >= 1 && col>= 0) {
+      int temprow = row;
+      while (temprow >= 1) {
+        candy temp = get(temprow-1, col);
+        set1(temprow, col, temp);
+        temprow -= 1;
+      }
+      if (temprow == 0) {
+        float x = get(temprow, col).getX();
+        float y = get(temprow, col).getY();
+        int randIndex = (int)(Math.random()*imagesList.length);
+        candy tem = new candy(x, y, imagesList[randIndex], colorsList[randIndex]);
+        set1(temprow, col, tem);
+      }
+      combo--;
+      col--;
+    }
+  }
   
   //need these functions
   void removeRowForThree(int row, int col1, int col2, int col3) {
@@ -222,6 +270,7 @@ public class candyList {
   //Clearing L
   void clearLshape() {
     while (clearLshapeH()) {
+      this.combo = 5;
       clearLshapeH();
     }
   }
@@ -233,6 +282,7 @@ public class candyList {
         if (i + 2 < r) {
           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
             if (get(i,j).getImage() == get(i+1,j).getImage() && get(i,j).getImage() == get(i+2,j).getImage()) {
+               comboImage = get(i,j).getImage();
                removeRowForThree(i, j , j+1, j+2);
                removeColForTwo(i+2,j);
                return true;
@@ -240,6 +290,7 @@ public class candyList {
           }
           if (get(i,j+2).getImage() == get(i,j).getImage() && get(i,j+2).getImage() == get(i,j+1).getImage()) {
             if (get(i,j+2).getImage() == get(i+1,j+2).getImage() && get(i,j+2).getImage() == get(i+2,j+2).getImage()) {
+               comboImage = get(i,j+2).getImage();
                removeRowForThree(i, j, j+1, j+2);
                removeColForTwo(i+2,j+2);
                return true;
@@ -250,6 +301,7 @@ public class candyList {
         if (i - 2 >= 0) {
           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i-2,j).getImage()) {
+              comboImage = get(i,j).getImage();
               removeColForThree(i,j);
               removeRowForTwo(i,j+1, j+2); 
               return true;
@@ -258,6 +310,7 @@ public class candyList {
           
           if (get(i,j+2).getImage() == get(i,j).getImage() && get(i,j+2).getImage() == get(i,j+1).getImage()) {
             if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i-2,j+2).getImage()) {
+              comboImage = get(i,j+2).getImage();
               removeColForThree(i,j+2);
               removeRowForTwo(i,j, j+1);
               return true;
@@ -284,6 +337,7 @@ public class candyList {
         if (i + 2 < r && j + 2 < c) {
           if (get(i,j+1).getImage() == get(i,j).getImage() && get(i,j+1).getImage() == get(i,j+2).getImage()) {
             if (get(i,j+1).getImage() == get(i+1,j+1).getImage() && get(i,j+1).getImage() == get(i+2,j+1).getImage()) {
+               comboImage = get(i,j+1).getImage();
                removeRowForThree(i, j , j+1, j+2);
                removeColForTwo(i+2,j+1);
                return true;
@@ -293,6 +347,7 @@ public class candyList {
         if (i - 2 >= 0 && j + 2 < c) {
           if (get(i,j+1).getImage() == get(i,j).getImage() && get(i,j+1).getImage() == get(i,j+2).getImage()) {
             if (get(i,j+1).getImage() == get(i-1,j+1).getImage() && get(i,j+1).getImage() == get(i-2,j+1).getImage()) {
+              comboImage = get(i,j+1).getImage();
               removeRowForThree(i, j , j+1, j+2);
               removeColForTwo(i,j+1);
               return true;
@@ -302,6 +357,7 @@ public class candyList {
         if (i -1 >= 0 && i+1 <= r && j+2 < c) {
           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i+1,j).getImage()) {
+              comboImage = get(i,j).getImage();
               removeColForThree(i+1,j);
               removeRowForTwo(i,j+1, j+2); 
               return true;
@@ -311,6 +367,7 @@ public class candyList {
         if (i -1 >= 0 && i+1 <= r && j+2 < c) {
           if (get(i,j+2).getImage() == get(i,j+1).getImage() && get(i,j+2).getImage() == get(i,j).getImage()) {
             if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i+1,j+2).getImage()) {
+              comboImage = get(i,j+2).getImage();
               removeColForThree(i+1,j+2);
               removeRowForTwo(i,j, j+1); 
               return true;
