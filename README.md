@@ -52,6 +52,36 @@ Decided to change the candyList from a 1d array to a 2d array of candies. Had to
 6/1:
 Code is broken right now after the change to 2d array. The setup and swapping does not work. Neither does the dropping down candies after combo matching. 
 
+6/2:
+Fixed the swapping. Added images and changed the candies to look like the in-game sprites but it's making the program run very slow.
+
+6/3: 
+With the images added, there's one extra row and one less col on the board. Plus, they are placed in the wrong place. That issue was fixed.
+
+6/4: 
+Tried to load the PImages in the main first to see if it would make the code run faster. It did get slightly faster but is still very slow. I can tell since the cursor we made was lagging behind the actual computer cursor. 
+
+6/5: 
+The code was crashing my laptop so I tried working on speed still to make it faster. Found out the issue was the display() since removing the background or other parts of the code made no difference.
+
+6/6: 
+Now it is noticeably faster, though the frames are still slow in comparison to a normal game. Made a keyPressed() method for when you press 'r,' you can clear the board and candies and get a new level.
+
+6/7: 
+Trying to make the clearing row/col methods also clear for combos of 3, 4, 5. Also trying to make the code more flexible.
+
+6/8: 
+Clearing combos of 3, 4, 5 candies works for columns now.
+
+6/9: 
+Trying to do clearing 3, 4, 5 combos for rows as well. 
+
+6/10: 
+Trying to fix setGoal() so that everytime a combo of a specific candy is made, it decrements the goal number of that candy to be cleared by the combo made with that candy.
+
+6/11: 
+setGoal() works half the time, but not always. Also fixed the distance so that swapping works in between all the levels and not just a specific one.
+
 ### Bernadette Baroi:
 
 5/19: Began working on the prototype and updating our documents. 
@@ -69,3 +99,13 @@ Code is broken right now after the change to 2d array. The setup and swapping do
 5/28-29: worked on the clearing method. It clears somewhat but then it doesn't add new candies after clearing or move down the candies. Fixed up the board to make it a 8 * 10. 
 
 5/30: I finished and did the row clearing and column clearing for 3 matches. Now im working to make matches such as L and T.
+
+5/31-6/1: fixed all the methods to correspond with the 2d array. We got stuck at some silly part but we figured it out. 
+
+6/2: Finished the top L/T shape clearing method. All the clearing methods work. Now i'm working on the upside down L/T clearing method. I also implemented a new class called level. Just wrote down some basic level methods such get, set, constructors. 
+
+6/3 & 6/6: worked on level class. Now it generates goals and the amount of moves. It also increase the level. 
+
+6/7-6/9: I finished the level class. Now theres a key to skip between each levels. My partner is working to condense my clearing codes.
+
+6/10-6/12: Fixing glitches, beautifying candy crush, adding smooth transitions.  
