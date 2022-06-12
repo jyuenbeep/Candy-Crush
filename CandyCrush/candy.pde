@@ -10,10 +10,11 @@ public class candy {
     this.c =c;
   }
 
-  void display() {
-    image(c, x-40, y-40, 80, 80);
+  void display(int increment) {
+    image(c, x-increment, y-increment);
+    
   }
-
+  
   color getColor() {
     return clr;
   }
