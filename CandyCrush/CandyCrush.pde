@@ -131,34 +131,13 @@ void mouseClicked() {
     boolean keepSame = sameArray(candies.candies, unswappingBoard);
     if (keepSame) {
       //candies.display();
-      //int time = millis();
-      //int timePassed = millis() - time; 
-      //while (timePassed < 2000) {
-      //  timePassed = millis() - time; 
-      //}
-      float firstX = candies.get(firstRI, firstCI).getX();
-      float firstY = candies.get(firstRI, firstCI).getY();
-      float secondX = candies.get(firstRI, firstCI).getX();
-      float secondY = candies.get(firstRI, firstCI).getY();
-      int inc = -1;
-      boolean row = true;
-      
-      if (firstX == secondX) {
-        row = false;
+      int time = millis();
+      int timePassed = millis() - time; 
+      while (timePassed < 2000) {
+        timePassed = millis() - time; 
+        candies.display();
       }
-      if (firstX < secondX || firstY < secondY) {
-        inc = 1;
-      }
-      if (row) {
-        while (firstX!=secondX) {
-          candies.get(firstRI, firstCI).setX(firstX+inc);
-          firstX = candies.get(firstRI, firstCI).getX();
-          //candies.get(secondRI, secondCI).setX(secondX+(inc*-1));
-          //secondX = candies.get(secondRI, secondCI).getX();
-          candies.display();
-        }
-      }
-      //candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+      candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
     else {
       testing.moves--;
