@@ -63,6 +63,7 @@ void setup() {
   //constructor
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
   showGoal();
+  candies.checker = 0;
 }
 
 void draw() {
@@ -71,7 +72,10 @@ void draw() {
   runBoard();
   candies.display();
   candies.displayClearing();
-  setGoal();
+  //if (candies.checker != 0) {
+  //  setGoal();
+  //}
+  //candies.combo = 0;
   fill(0);
   //testing
   textSize(40);
@@ -111,7 +115,7 @@ void mouseClicked() {
       secondCI = colIndex;
       float distBetweenCandy = dist(candies.get(firstRI, firstCI).getX(), candies.get(firstRI, firstCI).getY(), 
         candies.get(secondRI, secondCI).getX(), candies.get(secondRI, secondCI).getY());
-      if (distBetweenCandy<= 130) {
+      if (distBetweenCandy<= TILESIZE*2) {
         swapBool = true;
       }
       mouse = 1;
@@ -122,6 +126,7 @@ void mouseClicked() {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     candies.displayClearing();    
     setGoal();
+    candies.combo = 0;
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
@@ -136,10 +141,12 @@ void mouseClicked() {
 
 void keyPressed() {
   if (keyCode == TAB) {
+    candies.checker = 0;
     testing.increaseLevel();
     setup();
   } 
   if (keyCode == BACKSPACE) {
+    candies.checker = 0;
     testing.reset();
     setup();
   }

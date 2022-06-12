@@ -1,5 +1,5 @@
 public static class level {
-  static int levelCount = 3;
+  static int levelCount = 0;
   int row;
   int col;
   int goal1;
