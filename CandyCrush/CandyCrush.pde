@@ -65,7 +65,7 @@ void setup() {
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
   showGoal();
   candies.checker = 0;
-  unswappingBoard = new candy[rows][cols];
+  unswappingBoard = new candy[candies.r][candies.c];
 }
 
 void draw() {
@@ -129,7 +129,7 @@ void mouseClicked() {
     copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
     if (sameArray(candies.candies, unswappingBoard)) {
-      delay(5);
+      delay(2000);
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
     setGoal();
