@@ -65,6 +65,7 @@ void setup() {
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
   showGoal();
   candies.checker = 0;
+  unswappingBoard = new candy[rows][cols];
 }
 
 void draw() {
@@ -123,10 +124,14 @@ void mouseClicked() {
     }
   }
   if (swapBool && testing.moves > 0) {
-    copyArray(candies.candies, unswappingBoard); 
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
+    if (sameArray(candies.candies, unswappingBoard)) {
+      delay(5);
+      candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    }
     setGoal();
     candies.combo = 0;
     swapBool = false;
@@ -152,9 +157,12 @@ void copyArray(candy[][] a, candy[][] b) {
 boolean sameArray(candy[][] a, candy[][] b) {
   for (int i = 0; i<a.length; i++) {
     for (int j = 0; j<a[i].length; j++) {
-      if (
+      if (a[i][j]!=b[i][j]) {
+        return false; 
+      }
     }
   }
+  return true;
 }
 
 void keyPressed() {
