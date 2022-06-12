@@ -66,13 +66,14 @@ void setup() {
   showGoal();
   candies.checker = 0;
   unswappingBoard = new candy[candies.r][candies.c];
+  candies.display();
 }
 
 void draw() {
   image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
   fill(#D3D3D3);
   runBoard();
-  candies.display();
+  //candies.display();
   candies.displayClearing();
   //if (candies.checker != 0) {
   //  setGoal();
@@ -125,14 +126,21 @@ void mouseClicked() {
   }
   if (swapBool && testing.moves > 0) {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    candies.display();
     copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
     // not swapping certain candies and not decrementing the moves
     boolean keepSame = sameArray(candies.candies, unswappingBoard);
     if (keepSame) {
+      int time = millis();
+      int timePassed = millis() - time; 
+      while (timePassed < 3000) {
+        timePassed = millis() - time; 
+      }
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
     else {
+      candies.display();
       testing.moves--;
       setGoal();
     }
