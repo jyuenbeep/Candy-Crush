@@ -80,3 +80,5 @@ Fixed the swapping. Added images and changed the candies to look like the in-gam
 6/3 & 6/6: worked on level class. Now it generates goals and the amount of moves. It also increase the level. 
 
 6/7-6/9: I finished the level class. Now theres a key to skip between each levels. My partner is working to condense my clearing codes.
+
+6/10-6/12: Fixing glitches, beautifying candy crush, adding smooth transitions.  
