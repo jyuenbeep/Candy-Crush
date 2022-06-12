@@ -125,19 +125,20 @@ void mouseClicked() {
   }
   if (swapBool && testing.moves > 0) {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    candies.display();
     copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
     // not swapping certain candies and not decrementing the moves
     boolean keepSame = sameArray(candies.candies, unswappingBoard);
     if (keepSame) {
       //candies.display();
+      candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
       int time = millis();
       int timePassed = millis() - time; 
       while (timePassed < 2000) {
         timePassed = millis() - time; 
-        candies.display();
       }
-      candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+      candies.display();
     }
     else {
       testing.moves--;
