@@ -44,20 +44,20 @@ void setup() {
   testing = new level();
   TILESIZE = testing.size;
   backgroundImg = loadImage("background.jpg");
-  //images //<>//
+  //images //<>// //<>//
   redCandy = loadImage("red.png");
   yellowCandy = loadImage("yellow.png");
   blueCandy = loadImage("blue.png");
   greenCandy = loadImage("green.png");
-  purpleCandy = loadImage("purple.png"); //<>//
+  purpleCandy = loadImage("purple.png"); //<>// //<>//
   orangeCandy = loadImage("orange.png");
   redCandy.resize(TILESIZE,TILESIZE);
   yellowCandy.resize(TILESIZE,TILESIZE);
-  blueCandy.resize(TILESIZE,TILESIZE); //<>//
+  blueCandy.resize(TILESIZE,TILESIZE); //<>// //<>//
   orangeCandy.resize(TILESIZE,TILESIZE);
   greenCandy.resize(TILESIZE,TILESIZE);
   purpleCandy.resize(TILESIZE,TILESIZE);
-  //arrays //<>//
+  //arrays //<>// //<>//
   imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
@@ -72,10 +72,6 @@ void draw() {
   runBoard();
   candies.display();
   candies.displayClearing();
-  //if (candies.checker != 0) {
-  //  setGoal();
-  //}
-  //candies.combo = 0;
   fill(0);
   //testing
   textSize(40);
@@ -124,7 +120,13 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    candies.displayClearing();    
+    candies.clearLshape();
+    setGoal();
+    candies.clearTshape();
+    setGoal();
+    candies.clearCol();
+    setGoal();
+    candies.clearRow();
     setGoal();
     candies.combo = 0;
     swapBool = false;
