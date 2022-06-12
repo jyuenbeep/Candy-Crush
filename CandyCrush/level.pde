@@ -47,9 +47,12 @@ public static class level {
       goal2 = (int)(Math.random()*2)+1;
       goal3 = (int)(Math.random()*1)+1;
     } else if (levelCount >= 3 && levelCount < 7) {
-      goal1 = (int)(Math.random()*7)+3;
-      goal2 = (int)(Math.random()*8)+3;
-      goal3 = (int)(Math.random()*9)+3;
+       goal1 = 3;
+       goal2 = 3;
+       goal3 = 3;
+      //goal1 = (int)(Math.random()*7)+3;
+      //goal2 = (int)(Math.random()*8)+3;
+      //goal3 = (int)(Math.random()*9)+3;
     } else {
       goal1 = (int)(Math.random()*5)+5;
       goal2 = (int)(Math.random()*10)+5;
