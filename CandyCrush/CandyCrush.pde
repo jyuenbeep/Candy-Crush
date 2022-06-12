@@ -128,7 +128,8 @@ void mouseClicked() {
     copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
     // not swapping certain candies and not decrementing the moves
-    if (sameArray(candies.candies, unswappingBoard)) {
+    boolean keepSame = sameArray(candies.candies, unswappingBoard);
+    if (keepSame) {
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
     else {
@@ -160,7 +161,7 @@ void copyArray(candy[][] a, candy[][] b) {
 boolean sameArray(candy[][] a, candy[][] b) {
   for (int i = 0; i<a.length; i++) {
     for (int j = 0; j<a[i].length; j++) {
-      if (a[i][j]!=b[i][j]) {
+      if (a[i][j].getImage()!=b[i][j].getImage()) {
         return false; 
       }
     }
