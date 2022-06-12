@@ -16,6 +16,7 @@ int firstCI;
 int secondRI;
 int secondCI;
 int firstrun = 0;
+candy[][] unswappingBoard;
 
 //images
 PImage backgroundImg;
@@ -51,18 +52,19 @@ void setup() {
   greenCandy = loadImage("green.png");
   purpleCandy = loadImage("purple.png"); //<>//
   orangeCandy = loadImage("orange.png");
-  redCandy.resize(TILESIZE,TILESIZE);
-  yellowCandy.resize(TILESIZE,TILESIZE);
-  blueCandy.resize(TILESIZE,TILESIZE); //<>//
-  orangeCandy.resize(TILESIZE,TILESIZE);
-  greenCandy.resize(TILESIZE,TILESIZE);
-  purpleCandy.resize(TILESIZE,TILESIZE);
+  redCandy.resize(TILESIZE, TILESIZE);
+  yellowCandy.resize(TILESIZE, TILESIZE);
+  blueCandy.resize(TILESIZE, TILESIZE); //<>//
+  orangeCandy.resize(TILESIZE, TILESIZE);
+  greenCandy.resize(TILESIZE, TILESIZE);
+  purpleCandy.resize(TILESIZE, TILESIZE);
   //arrays //<>//
   imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
   showGoal();
+  candies.checker = 0;
 }
 
 void draw() {
@@ -71,7 +73,10 @@ void draw() {
   runBoard();
   candies.display();
   candies.displayClearing();
-  setGoal();
+  //if (candies.checker != 0) {
+  //  setGoal();
+  //}
+  //candies.combo = 0;
   fill(0);
   //testing
   textSize(40);
@@ -89,9 +94,9 @@ void draw() {
   image(testing.gol2, 700, 40, 50, 50);
   image(testing.gol3, 800, 40, 50, 50);
   text(frameRate, 10, 15);
-  text("level: " + testing.getLevel(),50, 60);
+  text("level: " + testing.getLevel(), 50, 60);
   //testing
-  circle(mouseX, mouseY,20);
+  circle(mouseX, mouseY, 20);
 }
 
 void mouseClicked() {
@@ -118,10 +123,12 @@ void mouseClicked() {
     }
   }
   if (swapBool && testing.moves > 0) {
+    copyArray(candies.candies, unswappingBoard); 
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     candies.displayClearing();    
     setGoal();
+    candies.combo = 0;
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
@@ -134,89 +141,107 @@ void mouseClicked() {
   }
 }
 
+void copyArray(candy[][] a, candy[][] b) {
+  for (int i = 0; i<a.length; i++) {
+    for (int j = 0; j<a[i].length; j++) {
+      b[i][j] = a[i][j];
+    }
+  }
+}
+
+boolean sameArray(candy[][] a, candy[][] b) {
+  for (int i = 0; i<a.length; i++) {
+    for (int j = 0; j<a[i].length; j++) {
+      if (
+    }
+  }
+}
+
 void keyPressed() {
   if (keyCode == TAB) {
+    candies.checker = 0;
     testing.increaseLevel();
     setup();
   } 
   if (keyCode == BACKSPACE) {
+    candies.checker = 0;
     testing.reset();
     setup();
   }
 }
 
-  int getCandy(float x, float y) {
-    for (int r = 0; r<candies.r; r++) {
-      for (int c = 0; c<candies.c; c++) {
-        float xval = candies.get(r, c).getX();
-        float yval = candies.get(r, c).getY();
-        float distStore = dist(xval, yval, x, y);
-        if (distStore<25) {
-          rowIndex = r;
-          colIndex = c;
-          return 0;
-        }
+int getCandy(float x, float y) {
+  for (int r = 0; r<candies.r; r++) {
+    for (int c = 0; c<candies.c; c++) {
+      float xval = candies.get(r, c).getX();
+      float yval = candies.get(r, c).getY();
+      float distStore = dist(xval, yval, x, y);
+      if (distStore<25) {
+        rowIndex = r;
+        colIndex = c;
+        return 0;
       }
     }
-    return -1;
   }
+  return -1;
+}
 
-  void runBoard() {
-    rows=0;
-    ycor=100; 
-    while (ycor < height-TILESIZE) {
-      xcor = 40;
-      cols=0;
-      while (xcor<width-TILESIZE*2) {
-        rect(xcor, ycor, TILESIZE, TILESIZE);
-        xcor+=TILESIZE;
-        cols++;
-      }
-      ycor+=TILESIZE;
-      rows++;
+void runBoard() {
+  rows=0;
+  ycor=100; 
+  while (ycor < height-TILESIZE) {
+    xcor = 40;
+    cols=0;
+    while (xcor<width-TILESIZE*2) {
+      rect(xcor, ycor, TILESIZE, TILESIZE);
+      xcor+=TILESIZE;
+      cols++;
     }
+    ycor+=TILESIZE;
+    rows++;
   }
+}
 
-  void showGoal() {
-    int randIndex1 = (int)(Math.random()*imgs.length);
-    int randIndex2 = (int)(Math.random()*imgs.length);
-    while (randIndex2 == randIndex1) {
-      randIndex2 = (int)(Math.random()*imgs.length);
-    }
-    int randIndex3 = (int)(Math.random()*imgs.length);
-    while (randIndex3 == randIndex2 || randIndex3 == randIndex1) {
-      randIndex3 = (int)(Math.random()*imgs.length);
-    }
-    testing.setGoal(imgs[randIndex1], imgs[randIndex2], imgs[randIndex3]);
+void showGoal() {
+  int randIndex1 = (int)(Math.random()*imgs.length);
+  int randIndex2 = (int)(Math.random()*imgs.length);
+  while (randIndex2 == randIndex1) {
+    randIndex2 = (int)(Math.random()*imgs.length);
   }
-  
-  void setGoal() {
-    if (candies.combo >= 0 && candies.comboImage !=  null) {
-      goalNumber = candies.combo;
-      goalImage = candies.comboImage;
-      if (testing.gol1 == goalImage && testing.goal1 > 0 ) {
-        testing.goal1-=goalNumber;
-        if (testing.goal1 < 0) {
-          testing.goal1 = 0;
-        }
-      }
-      if (testing.gol2 == goalImage && testing.goal2 > 0) {
-        testing.goal2-=goalNumber;
-        if (testing.goal2 < 0) {
-          testing.goal2 = 0;
-        }
-      }
-      if (testing.gol3 == goalImage && testing.goal3 > 0) {
-        testing.goal3-=goalNumber;
-        if (testing.goal3 < 0) {
-          testing.goal3 = 0;
-        }
+  int randIndex3 = (int)(Math.random()*imgs.length);
+  while (randIndex3 == randIndex2 || randIndex3 == randIndex1) {
+    randIndex3 = (int)(Math.random()*imgs.length);
+  }
+  testing.setGoal(imgs[randIndex1], imgs[randIndex2], imgs[randIndex3]);
+}
+
+void setGoal() {
+  if (candies.combo >= 0 && candies.comboImage !=  null) {
+    goalNumber = candies.combo;
+    goalImage = candies.comboImage;
+    if (testing.gol1 == goalImage && testing.goal1 > 0 ) {
+      testing.goal1-=goalNumber;
+      if (testing.goal1 < 0) {
+        testing.goal1 = 0;
       }
     }
+    if (testing.gol2 == goalImage && testing.goal2 > 0) {
+      testing.goal2-=goalNumber;
+      if (testing.goal2 < 0) {
+        testing.goal2 = 0;
+      }
+    }
+    if (testing.gol3 == goalImage && testing.goal3 > 0) {
+      testing.goal3-=goalNumber;
+      if (testing.goal3 < 0) {
+        testing.goal3 = 0;
+      }
+    }
   }
-  
-  void clearBoard() {
-    text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
-    candies.checker = 0;
-    setup();
-  }
+}
+
+void clearBoard() {
+  text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
+  candies.checker = 0;
+  setup();
+}
