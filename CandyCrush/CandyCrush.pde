@@ -124,16 +124,19 @@ void mouseClicked() {
     }
   }
   if (swapBool && testing.moves > 0) {
-    testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
+    // not swapping certain candies and not decrementing the moves
     if (sameArray(candies.candies, unswappingBoard)) {
-      delay(2000);
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
-    setGoal();
-    candies.combo = 0;
+    else {
+      testing.moves--;
+      setGoal();
+    }
+    //
+    //candies.combo = 0;
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
