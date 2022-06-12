@@ -1,4 +1,4 @@
-int TILESIZE;
+int TILESIZE; //<>// //<>// //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
@@ -111,7 +111,7 @@ void mouseClicked() {
       secondCI = colIndex;
       float distBetweenCandy = dist(candies.get(firstRI, firstCI).getX(), candies.get(firstRI, firstCI).getY(), 
         candies.get(secondRI, secondCI).getX(), candies.get(secondRI, secondCI).getY());
-      if (distBetweenCandy<= 130) {
+      if (distBetweenCandy<=TILESIZE*2) {
         swapBool = true;
       }
       mouse = 1;
