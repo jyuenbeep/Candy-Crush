@@ -153,7 +153,7 @@ void mouseClicked() {
 void copyArray(candy[][] a, candy[][] b) {
   for (int i = 0; i<a.length; i++) {
     for (int j = 0; j<a[i].length; j++) {
-      b[i][j] = a[i][j];
+      b[i][j] = new candy(a[i][j].getX(), a[i][j].getY(), a[i][j].getImage(), a[i][j].getColor());
     }
   }
 }
