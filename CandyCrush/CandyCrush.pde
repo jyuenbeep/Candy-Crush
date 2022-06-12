@@ -1,4 +1,4 @@
-int TILESIZE;
+int TILESIZE; //<>// //<>// //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
@@ -15,6 +15,7 @@ int firstRI;
 int firstCI;
 int secondRI;
 int secondCI;
+int firstrun = 0;
 
 //images
 PImage backgroundImg;
@@ -61,7 +62,6 @@ void setup() {
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
   candies = new candyList(testing.row, testing.col, imgs, clrs, testing.size/2, testing.getXstart(), testing.getYstart(), testing.getTilesize());
-  //runBoard();
   showGoal();
 }
 
@@ -70,6 +70,8 @@ void draw() {
   fill(#D3D3D3);
   runBoard();
   candies.display();
+  candies.displayClearing();
+  setGoal();
   fill(0);
   //testing
   textSize(40);
@@ -93,6 +95,7 @@ void draw() {
 }
 
 void mouseClicked() {
+  firstrun= 1;
   if (mouse == 1) {
     int firstClick = getCandy(mouseX, mouseY);
     if (firstClick!=-1) {
@@ -108,7 +111,7 @@ void mouseClicked() {
       secondCI = colIndex;
       float distBetweenCandy = dist(candies.get(firstRI, firstCI).getX(), candies.get(firstRI, firstCI).getY(), 
         candies.get(secondRI, secondCI).getX(), candies.get(secondRI, secondCI).getY());
-      if (distBetweenCandy<= 130) {
+      if (distBetweenCandy<=TILESIZE*2) {
         swapBool = true;
       }
       mouse = 1;
@@ -117,13 +120,16 @@ void mouseClicked() {
   if (swapBool && testing.moves > 0) {
     testing.moves--;
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    candies.displayClearing();
+    candies.displayClearing();    
     setGoal();
     swapBool = false;
   }
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
-    clearBoard();
     testing.increaseLevel();
+    clearBoard();
+  } 
+  if (testing.moves == 0 && (testing.goal1 > 0 || testing.goal2 > 0 && testing.goal3 > 0)) {
+    testing.reset();
     setup();
   }
 }
@@ -185,21 +191,32 @@ void keyPressed() {
   }
   
   void setGoal() {
-    goalNumber = candies.combo;
-    goalImage = candies.comboImage;
-    if (testing.gol1 == goalImage) {
-      testing.goal1-=goalNumber;
-    }
-    if (testing.gol2 == goalImage) {
-      testing.goal2-=goalNumber;
-    }
-    if (testing.gol3 == goalImage) {
-      testing.goal3-=goalNumber;
+    if (candies.combo >= 0 && candies.comboImage !=  null) {
+      goalNumber = candies.combo;
+      goalImage = candies.comboImage;
+      if (testing.gol1 == goalImage && testing.goal1 > 0 ) {
+        testing.goal1-=goalNumber;
+        if (testing.goal1 < 0) {
+          testing.goal1 = 0;
+        }
+      }
+      if (testing.gol2 == goalImage && testing.goal2 > 0) {
+        testing.goal2-=goalNumber;
+        if (testing.goal2 < 0) {
+          testing.goal2 = 0;
+        }
+      }
+      if (testing.gol3 == goalImage && testing.goal3 > 0) {
+        testing.goal3-=goalNumber;
+        if (testing.goal3 < 0) {
+          testing.goal3 = 0;
+        }
+      }
     }
   }
   
   void clearBoard() {
-    if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
-       text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
-    }
+    text("YOU WON LEVEL " + testing.getLevel() + " ON TO THE NEXT LEVEL", 100, 100); 
+    candies.checker = 0;
+    setup();
   }
