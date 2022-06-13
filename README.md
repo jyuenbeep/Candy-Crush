@@ -12,6 +12,9 @@ Our project will be a replica of the ever-so popular Candy Crush game. Though th
 ## [Design Document][1]
 [1]: https://docs.google.com/document/d/1zMXT3fx49sa6R71bYxJQ2Ro-TPaQibq2zvGR7gCgdPc/edit?usp=sharing
 
+## [Final Prototype][2]
+[2]: https://drive.google.com/file/d/1WaIj6tttLY-YAv8BC79DQucP7WV2bn7z/view?usp=sharing
+
 ## Development Logs: 
 
 ### Jasmine Yuen:
@@ -81,6 +84,9 @@ Trying to fix setGoal() so that everytime a combo of a specific candy is made, i
 
 6/11: 
 setGoal() works half the time, but not always. Also fixed the distance so that swapping works in between all the levels and not just a specific one.
+
+6/12:
+Tried to create a timer for animation, but could not figure that out. Made it so that swapping candies does not occur if a combo is not cleared from it. Additionally, also made the top of the screen prettier and made the text more visible. Finalized project. 
 
 ### Bernadette Baroi:
 
