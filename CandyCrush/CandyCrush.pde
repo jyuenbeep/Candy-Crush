@@ -1,4 +1,4 @@
-int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
@@ -190,7 +190,7 @@ int getCandy(float x, float y) {
       float xval = candies.get(r, c).getX();
       float yval = candies.get(r, c).getY();
       float distStore = dist(xval, yval, x, y);
-      if (distStore<25) {
+      if (distStore<=TILESIZE/2) {
         rowIndex = r;
         colIndex = c;
         return 0;
