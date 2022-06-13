@@ -79,7 +79,7 @@ void draw() {
   //testing
   //rect(220, 30, 350, 60);
   noStroke();
-  rect(0,0, width, 90);
+  rect(0, 0, width, 90);
   stroke(10);
   textSize(40);
   fill(#797EF6);
