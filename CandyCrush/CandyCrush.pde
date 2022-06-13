@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-int TILESIZE; //<>// //<>//
-=======
-int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>//
->>>>>>> bernadette
+int TILESIZE;  //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
