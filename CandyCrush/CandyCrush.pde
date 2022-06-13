@@ -74,10 +74,7 @@ void draw() {
   runBoard();
   candies.display();
   candies.displayClearing();
-  //if (candies.checker != 0) {
-  //  setGoal();
-  //}
-  //candies.combo = 0;
+
   fill(0);
   //testing
   textSize(40);
@@ -131,10 +128,6 @@ void mouseClicked() {
     boolean keepSame = sameArray(candies.candies, unswappingBoard);
     if (keepSame) {
       candies.display();
-      int time = millis()+2000;
-      while (millis()!=time) {
-        time = time;
-      }
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
     }
     else {
