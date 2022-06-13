@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 int TILESIZE; //<>// //<>//
+=======
+int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+>>>>>>> bernadette
 int ycor; 
 int xcor;
 candyList candies;
@@ -149,11 +153,12 @@ void mouseClicked() {
     }
     swapBool = false;
   }
+  
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
     testing.increaseLevel();
     clearBoard();
   } 
-  if (testing.moves == 0 && (testing.goal1 > 0 || testing.goal2 > 0 && testing.goal3 > 0)) {
+  if (testing.moves == 0 ) {
     testing.reset();
     setup();
   }

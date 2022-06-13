@@ -381,7 +381,7 @@ public class candyList {
             }
           }
         }
-        if (i -1 >= 0 && i+1 <= r && j+2 < c) {
+        if (i -1 >= 0 && i+1 < r && j+2 < c) {
           if (get(i,j).getImage() == get(i,j+1).getImage() && get(i,j).getImage() == get(i,j+2).getImage()) {
             if (get(i,j).getImage() == get(i-1,j).getImage() && get(i,j).getImage() == get(i+1,j).getImage()) {
               if (checker != 0) {
@@ -394,7 +394,7 @@ public class candyList {
             }
           }
         }
-        if (i -1 >= 0 && i+1 <= r && j+2 < c) {
+        if (i -1 >= 0 && i+1 < r && j+2 < c) {
           if (get(i,j+2).getImage() == get(i,j+1).getImage() && get(i,j+2).getImage() == get(i,j).getImage()) {
             if (get(i,j+2).getImage() == get(i-1,j+2).getImage() && get(i,j+2).getImage() == get(i+1,j+2).getImage()) {
               if (checker != 0) {
