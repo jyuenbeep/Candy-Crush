@@ -69,38 +69,37 @@ void setup() {
 }
 
 void draw() {
-  if (testing.moves==0) {
-    fill(0);
-    textSize(100);
-    text("YOU LOST, NO MORE MOVES", 0, 400);
-  } else {
-    image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
-    fill(#D3D3D3);
-    runBoard();
-    candies.display();
-    candies.displayClearing();
+  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
+  fill(#D3D3D3);
+  runBoard();
+  candies.display();
+  candies.displayClearing();
 
-    fill(0);
-    //testing
-    textSize(40);
-    fill(#D98121);
-    textMode(MODEL);
-    text("CANDY CRUSH ", 250, 75); 
-    textSize(20);
-    fill(0);
-    text("MOVES LEFT: " + testing.moves, 50, 80);
-    text("LEVEL GOAL", 650, 25); 
-    text(testing.goal1, 660, 70);
-    text(testing.goal2, 760, 70);
-    text(testing.goal3, 860, 70);
-    image(testing.gol1, 600, 40, 50, 50);
-    image(testing.gol2, 700, 40, 50, 50);
-    image(testing.gol3, 800, 40, 50, 50);
-    text(frameRate, 10, 15);
-    text("level: " + testing.getLevel(), 50, 60);
-    //testing
-    circle(mouseX, mouseY, 20);
-  }
+  fill(#FFFFFF);
+  //testing
+  //rect(220, 30, 350, 60);
+  noStroke();
+  rect(0,0, width, 90);
+  stroke(10);
+  textSize(40);
+  fill(#797EF6);
+  textMode(MODEL);
+  text("CANDY CRUSH ", 270, 75); 
+  textSize(20);
+  fill(0);
+  text("MOVES LEFT: " + testing.moves, 50, 80);
+  text("LEVEL GOAL", 650, 25); 
+  text(testing.goal1, 660, 70);
+  text(testing.goal2, 760, 70);
+  text(testing.goal3, 860, 70);
+  image(testing.gol1, 600, 40, 50, 50);
+  image(testing.gol2, 700, 40, 50, 50);
+  image(testing.gol3, 800, 40, 50, 50);
+  text("LEVEL: " + testing.getLevel(), 50, 60);
+  fill(#FFC0CB);
+  text("frame rate: " + frameRate, 50, 25);
+  //testing
+  circle(mouseX, mouseY, 20);
 }
 
 void mouseClicked() {
