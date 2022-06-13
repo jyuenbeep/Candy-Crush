@@ -1,4 +1,4 @@
-int TILESIZE; //<>// //<>// //<>// //<>//
+int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
@@ -45,20 +45,20 @@ void setup() {
   testing = new level();
   TILESIZE = testing.size;
   backgroundImg = loadImage("background.jpg");
-  //images //<>//
+  //images
   redCandy = loadImage("red.png");
   yellowCandy = loadImage("yellow.png");
   blueCandy = loadImage("blue.png");
   greenCandy = loadImage("green.png");
-  purpleCandy = loadImage("purple.png"); //<>//
+  purpleCandy = loadImage("purple.png");
   orangeCandy = loadImage("orange.png");
   redCandy.resize(TILESIZE, TILESIZE);
   yellowCandy.resize(TILESIZE, TILESIZE);
-  blueCandy.resize(TILESIZE, TILESIZE); //<>//
+  blueCandy.resize(TILESIZE, TILESIZE);
   orangeCandy.resize(TILESIZE, TILESIZE);
   greenCandy.resize(TILESIZE, TILESIZE);
   purpleCandy.resize(TILESIZE, TILESIZE);
-  //arrays //<>//
+  //arrays
   imgs = new PImage[]{redCandy, yellowCandy, blueCandy, greenCandy, purpleCandy, orangeCandy};
   color[] clrs = new color[]{RED, YELLOW, BLUE, GREEN, PURPLE, ORANGE};
   //constructor
@@ -69,32 +69,38 @@ void setup() {
 }
 
 void draw() {
-  image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
-  fill(#D3D3D3);
-  runBoard();
-  candies.display();
-  candies.displayClearing();
+  if (testing.moves==0) {
+    fill(0);
+    textSize(100);
+    text("YOU LOST, NO MORE MOVES", 0, 400);
+  } else {
+    image(backgroundImg, 0, 0, backgroundImg.width*2, backgroundImg.height*2);
+    fill(#D3D3D3);
+    runBoard();
+    candies.display();
+    candies.displayClearing();
 
-  fill(0);
-  //testing
-  textSize(40);
-  fill(#D98121);
-  textMode(MODEL);
-  text("CANDY CRUSH ", 250, 75); 
-  textSize(20);
-  fill(0);
-  text("MOVES LEFT: " + testing.moves, 50, 80);
-  text("LEVEL GOAL", 650, 25); 
-  text(testing.goal1, 660, 70);
-  text(testing.goal2, 760, 70);
-  text(testing.goal3, 860, 70);
-  image(testing.gol1, 600, 40, 50, 50);
-  image(testing.gol2, 700, 40, 50, 50);
-  image(testing.gol3, 800, 40, 50, 50);
-  text(frameRate, 10, 15);
-  text("level: " + testing.getLevel(), 50, 60);
-  //testing
-  circle(mouseX, mouseY, 20);
+    fill(0);
+    //testing
+    textSize(40);
+    fill(#D98121);
+    textMode(MODEL);
+    text("CANDY CRUSH ", 250, 75); 
+    textSize(20);
+    fill(0);
+    text("MOVES LEFT: " + testing.moves, 50, 80);
+    text("LEVEL GOAL", 650, 25); 
+    text(testing.goal1, 660, 70);
+    text(testing.goal2, 760, 70);
+    text(testing.goal3, 860, 70);
+    image(testing.gol1, 600, 40, 50, 50);
+    image(testing.gol2, 700, 40, 50, 50);
+    image(testing.gol3, 800, 40, 50, 50);
+    text(frameRate, 10, 15);
+    text("level: " + testing.getLevel(), 50, 60);
+    //testing
+    circle(mouseX, mouseY, 20);
+  }
 }
 
 void mouseClicked() {
@@ -129,8 +135,7 @@ void mouseClicked() {
     if (keepSame) {
       candies.display();
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
-    }
-    else {
+    } else {
       testing.moves--;
       setGoal();
     }
@@ -160,7 +165,7 @@ boolean sameArray(candy[][] a, candy[][] b) {
   for (int i = 0; i<a.length; i++) {
     for (int j = 0; j<a[i].length; j++) {
       if (a[i][j].getImage()!=b[i][j].getImage()) {
-        return false; 
+        return false;
       }
     }
   }
