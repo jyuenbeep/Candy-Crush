@@ -40,23 +40,17 @@ public static class level {
     this.gol2 = gol2;
     this.gol3 = gol3;
     if (levelCount >= 0 && levelCount <= 2) {
-      //goal1 = 0;
-      //goal2 = 0;
-      //goal3 = 0;
       goal1 = (int)(Math.random()*3)+1;
       goal2 = (int)(Math.random()*2)+1;
       goal3 = (int)(Math.random()*1)+1;
     } else if (levelCount >= 3 && levelCount < 7) {
-       goal1 = 3;
-       goal2 = 3;
-       goal3 = 3;
-      //goal1 = (int)(Math.random()*7)+3;
-      //goal2 = (int)(Math.random()*8)+3;
-      //goal3 = (int)(Math.random()*9)+3;
+      goal1 = (int)(Math.random()*7)+levelCount;
+      goal2 = (int)(Math.random()*8)+levelCount;
+      goal3 = (int)(Math.random()*9)+levelCount;
     } else {
-      goal1 = (int)(Math.random()*5)+5;
-      goal2 = (int)(Math.random()*10)+5;
-      goal3 = (int)(Math.random()*14)+5;
+      goal1 = (int)(Math.random()*5)+levelCount;
+      goal2 = (int)(Math.random()*10)+levelCount;
+      goal3 = (int)(Math.random()*14)+levelCount;
     }
   }
   
@@ -69,11 +63,11 @@ public static class level {
   
   void setMoves(){
     if (levelCount >= 0 && levelCount <= 2) {
-      moves = 5;
+      moves = 5+levelCount;
     } else if (levelCount >= 3 && levelCount < 7) {
-      moves = 15;
+      moves = 15+levelCount;
     } else {
-      moves = 25;
+      moves = 25+levelCount;
     }
   }
   void reset() {
