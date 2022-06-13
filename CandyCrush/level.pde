@@ -76,7 +76,6 @@ public static class level {
       moves = 25;
     }
   }
-  
   void reset() {
     levelCount = 0;
   }

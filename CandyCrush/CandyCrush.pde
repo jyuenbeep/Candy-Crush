@@ -1,4 +1,4 @@
-int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>//
+int TILESIZE; //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int ycor; 
 int xcor;
 candyList candies;
@@ -127,6 +127,7 @@ void mouseClicked() {
   }
   if (swapBool && testing.moves > 0) {
     candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
+    copyArray(candies.candies, unswappingBoard); 
     candies.clearLshape();
     setGoal();
     candies.clearTshape();
@@ -136,10 +137,9 @@ void mouseClicked() {
     candies.clearRow();
     setGoal();
     candies.combo = 0;
-    copyArray(candies.candies, unswappingBoard); 
     candies.displayClearing();    
-    // not swapping certain candies and not decrementing the moves
     boolean keepSame = sameArray(candies.candies, unswappingBoard);
+    // not swapping certain candies and not decrementing the moves
     if (keepSame) {
       candies.display();
       candies.swapCandies(firstRI, firstCI, secondRI, secondCI);
@@ -149,11 +149,12 @@ void mouseClicked() {
     }
     swapBool = false;
   }
+  
   if (testing.goal1 == 0 && testing.goal2 == 0 && testing.goal3 == 0) {
     testing.increaseLevel();
     clearBoard();
   } 
-  if (testing.moves == 0 && (testing.goal1 > 0 || testing.goal2 > 0 && testing.goal3 > 0)) {
+  if (testing.moves == 0 ) {
     testing.reset();
     setup();
   }
